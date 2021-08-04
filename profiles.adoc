@@ -120,13 +120,11 @@ As the name implies, _Mandatory_ ISA extensions are a required part of
 the profile.  Implementations of the profile must provide these, and
 software using the profile can assume they exist.
 
-_Supported_ extensions are those that are optional, but which
-are expected to be fully supported by software platforms using this
-profile.
+_Supported_ extensions are those that are optional, but which are
+supported by software platforms using this profile.
 
 _Unsupported_ extensions are those that are optional, but for
-which it is not expected that software platforms will provide full, or
-any, support.
+which it is not expected that software platforms will provide any support.
 
 Software platforms may provide a discovery mechanism to determine what
 optional extensions are present.
@@ -240,6 +238,7 @@ zero.  (Software should require all 0s written to satp to set Sbare).
 ==== RVM20S Mandatory Extensions
 
 - Zifencei
+- Zicsr
 
 ==== RVM20S Supported Extensions
 
@@ -265,6 +264,7 @@ The base is RV32I and machine-mode is supported.
 ==== RVM20M Mandatory Extensions
 
 - Zifencei
+- Zicsr
 
 ==== RVM20M Supported Extensions
 
