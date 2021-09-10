@@ -1,9 +1,9 @@
 = RISC-V Profiles
-Version 0.1-draft
 :doctype: article
 :encoding: utf-8
 :lang: en
 :toc: left
+:toc-title: Version 0.1-draft. Current State: Stable. Assume anything could still change, but limited change should be expected. For more information see https://riscv.org/spec-state.
 :numbered:
 :stem: latexmath
 :le: &#8804;
