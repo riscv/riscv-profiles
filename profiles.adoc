@@ -3,7 +3,7 @@
 :encoding: utf-8
 :lang: en
 :toc: left
-:toc-title: Version 0.1-draft. Current State: Development. Assume everything can change. https://riscv.org/spec-state.
+:toc-title: Version 0.1-draft. Current State: Discussion Document. Assume everything can change. This document is not complete yet and was created only for the purpose of conversation outside of the document. https://riscv.org/spec-state.
 :numbered:
 :stem: latexmath
 :le: &#8804;
