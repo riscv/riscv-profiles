@@ -64,12 +64,13 @@ environment).  Most hardware platforms have a defined boot mechanism,
 which can configure and initialize an instance of a software platform
 on the hardware platform.
 
-Both software and hardware platforms include specifications for many
+Both software and hardware _platforms_ include specifications for many
 features beyond details of the ISA used by RISC-V processors in the
 platform (e.g., behavior of environment calls in a software platform
-or location of memory regions in a hardware platform).  Architecture
-profiles factor out ISA-specific definitions from platform definitions
-to allow profile specifications to be reused across different
+or location of memory regions in a hardware platform).
+
+Architecture _profiles_ factor out ISA-specific definitions from platform
+definitions to allow profile specifications to be reused across different
 platforms, and to be used by tools (e.g., compilers) that are common
 across many different platforms.
 
