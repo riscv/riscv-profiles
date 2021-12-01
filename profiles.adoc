@@ -397,7 +397,7 @@ memory accesses must be supported.
 - D
 - C
 
-NOTE: The need to use Zifence is hidden from user code.
+NOTE: The need to use Zifencei is hidden from user code.
 
 ==== RVA20U64 Supported Optional Extensions
 
@@ -407,7 +407,7 @@ None.
 
 - Q
 
-- Zifence
+- Zifencei
 
 ==== RVA20U64 Incompatible Extensions
 
@@ -442,7 +442,7 @@ that should be detailed here.
 
 - Q
 
-- Zifence
+- Zifencei
 
 ==== RVA20S64 Incompatible Extensions
 
