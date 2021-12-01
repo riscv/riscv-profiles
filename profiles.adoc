@@ -16,8 +16,7 @@
 
 == Status
 
-*This is only an initial proposal and is likely to change substantially before
-being standardized.*
+*This is only an initial proposal and is likely to change substantially if it is standardized.*
 
 :sectnums:
 
@@ -25,17 +24,23 @@ being standardized.*
 
 RISC-V was designed to provide a highly modular and extensible
 instruction set, and includes a large and growing set of standard and
-custom extensions.  This flexibility can be used to highly optimize an
-individual design by including only the exact set of ISA features
-required for an application, but this flexibility also leads to a
-combinatorial explosion in possible ISA choices.  Many application
-areas depend on a rich software ecosystem, which is only made possible
-by reducing the possible combinations of ISA features that the
-software ecosystem has to support.  Architecture profiles are intended
-to provide a structure for capturing the widely used combinations of
-instruction set extensions, and are intended to be used by hardware
-and software platform specifications to describe the ISA portions of
-the platforms.
+custom extensions.  This flexibility can be used to highly optimize a
+specialized design by including only the exact set of ISA features
+required for an application, but the same flexibility also leads to a
+potential combinatorial explosion in possible ISA choices.  Another
+pragmatic concern is the long and unwieldy ISA strings required to
+encode common sets of extensions, which will continue to grow as new
+extensions are defined.
+
+Many application areas depend on a rich software ecosystem, which is
+only made possible by reducing the possible combinations of ISA
+features that the software ecosystem has to support.  Architecture
+profiles are intended to provide a structure for describing these
+commonly used combinations of instruction set extensions within broad
+application domains.  Profiles provide a convenient shorthand for
+describing the ISA portions of hardware and software platforms, and
+also guide the development of software toolchains common to different
+platforms that share the same profile.
 
 As RISC-V evolves over time, the set of ISA features supported by each
 software ecosystem will also want to evolve over time, and new
@@ -48,86 +53,99 @@ for planning, packaging, and releasing these ISA updates.
 The architecture profiles will also be used for branding and to
 advertise compatibility with the RISC-V standard.
 
+Profiles do not replace or prohibit the use of combinations of
+individual ISA extensions, which can continue to be used for more
+specialized applications.
+
 This document describes the general structure of RISC-V architecture
 profiles and also the specifics of the first three families of
 architecture profiles: RVI20, RVM20, and RVA20.
 
 == Profiles versus Platforms
 
-A _software_ _platform_ is a common set of specifications for an
-execution environment, in which software targeted for that platform
-can run.
+Profiles only describe ISA features, not a complete execution
+environment.
 
-A _hardware_ _platform_ is a common set of specifications for hardware
-systems (which can be viewed as physical realizations of an execution
-environment).  Most hardware platforms have a defined boot mechanism,
-which can configure and initialize an instance of a software platform
-on the hardware platform.
+A _software_ _platform_ is a specification for an execution
+environment, in which software targeted for that platform can run.
+
+A _hardware_ _platform_ is a specification for hardware systems (which
+can be viewed as physical realizations of an execution environment).
+
+NOTE: Most hardware platforms have a defined boot mechanism, which can
+configure and initialize an instance of a software platform (e.g.,
+Linux) on the hardware platform (e.g., a server).
 
 Both software and hardware platforms include specifications for many
 features beyond details of the ISA used by RISC-V processors in the
 platform (e.g., behavior of environment calls in a software platform
 or location of memory regions in a hardware platform).  Architecture
-profiles factor out ISA-specific definitions from platform definitions
-to allow profile specifications to be reused across different
+profiles factor out ISA-specific definitions from platform
+definitions, to allow ISA profiles to be reused across different
 platforms, and to be used by tools (e.g., compilers) that are common
 across many different platforms.
 
+A platform can add additional constraints on top of those in a
+profile.  For example, mandating an extension that is optional in the
+underlying profile, or constraining some implementation-specific
+parameter in the profile to lie within a certain range.
+
+A platform cannot remove constraints from a profile.
+
+NOTE: A new profile should be proposed if existing profiles do not
+match then needs of a new platform.
+
 == Components of a Profile
 
-=== Profile Naming Convention
+=== Profile Family
 
-A profile name is a string comprised of:
+Every profile is a member of a _profile_ _family_.  A profile family
+is a set of profiles that are designed for the same applications but
+vary in base ISA and privilege mode.  The initial three families are:
 
-. prefix RV for RISC-V
-. a specific profile family string (I, M, or A initially)
-. a numeric string giving the first complete calendar year for which
-the profile is ratified, represented as number of years after year
-2000 (i.e., 20 for profiles built on specifications ratified during 2019)
-. an optional privilege mode (U, S, M), if the profile is differentiated by
-privilege mode (privilege mode is required as separator if there's a following base specifier
-starting with a number)
-. an optional base specifier, if the profile supports different bases
+- generic unprivileged instructions (I)
+- microcontrollers for embedded systems (M)
+- application processors running rich operating systems (A)
 
-A _profile_ _family_ is a set of profiles that are designed for the
-same applications but vary in base ISA and privilege mode.
+A family may be updated no more than annually, and the release
+calendar year is treated as part of the family name.
 
-The initial profiles based on specifications ratified in 2019 are:
+More families may be added over time.
 
-- RVI20 basic unprivileged instructions for RV32I
-- RVI20U64 basic unprivileged instructions for RV64I
-- RVM20, RVM20S32, RVM20U32 machine-mode profile for microcontrollers based on RV32I
-- RVM20M64, RVM20S64, RVMU64  machine-mode profile for microcontrollers based on RV64I
-- RVA20M, RVA20S, RVA20U, application-processor profiles for different privilege modes on RV64I
-- RVA20M32, RVA20S32, RVA20U32, application-processor profiles for different privilege modes on RV32I
-
-Note that a given profile family implies a default base (RV32I or
-RV64I) based on the most common choice for that profile family (e.g.,
-RV32I for RVM and RV64I for RVA).
+Each family is described in more detail below.
 
 === Base and Extensions
 
 An architecture profile has a mandatory base instruction set (RV32I or
-RV64I).  In addition, the profile categorizes available ISA extensions
-into four categories:
+RV64I).  In addition, the profile categorizes all available ISA
+extensions into four categories:
 
 . Mandatory
-. Supported
-. Unsupported
+. Supported Optional
+. Unsupported Optional
 . Incompatible
 
 As the name implies, _Mandatory_ ISA extensions are a required part of
 the profile.  Implementations of the profile must provide these, and
 software using the profile can assume they exist.
 
-_Supported_ extensions are those that are optional, but which are
-supported by software platforms using this profile.
+_Supported_ _Optional_ extensions are those that are optional, but
+which are expected to be generally supported by the software ecosystem
+for this profile.
 
-_Unsupported_ extensions are those that are optional, but for
-which it is not expected that software platforms will provide any support.
+NOTE: The level of support for Supported Optional extension will
+likely vary greatly among different software components supporting a
+profile, but at the bare minimum tools or runtimes that are claiming
+compatibility with the profile must not report errors or warnings if
+supported optional extensions are present.
 
-Software platforms may provide a discovery mechanism to determine what
-optional extensions are present.
+_Unsupported_ _Optional_ extensions are those that are optional, but
+which are not expected to be generally supported by the software
+ecosystem.
+
+NOTE: Software components claiming compatibility with the profile are
+not expected to be able to support these extensions, and may error or
+report warnings if they are present.
 
 _Incompatible_ extensions are those that conflict with the base or
 optional extensions.  Software can assume these extensions are not
@@ -136,32 +154,63 @@ present.
 All components of a ratified profile must themselves have been
 ratified.
 
-=== Execution Environments for a Profile
+NOTE: Extensions that are ratified after a profile are effectively
+either Unsupported Optional or Incompatible for that profile.  A later
+release of a profile may include the feature as Mandatory or Supported
+Optional.
 
-In general, the behavior of RISC-V instructions depends on the
-execution environment in which they run.  To remain generic and usable
-by different software platforms, profiles assume only bare execution
-environments.
+Software platforms may provide a discovery mechanism to determine what
+optional extensions are present.
 
-The initial set of profiles are defined for different bare execution
-environments that are primarily distinguished by their most-privileged
-supported mode.
+=== Profile Privilege Mode
 
-For example, the RVI20 profile is defined for a bare unprivileged
-execution environment.  The ECALL instruction in an RVI20 profile is
-only required to cause a requested trap to the execution environment.
-The details of how the requested trap is handled by the execution
-environment are not specified by the profile.
+In general, available instructions vary by privilege mode, and the
+behavior of RISC-V instructions can depend on the current privilege
+mode.
 
-As another example, the RVA20S profile is only defined for a
-supervisor-mode execution environment.  An ECALL instruction while in
-supervisor mode is only required to cause a requested trap to the
-execution environment.  How that trap is handled by the execution
-environment is not specified in the profile (normally, a software
-platform using the RVA20S profile would describe the behavior of
-specific ECALLs). In contrast, an ECALL instruction while in user mode
-in the RVA20S profile will cause a contained trap to supervisor mode,
-as specified by the privileged architecture.
+Separate profiles are provided for unprivileged code and each
+privileged mode of each base ISA in a profile family.  Unprivileged
+profiles include only unprivileged ISA features.  Privileged-mode
+profiles include the behavior of instructions running in all
+lower-privilege modes as well as the mode after which the profile is
+named.
+
+For example, the RVM20U32 profile would specify that an ECALL
+instruction causes a requested trap to the execution environment.  The
+details of how the requested trap is handled by the execution
+environment are not specified by the profile as these are out of
+scope.
+
+NOTE: A software platform for RVM20U32 could detail what ECALLs are
+supported by the execution environment defined by the platform.
+
+In contrast, the RVM20S32 profile would specify that an ECALL in user
+mode would cause a contained trap into supervisor mode, with the
+trapping context state saved in supervisor-accessible CSRs.  However,
+an ECALL in supervisor mode of an RVM20S32 profile would be specified
+as a requested trap to the enclosing execution environment, and the
+RVM20S32 profile would not specify how the requested trap is handled.
+
+=== Profile Naming Convention
+
+A profile name is a string comprised of, in order:
+
+. prefix RV for RISC-V
+. a specific profile family string (I, M, or A)
+. a numeric string giving the first complete calendar year for which
+the profile is ratified, represented as number of years after year
+2000 (i.e., 20 for profiles built on specifications ratified during 2019)
+. a privilege mode (U, S, M)
+. a base ISA specifier (32, 64)
+
+The initial profiles based on specifications ratified in 2019 are:
+
+- RVI20U32 basic unprivileged instructions for RV32I
+- RVI20U64 basic unprivileged instructions for RV64I
+- RVM20U32, RVM20S32, RVM20M32 profiles for microcontrollers based on RV32I
+- RVM20U64, RVM20S64, RVM20M64 profiles for microcontrollers based on RV64I
+- RVA20U32, RVA20S32, RVA20M32 32-bit application-processor profiles
+- RVA20U64, RVA20S64, RVA20M64 64-bit application-processor profiles
 
 == RVI20 Profiles
 
@@ -169,14 +218,13 @@ The RVI20 family of profiles are intended to represent the minimal
 level of compatibility with the RISC-V specifications that can be
 officially branded as RISC-V compatible.
 
-The RVI20 profiles use an unprivileged execution environment and
-unless otherwise specified use an RV32I base (i.e., RVI20 implies
-RVI20U32).
+=== RVI20U32/RVI20U64 Bases
 
-=== RVI20 Base
-
-The RVI20 profile includes all instructions in the unprivileged RV32I
+The RVI20U32 profile includes all instructions in the unprivileged RV32I
 base instruction set.
+
+The RVI20U64 profile includes all instructions in the unprivileged
+RV64I base instruction set.
 
 The RVWMO memory model is followed.
 
@@ -186,62 +234,74 @@ cause a fatal trap to the execution environment.
 ECALL and EBREAK instructions cause requested traps to the execution
 environment.
 
-=== RVI20 Mandatory Extensions
+=== RVI20U32/64 Mandatory Extensions
+
+None.
+
+=== RVI20U32/64 Supported Extensions
 
 - Zifencei
-
-=== RVI20 Supported Extensions
-
 - M
 - A
 - F
 - D
 - C
 
-Note Zicsr is only required if F is supported.
+NOTE: If Zifencei is not supported, then execution of newly written
+instruction memory can only be supported through a non-standard
+mechanism.
 
-=== RVI20 Unsupported Extensions
+NOTE: Zicsr is only required if F is supported.
+
+=== RVI20U32/64 Unsupported Extensions
 
 - Q
 
-There is no significant demand for hardware or software support for Q.
+NOTE: There has been little demand for hardware or software support
+for Q.
 
-=== RVI20 Incompatible Extensions
+=== RVI20U32/64 Incompatible Extensions
 
 None.
 
-=== RVI20U64 Variant
-
-Same as above except base is RV64I.
 
 == RVM20 Profiles
 
 The RVM20 family of profiles are intended to be used in
-microcontroller applications, and the default base is RV32I.
+microcontroller applications.
 
-=== RVM20U Profile
+=== RVM20U32/64 Profiles
 
-The RVM20U profile represents the behavior of unprivileged code in
+The RVM20U32/64 profiles represents the behavior of unprivileged code in
 microcontrollers.
 
-RVM20U is identical to RVI20, except that WFI is a supported extension.
+RVM20U32/64 is identical to RVI20U32/64, except that WFI is a
+supported extension.
 
-=== RVM20S Profile
+NOTE: WFI was originally specified as a privileged instruction, but a
+later enhancement optionally allows unprivileged use.
 
-This profile provides a supervisor-mode execution environment.
+=== RVM20S32/64 Profile
 
-The base is RV32I and supervisor and user mode are supported.
+These profiles provides a supervisor-mode execution environment,
+including the supervisor components of privileged architecture v1.11.
+
+The RVM20S32 base is RV32I and supervisor and user mode are supported.
+
+The RVM20S64 base is RV64I and supervisor and user mode are supported.
 
 Only the Sbare setting of satp is mandatory, and may be hardwired to
 zero.  (Software should require all 0s written to satp to set Sbare).
 
-==== RVM20S Mandatory Extensions
+==== RVM20S32/S64 Mandatory Extensions
 
-- Zifencei
 - Zicsr
 
-==== RVM20S Supported Extensions
+NOTE: Zicsr is required to read and write supervisor CSRs.
 
+==== RVM20S32/S64 Supported Extensions
+
+- Zifencei
 - M
 - A
 - F
@@ -251,23 +311,40 @@ zero.  (Software should require all 0s written to satp to set Sbare).
 - scounteren
 - stval set on illegal instruction
 
-==== RVM20S Unsupported extensions
+NOTE: The later extensions/options do not currently have standard
+names.
+
+==== RVM20S32 Unsupported extensions
 
 - Sv32
 
-=== RVM20M Profile
+NOTE: Virtual memory is not usually used in this class of microcontrollers.
 
-This profile provides a machine-mode execution environment.
+==== RVM20S64 Unsupported extensions
 
-The base is RV32I and machine-mode is supported.
+- Sv39
+
+NOTE: Virtual memory is not usually used in this class of microcontrollers.
+
+==== RVM20S32/S64 Incompatible extensions
+
+None.
+
+=== RVM20M32/64 Profiles
+
+These profiles support machine-mode as specified in privileged
+architecture v1.11, with user mode and supervisor mode as optional
+supported extensions.
+
+The base is RV32I/RV64I with machine-mode as only supported mode.
 
 ==== RVM20M Mandatory Extensions
 
-- Zifencei
 - Zicsr
 
 ==== RVM20M Supported Extensions
 
+- Zifencei
 - M
 - A
 - F
@@ -288,21 +365,20 @@ The base is RV32I and machine-mode is supported.
 - TW (timeout wait - or make mandatory?)
 - TSR (Trap SRET - or make unsupported?)
 
+NOTE: Many of these extensions/options do not currently have standard names.
+
 ==== RVM20M Unsupported extensions
 
 - Sv32 (including SUM)
 - TVM
 
-
-
-
-
-
 == RVA20 Profiles
 
-The RVA20 family of profiles are intended to be used as
-application processors, and the default base is RV64I.
+The RVA20 family of profiles are intended to be used for application
+processors running rich OS stacks.
 
+NOTE: Only 64-bit is shown here, but should also include 32-bit
+variant.
 
 === RVA20U64 Profile
 
@@ -312,7 +388,65 @@ applications processors.
 RVA20U64 profile is identical to RVI20U64 except that misaligned
 memory accesses must be supported.
 
-=== RVA20S64 Profile
+==== RVA20U64 Mandatory Extensions
+
+- Zicsr
+- M
+- A
+- F
+- D
+- C
+
+NOTE: The need to use Zifence is hidden from user code.
+
+==== RVA20U64 Supported Optional Extensions
+
+None.
+
+==== RVA20U64 Unsupported Optional Extensions
+
+- Q
+
+- Zifence
+
+==== RVA20U64 Incompatible Extensions
+
+None.
+
+=== RVA20S64 Mandatory Base
+
+The RVA20S64 profile includes the supervisor components of privileged
+architecture version 1.11.
+
+The RVA20S64 mandatory base includes RVA20U64 unprivileged
+instructions, except that ECALL in user mode causes a contained trap
+to supervisor mode.
+
+=== RVA20S64 Mandatory Extensions
+
+- Zicsr
+- M
+- A
+- F
+- D
+- C
+
+=== RVA20S64 Supported Optional Extensions
+
+None.
+
+NOTE: There are options and parameters in the privileged architecture
+that should be detailed here.
+
+=== RVA20S64 Unsupported Optional Extensions
+
+- Q
+
+- Zifence
+
+==== RVA20S64 Incompatible Extensions
+
+None.
 
 
 === RVA20M64 Profile
