@@ -238,22 +238,25 @@ environment.
 
 None.
 
-=== RVI20U32/64 Supported Extensions
+=== RVI20U32/64 Supported Optional Extensions
 
-- Zifencei
 - M
 - A
 - F
 - D
 - C
+- Zicsr
+- Zifencei
+- Zicntr
+- Zihpm
 
 NOTE: If Zifencei is not supported, then execution of newly written
 instruction memory can only be supported through a non-standard
 mechanism.
 
-NOTE: Zicsr is only required if F is supported.
+NOTE: Zicsr is only required if F, Zicntr, or Zihpm is supported.
 
-=== RVI20U32/64 Unsupported Extensions
+=== RVI20U32/64 Unsupported Optional Extensions
 
 - Q
 
