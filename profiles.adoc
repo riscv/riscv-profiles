@@ -434,6 +434,7 @@ to supervisor mode.
 - D
 - C
 - Zifencei
+- Sv39
 - Main memory regions with both the cacheability and coherence PMAs must
   support hardware page-table reads.
   Such regions must additionally support hardware page-table writes if
@@ -447,6 +448,7 @@ to supervisor mode.
   C.EBREAK instructions.
   For illegal-instruction exceptions, stval must be written with the faulting
   instruction.
+- In addition to Sv39, the satp mode Bare must be supported.
 
 === RVA20S64 Supported Optional Extensions
 
