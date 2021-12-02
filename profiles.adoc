@@ -398,6 +398,7 @@ memory accesses must be supported.
 - C
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
+- Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
 
 NOTE: The need to use Zifencei is hidden from user code.
 
