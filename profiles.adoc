@@ -473,3 +473,4 @@ None.
   C.EBREAK instructions.
   For illegal-instruction exceptions, mtval must be written with the faulting
   instruction.
+- PMP registers 0-3 must be implemented.
