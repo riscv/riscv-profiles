@@ -385,22 +385,21 @@ variant.
 The RVA20U64 profile represents the behavior of unprivileged code in
 applications processors.
 
-RVA20U64 profile is identical to RVI20U64 except that misaligned
-memory accesses must be supported.
-
 ==== RVA20U64 Mandatory Extensions
 
-- Zicsr
 - M
 - A
 - F
 - D
 - C
+- Zicsr
+- Zicntr
+- Zihpm
+- Misaligned loads and stores to main memory regions with both the
+  cacheability and coherence PMAs must be supported.
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
 - Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
-
-NOTE: The need to use Zifencei is hidden from user code.
 
 ==== RVA20U64 Supported Optional Extensions
 
@@ -409,8 +408,9 @@ None.
 ==== RVA20U64 Unsupported Optional Extensions
 
 - Q
-
 - Zifencei
+
+NOTE: The need to use Zifencei is hidden from user code.
 
 ==== RVA20U64 Incompatible Extensions
 
@@ -427,13 +427,9 @@ to supervisor mode.
 
 === RVA20S64 Mandatory Extensions
 
-- Zicsr
-- M
-- A
-- F
-- D
-- C
+- All RVA20U64 mandatory extensions
 - Zifencei
+- Ss1p11
 - Sv39
 - Main memory regions with both the cacheability and coherence PMAs must
   support hardware page-table reads.
@@ -452,7 +448,7 @@ to supervisor mode.
 
 === RVA20S64 Supported Optional Extensions
 
-None.
+- Sv48
 
 NOTE: There are options and parameters in the privileged architecture
 that should be detailed here.
@@ -469,6 +465,9 @@ None.
 
 === RVA20M64 Mandatory Extensions
 
+- All RVA20S64 mandatory extensions, _except_ F, D, and misaligned loads
+  and stores.
+- Sm1p11
 - mstatus.TVM, mstatus.TW, and mstatus.TSR must be writable.
 - mtvec.MODE must be capable of holding the value 0 (Direct).
   mtvec.BASE must be capable of holding any four-byte-aligned address
@@ -485,3 +484,21 @@ None.
   For illegal-instruction exceptions, mtval must be written with the faulting
   instruction.
 - PMP registers 0-3 must be implemented.
+
+=== RVA20M64 Supported Optional Extensions
+
+- All RVA20S64 supported optional extensions
+- F
+- D
+- Misaligned loads and stores
+
+NOTE: There are options and parameters in the privileged architecture
+that should be detailed here.
+
+=== RVA20S64 Unsupported Optional Extensions
+
+- All RVA20S64 unsupported optional extensions
+
+==== RVA20S64 Incompatible Extensions
+
+- All RVA20S64 incompatible extensions
