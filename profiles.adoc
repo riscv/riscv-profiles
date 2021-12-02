@@ -433,6 +433,7 @@ to supervisor mode.
 - F
 - D
 - C
+- Zifencei
 - Main memory regions with both the cacheability and coherence PMAs must
   support hardware page-table reads.
   Such regions must additionally support hardware page-table writes if
@@ -448,8 +449,6 @@ that should be detailed here.
 === RVA20S64 Unsupported Optional Extensions
 
 - Q
-
-- Zifencei
 
 ==== RVA20S64 Incompatible Extensions
 
