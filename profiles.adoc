@@ -433,6 +433,10 @@ to supervisor mode.
 - F
 - D
 - C
+- Main memory regions with both the cacheability and coherence PMAs must
+  support hardware page-table reads.
+  Such regions must additionally support hardware page-table writes if
+  any harts support hardware page-table writes.
 
 === RVA20S64 Supported Optional Extensions
 
@@ -450,7 +454,6 @@ that should be detailed here.
 ==== RVA20S64 Incompatible Extensions
 
 None.
-
 
 === RVA20M64 Profile
 
