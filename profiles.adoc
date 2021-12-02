@@ -396,6 +396,8 @@ memory accesses must be supported.
 - F
 - D
 - C
+- Main memory regions with both the cacheability and coherence PMAs must
+  support instruction fetch, AMOArithmetic, and RsrvEventual.
 
 NOTE: The need to use Zifencei is hidden from user code.
 
