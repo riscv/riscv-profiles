@@ -468,6 +468,7 @@ None.
 - All RVA20S64 mandatory extensions, _except_ F, D, and misaligned loads
   and stores.
 - Sm1p11
+- mvendorid, marchid, and mimpid registers must be nonzero.
 - mstatus.TVM, mstatus.TW, and mstatus.TSR must be writable.
 - mtvec.MODE must be capable of holding the value 0 (Direct).
   mtvec.BASE must be capable of holding any four-byte-aligned address
