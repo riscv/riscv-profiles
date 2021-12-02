@@ -456,3 +456,6 @@ None.
 
 === RVA20M64 Profile
 
+=== RVA20M64 Mandatory Extensions
+
+- mstatus.TVM, mstatus.TW, and mstatus.TSR must be writable.
