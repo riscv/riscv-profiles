@@ -465,3 +465,5 @@ None.
 - medeleg bits 3, 8, 12, 13, and 15 must be writable.
 - mideleg bits 1, 5, and 9 must be writable.  mideleg bits 3, 7, and 11
   must be read-only zero.
+- For any mhpmcounter that is writable, the corresponding bit
+  in mcounteren must be writable.
