@@ -439,14 +439,15 @@ to supervisor mode.
   Such regions must additionally support hardware page-table writes if
   any harts support hardware page-table writes.
 - stvec.MODE must be capable of holding the value 0 (Direct).
-  stvec.BASE must be capable of holding any four-byte-aligned address
-  in cacheable and coherent main memory.
+  stvec.BASE must be capable of holding any valid four-byte-aligned address.
 - stval must be written with the faulting virtual address for load, store, and
   instruction page-fault, access-fault, and misaligned exceptions, and for
   breakpoint exceptions other than those caused by execution of the EBREAK or
   C.EBREAK instructions.
   For illegal-instruction exceptions, stval must be written with the faulting
   instruction.
+- For any hpmcounter that is not read-only zero, the corresponding bit
+  in scounteren must be writable.
 - In addition to Sv39, the satp mode Bare must be supported.
 
 ==== RVA20S64 Supported Optional Extensions
@@ -474,8 +475,7 @@ None.
 - mvendorid, marchid, and mimpid registers must be nonzero.
 - mstatus.TVM, mstatus.TW, and mstatus.TSR must be writable.
 - mtvec.MODE must be capable of holding the value 0 (Direct).
-  mtvec.BASE must be capable of holding any four-byte-aligned address
-  in cacheable and coherent main memory.
+  mtvec.BASE must be capable of holding any valid four-byte-aligned address.
 - medeleg bits 3, 8, 12, 13, and 15 must be writable.
 - mideleg bits 1, 5, and 9 must be writable.  mideleg bits 3, 7, and 11
   must be read-only zero.
@@ -602,19 +602,36 @@ to supervisor mode.
   Such regions must additionally support hardware page-table writes if
   any harts support hardware page-table writes.
 - stvec.MODE must be capable of holding the value 0 (Direct).
-  stvec.BASE must be capable of holding any four-byte-aligned address
-  in cacheable and coherent main memory.
+  stvec.BASE must be capable of holding any valid four-byte-aligned address.
 - stval must be written with the faulting virtual address for load, store, and
   instruction page-fault, access-fault, and misaligned exceptions, and for
   breakpoint exceptions other than those caused by execution of the EBREAK or
   C.EBREAK instructions.
   For illegal-instruction exceptions, stval must be written with the faulting
   instruction.
+- sstatus.UBE must not be read-only 1.
+- For any hpmcounter that is not read-only zero, the corresponding bit
+  in scounteren must be writable.
 - In addition to Sv39, the satp mode Bare must be supported.
+
+If the hypervisor extension is implemented, the following are also mandatory:
+- hstatus.VTVM, hstatus.VTW, and hstatus.VTSR must be writable.
+- For any hpmcounter that is not read-only zero, the corresponding bit
+  in hcounteren must be writable.
+- htval and vstval must be written in all cases described above for stval.
+- htval2 must be written with the faulting guest physical address in all
+  circumstances permitted by the ISA.
+- vstvec.MODE must be capable of holding the value 0 (Direct).
+  vstvec.BASE must be capable of holding any valid four-byte-aligned address.
+- All translation modes supported in satp must be supported in vsatp.
+- For each supported virtual memory scheme SvNN supported in satp, the
+  corresponding hgatp SvNNx4 mode must be supported.  The hgatp mode Bare
+  must also be supported.
 
 ==== RVA22S64 Supported Optional Extensions
 
 - All RVA22U64 supported optional extensions
+- Hypervisor extension
 - Sv48
 
 NOTE: There are options and parameters in the privileged architecture
@@ -637,14 +654,14 @@ that should be detailed here.
 - Sm1p12
 - mvendorid, marchid, and mimpid registers must be nonzero.
 - mstatus.TVM, mstatus.TW, and mstatus.TSR must be writable.
+- mstatus.MBE, mstatus.SBE, and mstatus.UBE must not be read-only 1.
 - mtvec.MODE must be capable of holding the value 0 (Direct).
-  mtvec.BASE must be capable of holding any four-byte-aligned address
-  in cacheable and coherent main memory.
+  mtvec.BASE must be capable of holding any valid four-byte-aligned address.
 - medeleg bits 3, 8, 12, 13, and 15 must be writable.
 - mideleg bits 1, 5, and 9 must be writable.  mideleg bits 3, 7, and 11
   must be read-only zero.
-- For any mhpmcounter that is writable, the corresponding bit
-  in mcounteren must be writable.
+- For any mhpmcounter that is writable, the corresponding bits
+  in mcounteren and mcountinhibit must be writable.
 - mtval must be written with the faulting virtual address for load, store, and
   instruction page-fault, access-fault, and misaligned exceptions, and for
   breakpoint exceptions other than those caused by execution of the EBREAK or
@@ -652,6 +669,11 @@ that should be detailed here.
   For illegal-instruction exceptions, mtval must be written with the faulting
   instruction.
 - PMP registers 0-3 must be implemented.
+
+If the hypervisor extension is implemented, the following are also mandatory:
+- medeleg bits 10, 20, 21, 22, and 23 must additionally be writable.
+- mtval2 must be written with the faulting guest physical address in all
+circumstances permitted by the ISA.
 
 ==== RVA22M64 Supported Optional Extensions
 
