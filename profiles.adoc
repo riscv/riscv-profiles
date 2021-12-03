@@ -419,7 +419,7 @@ NOTE: The need to use Zifencei is hidden from user code.
 
 None.
 
-=== RVA20S64 Mandatory Base
+=== RVA20S64 Profile
 
 The RVA20S64 profile includes the supervisor components of privileged
 architecture version 1.11.
@@ -428,7 +428,7 @@ The RVA20S64 mandatory base includes RVA20U64 unprivileged
 instructions, except that ECALL in user mode causes a contained trap
 to supervisor mode.
 
-=== RVA20S64 Mandatory Extensions
+==== RVA20S64 Mandatory Extensions
 
 - All RVA20U64 mandatory extensions
 - Zifencei
@@ -449,14 +449,14 @@ to supervisor mode.
   instruction.
 - In addition to Sv39, the satp mode Bare must be supported.
 
-=== RVA20S64 Supported Optional Extensions
+==== RVA20S64 Supported Optional Extensions
 
 - Sv48
 
 NOTE: There are options and parameters in the privileged architecture
 that should be detailed here.
 
-=== RVA20S64 Unsupported Optional Extensions
+==== RVA20S64 Unsupported Optional Extensions
 
 - Q
 
@@ -466,7 +466,7 @@ None.
 
 === RVA20M64 Profile
 
-=== RVA20M64 Mandatory Extensions
+==== RVA20M64 Mandatory Extensions
 
 - All RVA20S64 mandatory extensions, _except_ F, D, and misaligned loads
   and stores.
@@ -489,7 +489,7 @@ None.
   instruction.
 - PMP registers 0-3 must be implemented.
 
-=== RVA20M64 Supported Optional Extensions
+==== RVA20M64 Supported Optional Extensions
 
 - All RVA20S64 supported optional extensions
 - F
@@ -499,10 +499,10 @@ None.
 NOTE: There are options and parameters in the privileged architecture
 that should be detailed here.
 
-=== RVA20S64 Unsupported Optional Extensions
+==== RVA20M64 Unsupported Optional Extensions
 
 - All RVA20S64 unsupported optional extensions
 
-==== RVA20S64 Incompatible Extensions
+==== RVA20M64 Incompatible Extensions
 
 - All RVA20S64 incompatible extensions
