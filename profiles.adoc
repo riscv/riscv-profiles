@@ -506,3 +506,170 @@ that should be detailed here.
 ==== RVA20M64 Incompatible Extensions
 
 - All RVA20S64 incompatible extensions
+
+== RVA22 Profiles
+
+The RVA22 family of profiles are intended to be used for application
+processors running rich OS stacks.
+
+NOTE: Only 64-bit is shown here, but should also include 32-bit
+variant.
+
+=== RVA22U64 Profile
+
+The RVA22U64 profile represents the behavior of unprivileged code in
+applications processors.
+
+==== RVA22U64 Mandatory Extensions
+
+- M
+- A
+- F
+- D
+- C
+- Zicsr
+- Zicntr
+- Zihpm
+- Zicbom
+- Zicbop
+- Zicboz
+- Zihintpause
+- Zba
+- Zbb
+- Zbs
+- Misaligned loads and stores to main memory regions with both the
+  cacheability and coherence PMAs must be supported.
+- Main memory regions with both the cacheability and coherence PMAs must
+  support instruction fetch, AMOArithmetic, and RsrvEventual.
+- Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
+
+==== RVA22U64 Supported Optional Extensions
+
+- Zbc
+- Zbkb
+- Zbkc
+- Zbkx
+- Zfh
+- Zfhmin
+- Zk
+- Zkn
+- Zknd
+- Zkne
+- Zknh
+- Zkr
+- Zks
+- Zksed
+- Zkh
+- Zkt
+- Zve32f
+- Zve32x
+- Zve64d
+- Zve64f
+- Zve64x
+- V
+
+==== RVA22U64 Unsupported Optional Extensions
+
+- Q
+- Zifencei
+
+NOTE: The need to use Zifencei is hidden from user code.
+
+==== RVA22U64 Incompatible Extensions
+
+- Zfinx
+- Zdinx
+- Zhinx
+- Zhinxmin
+
+=== RVA22S64 Profile
+
+The RVA22S64 profile includes the supervisor components of privileged
+architecture version 1.12.
+
+The RVA22S64 mandatory base includes RVA22U64 unprivileged
+instructions, except that ECALL in user mode causes a contained trap
+to supervisor mode.
+
+==== RVA22S64 Mandatory Extensions
+
+- All RVA22U64 mandatory extensions
+- Zifencei
+- Ss1p12
+- Sv39
+- Main memory regions with both the cacheability and coherence PMAs must
+  support hardware page-table reads.
+  Such regions must additionally support hardware page-table writes if
+  any harts support hardware page-table writes.
+- stvec.MODE must be capable of holding the value 0 (Direct).
+  stvec.BASE must be capable of holding any four-byte-aligned address
+  in cacheable and coherent main memory.
+- stval must be written with the faulting virtual address for load, store, and
+  instruction page-fault, access-fault, and misaligned exceptions, and for
+  breakpoint exceptions other than those caused by execution of the EBREAK or
+  C.EBREAK instructions.
+  For illegal-instruction exceptions, stval must be written with the faulting
+  instruction.
+- In addition to Sv39, the satp mode Bare must be supported.
+
+==== RVA22S64 Supported Optional Extensions
+
+- All RVA22U64 supported optional extensions
+- Sv48
+
+NOTE: There are options and parameters in the privileged architecture
+that should be detailed here.
+
+==== RVA22S64 Unsupported Optional Extensions
+
+- Q
+
+==== RVA22S64 Incompatible Extensions
+
+- All RVA22U64 incompatible extensions
+
+=== RVA22M64 Profile
+
+==== RVA22M64 Mandatory Extensions
+
+- All RVA22S64 mandatory extensions, _except_ F, D, and misaligned loads
+  and stores.
+- Sm1p12
+- mvendorid, marchid, and mimpid registers must be nonzero.
+- mstatus.TVM, mstatus.TW, and mstatus.TSR must be writable.
+- mtvec.MODE must be capable of holding the value 0 (Direct).
+  mtvec.BASE must be capable of holding any four-byte-aligned address
+  in cacheable and coherent main memory.
+- medeleg bits 3, 8, 12, 13, and 15 must be writable.
+- mideleg bits 1, 5, and 9 must be writable.  mideleg bits 3, 7, and 11
+  must be read-only zero.
+- For any mhpmcounter that is writable, the corresponding bit
+  in mcounteren must be writable.
+- mtval must be written with the faulting virtual address for load, store, and
+  instruction page-fault, access-fault, and misaligned exceptions, and for
+  breakpoint exceptions other than those caused by execution of the EBREAK or
+  C.EBREAK instructions.
+  For illegal-instruction exceptions, mtval must be written with the faulting
+  instruction.
+- PMP registers 0-3 must be implemented.
+
+==== RVA22M64 Supported Optional Extensions
+
+- All RVA22S64 supported optional extensions
+- F
+- D
+- Misaligned loads and stores
+
+NOTE: Consider making Zicbom supported-optional here to faciliate
+trap & emulate, for systems that use some out-of-band mechanism?
+
+NOTE: There are options and parameters in the privileged architecture
+that should be detailed here.
+
+==== RVA22M64 Unsupported Optional Extensions
+
+- All RVA22S64 unsupported optional extensions
+
+==== RVA22M64 Incompatible Extensions
+
+- All RVA22S64 incompatible extensions
