@@ -413,7 +413,11 @@ None.
 - Q
 - Zifencei
 
-NOTE: The need to use Zifencei is hidden from user code.
+NOTE: The execution environment must provide a means to synchronize writes to
+instruction memory with instruction fetches, the implementation of which
+likely relies on the Zifencei extension.
+For example, RISC-V Linux supplies the `__riscv_flush_icache` system call and
+a corresponding vDSO call.
 
 ==== RVA20U64 Incompatible Extensions
 
@@ -574,7 +578,11 @@ applications processors.
 - Q
 - Zifencei
 
-NOTE: The need to use Zifencei is hidden from user code.
+NOTE: The execution environment must provide a means to synchronize writes to
+instruction memory with instruction fetches, the implementation of which
+likely relies on the Zifencei extension.
+For example, RISC-V Linux supplies the `__riscv_flush_icache` system call and
+a corresponding vDSO call.
 
 ==== RVA22U64 Incompatible Extensions
 
