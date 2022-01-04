@@ -717,3 +717,16 @@ that should be detailed here.
 ==== RVA22M64 Incompatible Extensions
 
 - All RVA22S64 incompatible extensions
+
+== Bibliography of ISA Extensions
+
+The definition of most unprivileged and privileged ISA extensions can
+be found in Volumes I and II, respectively, of the
+https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+Extensions whose definitions have not yet been incorporated into those documents are
+listed below.
+
+- https://github.com/riscv/riscv-bitmanip[Zba, Zbb, Zbc, Zbs]
+- https://github.com/riscv/riscv-crypto[Zbkb, Zbkc, Zbkx, Zk, Zkn, Zknd, Zkne, Zknh, Zkr, Zks, Zksed, Zkh, Zkt]
+- https://github.com/riscv/riscv-v-spec[V, Zve32f, Zve32x, Zve64d, Zve64f, Zve64x]
+- https://github.com/riscv/riscv-CMOs[Zicbom, Zicbop, Zicboz]
