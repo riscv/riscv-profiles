@@ -403,6 +403,8 @@ applications processors.
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
 - Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
+- Implementations are strongly recommended to raise illegal-instruction
+  exceptions when attempting to execute unimplemented opcodes.
 
 NOTE: Even when supported, misaligned loads and stores might execute
 extremely slowly.  Standard software distributions should assume their
@@ -551,6 +553,8 @@ applications processors.
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
 - Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
+- Implementations are strongly recommended to raise illegal-instruction
+  exceptions when attempting to execute unimplemented opcodes.
 
 NOTE: Even when supported, misaligned loads and stores might execute
 extremely slowly.  Standard software distributions should assume their
