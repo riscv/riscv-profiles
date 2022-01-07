@@ -1,0 +1,3 @@
+[submodule "docs-templates"]
+	path = docs-templates
+	url = git@github.com:riscv/docs-templates.git
