@@ -217,8 +217,8 @@ The initial profiles based on specifications ratified in 2019 are:
 The RVA20 family of profiles are intended to be used for application
 processors running rich OS stacks.
 
-NOTE: Only 64-bit is shown here, but should also include 32-bit
-variant.
+NOTE: Only 64-bit profiles are shown here, but the eventual intent is to
+define very similar 32-bit variants.
 
 === RVA20U64 Profile
 
