@@ -1,9 +1,37 @@
-= RISC-V Profiles
-:doctype: article
-:encoding: utf-8
+[[riscv-doc-template]]
+:description: Short, text description of spect…
+:company: RISC-V
+:revdate: January 10, 2022
+:revnumber: 0.1-draft
+:revremark: This document is in Discussion state.  Change should be expected.
+:url-riscv: http://riscv.org
+:doctype: book
+:preface-title: Preamble
+:colophon:
+:appendix-caption: Appendix
+:imagesdir: images
+:title-logo-image: image:riscv-images/risc-v_logo.png[pdfwidth=3.25in,align=center]
+// Settings:
+:experimental:
+:reproducible:
+:WaveDromEditorApp: wavedrom-cli
+:imagesoutdir: images
+:icons: font
 :lang: en
+:listing-caption: Listing
+:sectnums:
+:sectnumlevels: 5
+:toclevels: 5
 :toc: left
-:toc-title: Version 0.1-draft. Current State: Discussion Document. Assume everything can change. This document is not complete yet and was created only for the purpose of conversation outside of the document. https://riscv.org/spec-state.
+:source-highlighter: pygments
+ifdef::backend-pdf[]
+:source-highlighter: coderay
+endif::[]
+:data-uri:
+:hide-uri-scheme:
+:stem: latexmath
+:footnote:
+:xrefstyle: short
 :numbered:
 :stem: latexmath
 :le: &#8804;
@@ -14,9 +42,18 @@
 
 :sectnums!:
 
-== Status
+= RISC-V Profiles
+
+//: This is the Preable
+
+[WARNING]
+.This document is in the link:http://riscv.org/spec-state[Discussion state]
+====
+Assume everything can change. This document is not complete yet and was 
+created only for the purpose of conversation outside of the document.
 
 *This is only an initial proposal and is likely to change substantially if it is standardized.*
+====
 
 :sectnums:
 
