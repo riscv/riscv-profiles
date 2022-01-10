@@ -720,13 +720,40 @@ that should be detailed here.
 
 == Glossary of ISA Extensions
 
-The definition of most unprivileged and privileged ISA extensions can
-be found in Volumes I and II, respectively, of the
-https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
-Extensions whose definitions can be found in those documents are listed below
-but are not hyperlinked.
-Extensions whose definitions have not yet been incorporated into those documents are
-hyperlinked below.
+The following unprivileged ISA extensions are defined in Volume I
+of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+
+- M Extension for Integer Multiplication and Division
+- A Extension for Atomic Memory Operations
+- F Extension for Single-Precision Floating-Point
+- D Extension for Double-Precision Floating-Point
+- Q Extension for Quad-Precision Floating-Point
+- C Extension for Compressed Instructions
+- Zifencei Instruction-Fetch Synchronization Extension
+- Zicsr Extension for Control and Status Register Access
+- Zicntr Extension for Basic Performance Counters
+- Zihintpause Pause Hint Extension
+- Zfh Extension for Half-Precision Floating-Point
+- Zfhmin Minimal Extension for Half-Precision Floating-Point
+- Zfinx Extension for Single-Precision Floating-Point in x-registers
+- Zdinx Extension for Double-Precision Floating-Point in x-registers
+- Zhinx Extension for Half-Precision Floating-Point in x-registers
+- Zhinxmin Minimal Extension for Half-Precision Floating-Point in x-registers
+
+The following privileged ISA extensions are defined in Volume II
+of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+
+- Sv32 Page-based Virtual Memory Extension, 32-bit
+- Sv39 Page-based Virtual Memory Extension, 39-bit
+- Sv48 Page-based Virtual Memory Extension, 48-bit
+- Hypervisor Extension
+- Sm1p11, Machine Architecture v1.11
+- Sm1p12, Machine Architecture v1.12
+- Ss1p11, Supervisor Architecture v1.11
+- Ss1p12, Supervisor Architecture v1.12
+
+The following extensions have not yet been incorporated into the RISC-V
+Instruction Set Manual; the hyperlinks lead to their separate specifications.
 
 - https://github.com/riscv/riscv-bitmanip[Zba Address Computation Extension]
 - https://github.com/riscv/riscv-bitmanip[Zbb Bit Manipulation Extension]
