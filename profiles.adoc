@@ -310,7 +310,7 @@ NOTE: Zicsr is required to read and write supervisor CSRs.
 - F
 - D
 - C
-- stvec writeable, direct+vectored modes, ...
+- stvec writable, direct+vectored modes, ...
 - scounteren
 - stval set on illegal instruction
 
@@ -704,7 +704,7 @@ circumstances permitted by the ISA.
 - D
 - Misaligned loads and stores
 
-NOTE: Consider making Zicbom supported-optional here to faciliate
+NOTE: Consider making Zicbom supported-optional here to facilitate
 trap & emulate, for systems that use some out-of-band mechanism?
 
 NOTE: There are options and parameters in the privileged architecture
