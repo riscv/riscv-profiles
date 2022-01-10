@@ -218,6 +218,9 @@ The RVI20 family of profiles are intended to represent the minimal
 level of compatibility with the RISC-V specifications that can be
 officially branded as RISC-V compatible.
 
+The RVI20 profiles are only intended to be targets for application
+code, and so RVI20S and RVI20M profiles are not defined.
+
 === RVI20U32/RVI20U64 Bases
 
 The RVI20U32 profile includes all instructions in the unprivileged RV32I
@@ -362,18 +365,18 @@ The base is RV32I/RV64I with machine-mode as only supported mode.
 - hardware perf monitors
 - mcountinhibit
 - mtval set on illegal instruction
-- User mode (adds MPP bits, MPRV,,
+- User mode (adds mstatus.MPP, mstatus.MPRV, ...)
 - Supervisor mode (Sbare only)
 - PMPs
-- TW (timeout wait - or make mandatory?)
-- TSR (Trap SRET - or make unsupported?)
+- mstatus.TW (timeout wait - or make mandatory?)
+- mstatus.TSR (Trap SRET - or make unsupported?)
 
 NOTE: Many of these extensions/options do not currently have standard names.
 
 ==== RVM20M Unsupported extensions
 
 - Sv32 (including SUM)
-- TVM
+- mstatus.TVM
 
 == RVA20 Profiles
 
