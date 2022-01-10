@@ -4,12 +4,13 @@ DOC_PDF=$(HEADER:%.adoc=%.pdf)
 all: $(DOC_PDF)
 
 %.pdf : %.adoc
-	asciidoctor-pdf -v \
+	asciidoctor-pdf \
 	-r asciidoctor-diagram \
 	-a toc \
 	-a compress \
-	-a pdf-style=resources/riscv-themes/riscv-pdf.yml \
-	-a pdf-fontsdir=resources/riscv-fonts \
+	-a pdf-style=docs-resources/themes/riscv-pdf.yml \
+	-a pdf-fontsdir=docs-resources/fonts \
+	--failure-level=ERROR \
 	-o $@ $<
 
 clean:

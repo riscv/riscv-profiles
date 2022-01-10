@@ -1,7 +1,7 @@
 [[riscv-doc-template]]
 :description: Short, text description of spect…
 :company: RISC-V
-:revdate: January 7, 2022
+:revdate: January 10, 2022
 :revnumber: 0.1-draft
 :revremark: This document is in Discussion state.  Change should be expected.
 :url-riscv: http://riscv.org
@@ -9,15 +9,14 @@
 :preface-title: Preamble
 :colophon:
 :appendix-caption: Appendix
-:imagesdir: resources/images
+:imagesdir: images
 :title-logo-image: image:riscv-images/risc-v_logo.png[pdfwidth=3.25in,align=center]
 // Settings:
 :experimental:
 :reproducible:
 :WaveDromEditorApp: wavedrom-cli
-:imagesoutdir: resources/images
+:imagesoutdir: images
 :icons: font
-:encoding: utf-8
 :lang: en
 :listing-caption: Listing
 :sectnums:
