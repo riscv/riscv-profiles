@@ -576,7 +576,7 @@ existence only for correctness, not for performance.
 - Zkr
 - Zks
 - Zksed
-- Zkh
+- Zksh
 - Zkt
 - Zve32f
 - Zve32x
@@ -718,15 +718,40 @@ that should be detailed here.
 
 - All RVA22S64 incompatible extensions
 
-== Bibliography of ISA Extensions
+== Glossary of ISA Extensions
 
 The definition of most unprivileged and privileged ISA extensions can
 be found in Volumes I and II, respectively, of the
 https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+Extensions whose definitions can be found in those documents are listed below
+but are not hyperlinked.
 Extensions whose definitions have not yet been incorporated into those documents are
-listed below.
+hyperlinked below.
 
-- https://github.com/riscv/riscv-bitmanip[Zba, Zbb, Zbc, Zbs]
-- https://github.com/riscv/riscv-crypto[Zbkb, Zbkc, Zbkx, Zk, Zkn, Zknd, Zkne, Zknh, Zkr, Zks, Zksed, Zkh, Zkt]
-- https://github.com/riscv/riscv-v-spec[V, Zve32f, Zve32x, Zve64d, Zve64f, Zve64x]
-- https://github.com/riscv/riscv-CMOs[Zicbom, Zicbop, Zicboz]
+- https://github.com/riscv/riscv-bitmanip[Zba Address Computation Extension]
+- https://github.com/riscv/riscv-bitmanip[Zbb Bit Manipulation Extension]
+- https://github.com/riscv/riscv-bitmanip[Zbc Carryless Multiplication Extension]
+- https://github.com/riscv/riscv-bitmanip[Zbs Single-Bit Manipulation Extension]
+- https://github.com/riscv/riscv-crypto[Zbkb Extension for Bit Manipulation for Cryptography]
+- https://github.com/riscv/riscv-crypto[Zbkc Extension for Carryless Multiplication for Cryptography]
+- https://github.com/riscv/riscv-crypto[Zbkx Crossbar Permutation Extension]
+- https://github.com/riscv/riscv-crypto[Zk Standard Scalar Cryptography Extension]
+- https://github.com/riscv/riscv-crypto[Zkn NIST Cryptography Extension]
+- https://github.com/riscv/riscv-crypto[Zknd AES Decryption Extension]
+- https://github.com/riscv/riscv-crypto[Zkne AES Encryption Extension]
+- https://github.com/riscv/riscv-crypto[Zknh SHA2 Hashing Extension]
+- https://github.com/riscv/riscv-crypto[Zkr Entropy Source Extension]
+- https://github.com/riscv/riscv-crypto[Zks ShangMi Cryptography Extension]
+- https://github.com/riscv/riscv-crypto[Zksed SM4 Block Cypher Extension]
+- https://github.com/riscv/riscv-crypto[Zksh SM3 Hashing Extension]
+- https://github.com/riscv/riscv-crypto[Zkt Extension for Data-Independent Execution Latency]
+- https://github.com/riscv/riscv-v-spec[V Extension for Vector Computation]
+- https://github.com/riscv/riscv-v-spec[Zve32x Extension for Embedded Vector Computation (32-bit integer)]
+- https://github.com/riscv/riscv-v-spec[Zve32f Extension for Embedded Vector Computation (32-bit integer, 32-bit FP)]
+- https://github.com/riscv/riscv-v-spec[Zve32d Extension for Embedded Vector Computation (32-bit integer, 64-bit FP)]
+- https://github.com/riscv/riscv-v-spec[Zve64x Extension for Embedded Vector Computation (64-bit integer)]
+- https://github.com/riscv/riscv-v-spec[Zve64f Extension for Embedded Vector Computation (64-bit integer, 32-bit FP)]
+- https://github.com/riscv/riscv-v-spec[Zve64d Extension for Embedded Vector Computation (64-bit integer, 64-bit FP)]
+- https://github.com/riscv/riscv-CMOs[Zicbom Extension for Cache-Block Management]
+- https://github.com/riscv/riscv-CMOs[Zicbop Extension for Cache-Block Prefetching]
+- https://github.com/riscv/riscv-CMOs[Zicboz Extension for Cache-Block Zeroing]
