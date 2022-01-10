@@ -95,8 +95,8 @@ individual ISA extensions, which can continue to be used for more
 specialized applications.
 
 This document describes the general structure of RISC-V architecture
-profiles and also the specifics of the first three families of
-architecture profiles: RVI20, RVM20, and RVA20.
+profiles and also the specifics of the first two families of
+architecture profiles for application processors: RVA20 and RVA22.
 
 == Profiles versus Platforms
 
@@ -249,176 +249,13 @@ The initial profiles based on specifications ratified in 2019 are:
 - RVA20U32, RVA20S32, RVA20M32 32-bit application-processor profiles
 - RVA20U64, RVA20S64, RVA20M64 64-bit application-processor profiles
 
-== RVI20 Profiles
-
-The RVI20 family of profiles are intended to represent the minimal
-level of compatibility with the RISC-V specifications that can be
-officially branded as RISC-V compatible.
-
-=== RVI20U32/RVI20U64 Bases
-
-The RVI20U32 profile includes all instructions in the unprivileged RV32I
-base instruction set.
-
-The RVI20U64 profile includes all instructions in the unprivileged
-RV64I base instruction set.
-
-The RVWMO memory model is followed.
-
-Misaligned loads and stores are not required to be supported and may
-cause a fatal trap to the execution environment.
-
-ECALL and EBREAK instructions cause requested traps to the execution
-environment.
-
-=== RVI20U32/64 Mandatory Extensions
-
-None.
-
-=== RVI20U32/64 Supported Optional Extensions
-
-- M
-- A
-- F
-- D
-- C
-- Zicsr
-- Zifencei
-- Zicntr
-- Zihpm
-
-NOTE: If Zifencei is not supported, then execution of newly written
-instruction memory can only be supported through a non-standard
-mechanism.
-
-NOTE: Zicsr is only required if F, Zicntr, or Zihpm is supported.
-
-=== RVI20U32/64 Unsupported Optional Extensions
-
-- Q
-
-NOTE: There has been little demand for hardware or software support
-for Q.
-
-=== RVI20U32/64 Incompatible Extensions
-
-None.
-
-
-== RVM20 Profiles
-
-The RVM20 family of profiles are intended to be used in
-microcontroller applications.
-
-=== RVM20U32/64 Profiles
-
-The RVM20U32/64 profiles represents the behavior of unprivileged code in
-microcontrollers.
-
-RVM20U32/64 is identical to RVI20U32/64, except that WFI is a
-supported extension.
-
-NOTE: WFI was originally specified as a privileged instruction, but a
-later enhancement optionally allows unprivileged use.
-
-=== RVM20S32/64 Profile
-
-These profiles provides a supervisor-mode execution environment,
-including the supervisor components of privileged architecture v1.11.
-
-The RVM20S32 base is RV32I and supervisor and user mode are supported.
-
-The RVM20S64 base is RV64I and supervisor and user mode are supported.
-
-Only the Sbare setting of satp is mandatory, and may be hardwired to
-zero.  (Software should require all 0s written to satp to set Sbare).
-
-==== RVM20S32/S64 Mandatory Extensions
-
-- Zicsr
-
-NOTE: Zicsr is required to read and write supervisor CSRs.
-
-==== RVM20S32/S64 Supported Extensions
-
-- Zifencei
-- M
-- A
-- F
-- D
-- C
-- stvec writeable, direct+vectored modes, ...
-- scounteren
-- stval set on illegal instruction
-
-NOTE: The later extensions/options do not currently have standard
-names.
-
-==== RVM20S32 Unsupported extensions
-
-- Sv32
-
-NOTE: Virtual memory is not usually used in this class of microcontrollers.
-
-==== RVM20S64 Unsupported extensions
-
-- Sv39
-
-NOTE: Virtual memory is not usually used in this class of microcontrollers.
-
-==== RVM20S32/S64 Incompatible extensions
-
-None.
-
-=== RVM20M32/64 Profiles
-
-These profiles support machine-mode as specified in privileged
-architecture v1.11, with user mode and supervisor mode as optional
-supported extensions.
-
-The base is RV32I/RV64I with machine-mode as only supported mode.
-
-==== RVM20M Mandatory Extensions
-
-- Zicsr
-
-==== RVM20M Supported Extensions
-
-- Zifencei
-- M
-- A
-- F
-- D
-- C
-- misa non zero
-- mvendorid non zero
-- marchid non zero
-- mimpid non zero
-- mtvec writable, direct+vectored modes, ...
-- medeleg/mideleg (individual delegatable bits?)
-- hardware perf monitors
-- mcountinhibit
-- mtval set on illegal instruction
-- User mode (adds MPP bits, MPRV,,
-- Supervisor mode (Sbare only)
-- PMPs
-- TW (timeout wait - or make mandatory?)
-- TSR (Trap SRET - or make unsupported?)
-
-NOTE: Many of these extensions/options do not currently have standard names.
-
-==== RVM20M Unsupported extensions
-
-- Sv32 (including SUM)
-- TVM
-
 == RVA20 Profiles
 
 The RVA20 family of profiles are intended to be used for application
 processors running rich OS stacks.
 
-NOTE: Only 64-bit is shown here, but should also include 32-bit
-variant.
+NOTE: Only 64-bit profiles are shown here, but the eventual intent is to
+define very similar 32-bit variants.
 
 === RVA20U64 Profile
 
@@ -613,7 +450,7 @@ existence only for correctness, not for performance.
 - Zkr
 - Zks
 - Zksed
-- Zkh
+- Zksh
 - Zkt
 - Zve32f
 - Zve32x
@@ -741,7 +578,7 @@ circumstances permitted by the ISA.
 - D
 - Misaligned loads and stores
 
-NOTE: Consider making Zicbom supported-optional here to faciliate
+NOTE: Consider making Zicbom supported-optional here to facilitate
 trap & emulate, for systems that use some out-of-band mechanism?
 
 NOTE: There are options and parameters in the privileged architecture
@@ -755,15 +592,67 @@ that should be detailed here.
 
 - All RVA22S64 incompatible extensions
 
-== Bibliography of ISA Extensions
+== Glossary of ISA Extensions
 
-The definition of most unprivileged and privileged ISA extensions can
-be found in Volumes I and II, respectively, of the
-https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
-Extensions whose definitions have not yet been incorporated into those documents are
-listed below.
+The following unprivileged ISA extensions are defined in Volume I
+of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 
-- https://github.com/riscv/riscv-bitmanip[Zba, Zbb, Zbc, Zbs]
-- https://github.com/riscv/riscv-crypto[Zbkb, Zbkc, Zbkx, Zk, Zkn, Zknd, Zkne, Zknh, Zkr, Zks, Zksed, Zkh, Zkt]
-- https://github.com/riscv/riscv-v-spec[V, Zve32f, Zve32x, Zve64d, Zve64f, Zve64x]
-- https://github.com/riscv/riscv-CMOs[Zicbom, Zicbop, Zicboz]
+- M Extension for Integer Multiplication and Division
+- A Extension for Atomic Memory Operations
+- F Extension for Single-Precision Floating-Point
+- D Extension for Double-Precision Floating-Point
+- Q Extension for Quad-Precision Floating-Point
+- C Extension for Compressed Instructions
+- Zifencei Instruction-Fetch Synchronization Extension
+- Zicsr Extension for Control and Status Register Access
+- Zicntr Extension for Basic Performance Counters
+- Zihintpause Pause Hint Extension
+- Zfh Extension for Half-Precision Floating-Point
+- Zfhmin Minimal Extension for Half-Precision Floating-Point
+- Zfinx Extension for Single-Precision Floating-Point in x-registers
+- Zdinx Extension for Double-Precision Floating-Point in x-registers
+- Zhinx Extension for Half-Precision Floating-Point in x-registers
+- Zhinxmin Minimal Extension for Half-Precision Floating-Point in x-registers
+
+The following privileged ISA extensions are defined in Volume II
+of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+
+- Sv32 Page-based Virtual Memory Extension, 32-bit
+- Sv39 Page-based Virtual Memory Extension, 39-bit
+- Sv48 Page-based Virtual Memory Extension, 48-bit
+- Hypervisor Extension
+- Sm1p11, Machine Architecture v1.11
+- Sm1p12, Machine Architecture v1.12
+- Ss1p11, Supervisor Architecture v1.11
+- Ss1p12, Supervisor Architecture v1.12
+
+The following extensions have not yet been incorporated into the RISC-V
+Instruction Set Manual; the hyperlinks lead to their separate specifications.
+
+- https://github.com/riscv/riscv-bitmanip[Zba Address Computation Extension]
+- https://github.com/riscv/riscv-bitmanip[Zbb Bit Manipulation Extension]
+- https://github.com/riscv/riscv-bitmanip[Zbc Carryless Multiplication Extension]
+- https://github.com/riscv/riscv-bitmanip[Zbs Single-Bit Manipulation Extension]
+- https://github.com/riscv/riscv-crypto[Zbkb Extension for Bit Manipulation for Cryptography]
+- https://github.com/riscv/riscv-crypto[Zbkc Extension for Carryless Multiplication for Cryptography]
+- https://github.com/riscv/riscv-crypto[Zbkx Crossbar Permutation Extension]
+- https://github.com/riscv/riscv-crypto[Zk Standard Scalar Cryptography Extension]
+- https://github.com/riscv/riscv-crypto[Zkn NIST Cryptography Extension]
+- https://github.com/riscv/riscv-crypto[Zknd AES Decryption Extension]
+- https://github.com/riscv/riscv-crypto[Zkne AES Encryption Extension]
+- https://github.com/riscv/riscv-crypto[Zknh SHA2 Hashing Extension]
+- https://github.com/riscv/riscv-crypto[Zkr Entropy Source Extension]
+- https://github.com/riscv/riscv-crypto[Zks ShangMi Cryptography Extension]
+- https://github.com/riscv/riscv-crypto[Zksed SM4 Block Cypher Extension]
+- https://github.com/riscv/riscv-crypto[Zksh SM3 Hashing Extension]
+- https://github.com/riscv/riscv-crypto[Zkt Extension for Data-Independent Execution Latency]
+- https://github.com/riscv/riscv-v-spec[V Extension for Vector Computation]
+- https://github.com/riscv/riscv-v-spec[Zve32x Extension for Embedded Vector Computation (32-bit integer)]
+- https://github.com/riscv/riscv-v-spec[Zve32f Extension for Embedded Vector Computation (32-bit integer, 32-bit FP)]
+- https://github.com/riscv/riscv-v-spec[Zve32d Extension for Embedded Vector Computation (32-bit integer, 64-bit FP)]
+- https://github.com/riscv/riscv-v-spec[Zve64x Extension for Embedded Vector Computation (64-bit integer)]
+- https://github.com/riscv/riscv-v-spec[Zve64f Extension for Embedded Vector Computation (64-bit integer, 32-bit FP)]
+- https://github.com/riscv/riscv-v-spec[Zve64d Extension for Embedded Vector Computation (64-bit integer, 64-bit FP)]
+- https://github.com/riscv/riscv-CMOs[Zicbom Extension for Cache-Block Management]
+- https://github.com/riscv/riscv-CMOs[Zicbop Extension for Cache-Block Prefetching]
+- https://github.com/riscv/riscv-CMOs[Zicboz Extension for Cache-Block Zeroing]
