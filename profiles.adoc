@@ -80,23 +80,28 @@ also guide the development of software toolchains common to different
 platforms that share the same profile.
 
 As RISC-V evolves over time, the set of ISA features supported by each
-software ecosystem will also want to evolve over time, and new
-software ecosystems will be added.  To help manage this evolution,
-RISC-V is moving towards a model of regular annual delivery of a
-coherent set of ISA updates according to an ISA roadmap, and
-architecture profiles are intended to provide the natural structure
-for planning, packaging, and releasing these ISA updates.
+platform will also want to evolve over time.  Also, new platforms may
+be added over time with their own ISA requirements.  To help manage
+this evolution, RISC-V is moving towards a model of regular annual
+delivery of a coherent set of ISA updates according to an ISA roadmap,
+and architecture profiles are intended to provide the natural
+structure for planning, packaging, and releasing these ISA updates.
 
 The architecture profiles will also be used for branding and to
 advertise compatibility with the RISC-V standard.
 
-Profiles do not replace or prohibit the use of combinations of
-individual ISA extensions, which can continue to be used for more
-specialized applications.
+Profiles are not intended to replace or prohibit the use of
+combinations of individual ISA extensions, which can continue to be
+used for more specialized applications.
 
 This document describes the general structure of RISC-V architecture
 profiles and also the specifics of the first two families of
 architecture profiles for application processors: RVA20 and RVA22.
+
+NOTE: Other profiles are under development: RVI20 for basic RISC-V
+unprivileged software compatibility, and RVM20 and RVM22 for
+microcontroller platforms and these will be added in a future version
+of this document.
 
 == Profiles versus Platforms
 
@@ -105,6 +110,10 @@ environment.
 
 A _software_ _platform_ is a specification for an execution
 environment, in which software targeted for that platform can run.
+
+NOTE: A user-level ABI under a Unix-like OS defines a software
+platform for unprivileged code execution.  The supervisor-level RISC-V
+SBI defines a software platform to run privileged code.
 
 A _hardware_ _platform_ is a specification for hardware systems (which
 can be viewed as physical realizations of an execution environment).
@@ -130,7 +139,7 @@ parameter in the profile to lie within a certain range.
 A platform cannot remove constraints from a profile.
 
 NOTE: A new profile should be proposed if existing profiles do not
-match then needs of a new platform.
+match the needs of a new platform.
 
 == Components of a Profile
 
@@ -191,18 +200,18 @@ present.
 All components of a ratified profile must themselves have been
 ratified.
 
-NOTE: Extensions that are ratified after a profile are effectively
-either Unsupported Optional or Incompatible for that profile.  A later
-release of a profile may include the feature as Mandatory or Supported
-Optional.
+NOTE: Extensions that are ratified after a profile is released are
+effectively either Unsupported Optional or Incompatible for that
+profile.  A later release of a profile may include the feature as
+Mandatory or Supported Optional.
 
-Software platforms may provide a discovery mechanism to determine what
-optional extensions are present.
+Platforms may provide a discovery mechanism to determine what optional
+extensions are present.
 
 === Profile Privilege Mode
 
 In general, available instructions vary by privilege mode, and the
-behavior of RISC-V instructions can depend on the current privilege
+behavior of RISC-V instructions can depend on the active privilege
 mode.
 
 Separate profiles are provided for unprivileged code and each
@@ -227,6 +236,12 @@ trapping context state saved in supervisor-accessible CSRs.  However,
 an ECALL in supervisor mode of an RVM20S32 profile would be specified
 as a requested trap to the enclosing execution environment, and the
 RVM20S32 profile would not specify how the requested trap is handled.
+
+NOTE: A profile for a given privilege mode does not restrict whether
+invisible traps to a more privileged mode are used to emulate profile
+features.  In general, a profile can be implemented by an execution
+environment using any hardware or software technique that provides
+compatible functionality, up and including pure software emulation.
 
 === Profile Naming Convention
 
@@ -260,7 +275,9 @@ define very similar 32-bit variants.
 === RVA20U64 Profile
 
 The RVA20U64 profile represents the behavior of unprivileged code in
-applications processors.
+64-bit applications processors.  This is the most important profile
+within the application processor family in terms of the amount of
+software that targets this profile.
 
 ==== RVA20U64 Mandatory Extensions
 
@@ -299,14 +316,28 @@ likely relies on the Zifencei extension.
 For example, RISC-V Linux supplies the `__riscv_flush_icache` system call and
 a corresponding vDSO call.
 
+NOTE: Zifencei is not mandated because it is not sufficient by itself
+to produce the desired effect in a multiprogrammed multiprocessor
+environment without OS support, and so the instruction cache flush
+should always be performed using an OS call.  The Zifencei semantics
+can be expensive to implement for some hardware memory hierarchy
+designs, and so alternative non-standard instruction-cache coherence
+mechanisms can be used behind the OS abstraction.  A separate
+extension is being developed for more general and efficient
+instruction cache coherence.
+
 ==== RVA20U64 Incompatible Extensions
 
 None.
 
+NOTE: The RVA20 specification only considers extensions ratified in
+2019.
+
 === RVA20S64 Profile
 
 The RVA20S64 profile includes the supervisor components of privileged
-architecture version 1.11.
+architecture version 1.11.  This is the profile used by rich operating
+system platforms.
 
 The RVA20S64 mandatory base includes RVA20U64 unprivileged
 instructions, except that ECALL in user mode causes a contained trap
@@ -318,6 +349,7 @@ to supervisor mode.
 - Zifencei
 - Ss1p11
 - Sv39
+- In addition to Sv39, the satp mode Bare must be supported.
 - Main memory regions with both the cacheability and coherence PMAs must
   support hardware page-table reads.
   Such regions must additionally support hardware page-table writes if
@@ -332,14 +364,13 @@ to supervisor mode.
   instruction.
 - For any hpmcounter that is not read-only zero, the corresponding bit
   in scounteren must be writable.
-- In addition to Sv39, the satp mode Bare must be supported.
 
 ==== RVA20S64 Supported Optional Extensions
 
 - Sv48
 
-NOTE: There are options and parameters in the privileged architecture
-that should be detailed here.
+NOTE: There are additional options and parameters in the privileged
+architecture that should be detailed here.
 
 ==== RVA20S64 Unsupported Optional Extensions
 
@@ -350,6 +381,17 @@ that should be detailed here.
 None.
 
 === RVA20M64 Profile
+
+The RVA20M64 profile is defined to help provide compatibilty for
+application-processor platforms that specify an M-mode execution
+environment for portable software.
+
+NOTE: Most OS platforms will have no code specified to run in M-mode,
+instead accessing lower-level platform services via abstract
+environment calls from supervisor mode.
+
+NOTE: M-mode will often inherently include implementation-specific
+features in addition to the profile requirements.
 
 ==== RVA20M64 Mandatory Extensions
 
@@ -381,8 +423,8 @@ None.
 - D
 - Misaligned loads and stores
 
-NOTE: There are options and parameters in the privileged architecture
-that should be detailed here.
+NOTE: There are other options and parameters in the privileged
+architecture that should be detailed here.
 
 ==== RVA20M64 Unsupported Optional Extensions
 
@@ -394,8 +436,8 @@ that should be detailed here.
 
 == RVA22 Profiles
 
-The RVA22 family of profiles are intended to be used for application
-processors running rich OS stacks.
+The RVA22 family of profiles are intended to be used for 64-bit
+application processors running rich OS stacks.
 
 NOTE: Only 64-bit is shown here, but should also include 32-bit
 variant.
@@ -436,28 +478,33 @@ existence only for correctness, not for performance.
 
 ==== RVA22U64 Supported Optional Extensions
 
-- Zbc
-- Zbkb
-- Zbkc
-- Zbkx
+- Zbc   (un?)
+- Zbkb  (un?)
+- Zbkc  (un?)
+- Zbkx  (un?)
 - Zfh
-- Zfhmin
-- Zk
-- Zkn
-- Zknd
-- Zkne
-- Zknh
-- Zkr
-- Zks
-- Zksed
-- Zksh
-- Zkt
-- Zve32f
-- Zve32x
-- Zve64d
-- Zve64f
-- Zve64x
+- Zfhmin (mand?)
+- Zk = { Zkn,Zkr,Zkt }
+- Zkn = { Zbkb,Zbkc,Zbkx,Zkne,Zknd,Zknh }
+- Zknd  (un?)
+- Zkne  (un?)
+- Zknh  (un?)
+- Zkr   
+- Zks = { Zbkb,Zbkc,Zbkx,Zbksed,Zbksh }
+- Zksed (un?)
+- Zksh  (un?)
+- Zkt   (mand?)
+- Zve32f (un?)
+- Zve32x (un?)
+- Zve64d (un?)
+- Zve64f (un?)
+- Zve64x (un?)
 - V
+
+NOTE: Might only have the larger groups as supported, and smaller
+extension pieces as unsupported - marked (un?) above.
+
+NOTE: Might make Zkt and/or Zfhmin mandatory - marked (mand?) above.
 
 ==== RVA22U64 Unsupported Optional Extensions
 
@@ -529,8 +576,8 @@ If the hypervisor extension is implemented, the following are also mandatory:
 - Hypervisor extension
 - Sv48
 
-NOTE: There are options and parameters in the privileged architecture
-that should be detailed here.
+NOTE: There are additional options and parameters in the privileged
+architecture that should be detailed here.
 
 ==== RVA22S64 Unsupported Optional Extensions
 
