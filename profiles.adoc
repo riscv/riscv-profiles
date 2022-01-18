@@ -189,8 +189,8 @@ _Unsupported_ _Optional_ extensions are those that are optional, but
 which are not expected to be generally supported by the software
 ecosystem.
 
-NOTE: Software components claiming compatibility with the profile are
-not expected to be able to support these extensions, and may error or
+NOTE: Software components claiming to support a profile are not
+expected to be able to support these extensions, and may error or
 report warnings if they are present.
 
 _Incompatible_ extensions are those that conflict with the base or
@@ -200,48 +200,52 @@ present.
 All components of a ratified profile must themselves have been
 ratified.
 
-NOTE: Extensions that are ratified after a profile is released are
-effectively either Unsupported Optional or Incompatible for that
-profile.  A later release of a profile may include the feature as
-Mandatory or Supported Optional.
+NOTE: Extensions that are ratified after a given profile is released
+are effectively either Unsupported Optional or Incompatible for that
+profile.  A later release of a profile family may choose to include
+the feature as Mandatory or Supported Optional.
 
 Platforms may provide a discovery mechanism to determine what optional
 extensions are present.
 
 === Profile Privilege Mode
 
+RISC-V is a layered architecture supporting multiple privilege modes.
 In general, available instructions vary by privilege mode, and the
 behavior of RISC-V instructions can depend on the active privilege
-mode.
+mode.  For this reason, there are separate profiles for unprivileged
+code and for each privileged mode that a profile family supports.
 
-Separate profiles are provided for unprivileged code and each
-privileged mode of each base ISA in a profile family.  Unprivileged
-profiles include only unprivileged ISA features.  Privileged-mode
-profiles include the behavior of instructions running in all
-lower-privilege modes as well as the mode after which the profile is
-named.
+Unprivileged profiles include only unprivileged ISA features.
 
-For example, the RVM20U32 profile would specify that an ECALL
-instruction causes a requested trap to the execution environment.  The
-details of how the requested trap is handled by the execution
-environment are not specified by the profile as these are out of
-scope.
+NOTE: Running unprivileged code is different from running code in
+user-mode.  Unprivileged code is code that does not use any privileged
+ISA features and can be run in any privilege mode.  Privileged code
+using privileged ISA features can be run in a user-mode execution
+environment but will normally cause traps into the enclosing execution
+environment when privileged instructions are executed (this behavior
+might be exploited, for example, to emulate a privileged profile in a
+user-mode execution environment).
 
-NOTE: A software platform for RVM20U32 could detail what ECALLs are
-supported by the execution environment defined by the platform.
+The profile for a privilege mode describes the ISA features of an
+execution environment that has the named privilege mode as the
+most-privileged mode available, but also includes all supported
+lower-privilege modes.  For example, an S-mode profile includes the
+behavior of instructions when running in different modes in an S-mode
+execution environment, such as how an `ecall` instruction in U-mode
+causes a contained trap into an S-mode handler, or how S-mode code can
+set `sstatus.spp` to cause the processor to switch into U-mode after
+executing an `sret` instruction.
 
-In contrast, the RVM20S32 profile would specify that an ECALL in user
-mode would cause a contained trap into supervisor mode, with the
-trapping context state saved in supervisor-accessible CSRs.  However,
-an ECALL in supervisor mode of an RVM20S32 profile would be specified
-as a requested trap to the enclosing execution environment, and the
-RVM20S32 profile would not specify how the requested trap is handled.
+A profile may specify that certain conditions will cause a requested
+trap (such as an `ecall` made in the highest-supported privilege mode)
+or fatal trap to the enclosing execution environment.
 
-NOTE: A profile for a given privilege mode does not restrict whether
-invisible traps to a more privileged mode are used to emulate profile
-features.  In general, a profile can be implemented by an execution
-environment using any hardware or software technique that provides
-compatible functionality, up and including pure software emulation.
+NOTE: A profile does not constrain how invisible traps to a more
+privileged mode are used to emulate profile features.  In general, a
+profile can be implemented by an execution environment using any
+hardware or software technique that provides compatible functionality,
+up and including pure software emulation.
 
 === Profile Naming Convention
 
@@ -308,6 +312,10 @@ None.
 ==== RVA20U64 Unsupported Optional Extensions
 
 - Q
+
+NOTE: Quad-precision floating-point is unlikely to be implemented in
+hardware.
+
 - Zifencei
 
 NOTE: The execution environment must provide a means to synchronize writes to
@@ -316,15 +324,15 @@ likely relies on the Zifencei extension.
 For example, RISC-V Linux supplies the `__riscv_flush_icache` system call and
 a corresponding vDSO call.
 
-NOTE: Zifencei is not mandated because it is not sufficient by itself
-to produce the desired effect in a multiprogrammed multiprocessor
-environment without OS support, and so the instruction cache flush
-should always be performed using an OS call.  The Zifencei semantics
-can be expensive to implement for some hardware memory hierarchy
-designs, and so alternative non-standard instruction-cache coherence
-mechanisms can be used behind the OS abstraction.  A separate
-extension is being developed for more general and efficient
-instruction cache coherence.
+NOTE: Zifencei is not classed as supported optional because it is not
+sufficient by itself to produce the desired effect in a
+multiprogrammed multiprocessor environment without OS support, and so
+the instruction cache flush should always be performed using an OS
+call rather than using the FENCE.I instruction.  FENCE.I semantics can
+be expensive to implement for some hardware memory hierarchy designs,
+and so alternative non-standard instruction-cache coherence mechanisms
+can be used behind the OS abstraction.  A separate extension is being
+developed for more general and efficient instruction cache coherence.
 
 ==== RVA20U64 Incompatible Extensions
 
