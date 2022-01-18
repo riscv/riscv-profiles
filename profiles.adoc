@@ -213,10 +213,8 @@ extensions are present.
 RISC-V is a layered architecture supporting multiple privilege modes.
 In general, available instructions vary by privilege mode, and the
 behavior of RISC-V instructions can depend on the active privilege
-mode.  For this reason, there are separate profiles for unprivileged
-code and for each privileged mode that a profile family supports.
-
-Unprivileged profiles include only unprivileged ISA features.
+mode.  For this reason, there are separate profiles for each
+privileged mode that a profile family supports.
 
 NOTE: Running unprivileged code is different from running code in
 user-mode.  Unprivileged code is code that does not use any privileged
@@ -268,6 +266,9 @@ The initial profiles based on specifications ratified in 2019 are:
 - RVA20U32, RVA20S32, RVA20M32 32-bit application-processor profiles
 - RVA20U64, RVA20S64, RVA20M64 64-bit application-processor profiles
 
+NOTE: This document currently only includes the RVAx64 profiles, which
+are the first to be defined.  The others will be added later.
+
 == RVA20 Profiles
 
 The RVA20 family of profiles are intended to be used for application
@@ -278,10 +279,10 @@ define very similar 32-bit variants.
 
 === RVA20U64 Profile
 
-The RVA20U64 profile represents the behavior of unprivileged code in
-64-bit applications processors.  This is the most important profile
-within the application processor family in terms of the amount of
-software that targets this profile.
+The RVA20U64 profile represents the behavior of user-mode execution
+environments in 64-bit applications processors.  This is the most
+important profile within the application processor family in terms of
+the amount of software that targets this profile.
 
 ==== RVA20U64 Mandatory Extensions
 
