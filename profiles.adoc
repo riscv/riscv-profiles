@@ -363,6 +363,7 @@ to supervisor mode.
   Such regions must additionally support hardware page-table writes if
   any harts support hardware page-table writes.
 - stvec.MODE must be capable of holding the value 0 (Direct).
+  When stvec.MODE=Direct,
   stvec.BASE must be capable of holding any valid four-byte-aligned address.
 - stval must be written with the faulting virtual address for load, store, and
   instruction page-fault, access-fault, and misaligned exceptions, and for
@@ -409,6 +410,7 @@ features in addition to the profile requirements.
 - mvendorid, marchid, and mimpid registers must be nonzero.
 - mstatus.TVM, mstatus.TW, and mstatus.TSR must be writable.
 - mtvec.MODE must be capable of holding the value 0 (Direct).
+  When mtvec.MODE=Direct,
   mtvec.BASE must be capable of holding any valid four-byte-aligned address.
 - medeleg bits 3, 8, 12, 13, and 15 must be writable.
 - mideleg bits 1, 5, and 9 must be writable.  mideleg bits 3, 7, and 11
@@ -552,6 +554,7 @@ to supervisor mode.
   Such regions must additionally support hardware page-table writes if
   any harts support hardware page-table writes.
 - stvec.MODE must be capable of holding the value 0 (Direct).
+  When stvec.MODE=Direct,
   stvec.BASE must be capable of holding any valid four-byte-aligned address.
 - stval must be written with the faulting virtual address for load, store, and
   instruction page-fault, access-fault, and misaligned exceptions, and for
@@ -572,6 +575,7 @@ If the hypervisor extension is implemented, the following are also mandatory:
 - htval2 must be written with the faulting guest physical address in all
   circumstances permitted by the ISA.
 - vstvec.MODE must be capable of holding the value 0 (Direct).
+  When vstvec.MODE=Direct,
   vstvec.BASE must be capable of holding any valid four-byte-aligned address.
 - All translation modes supported in satp must be supported in vsatp.
 - For each supported virtual memory scheme SvNN supported in satp, the
@@ -606,6 +610,7 @@ architecture that should be detailed here.
 - mstatus.TVM, mstatus.TW, and mstatus.TSR must be writable.
 - mstatus.MBE, mstatus.SBE, and mstatus.UBE must not be read-only 1.
 - mtvec.MODE must be capable of holding the value 0 (Direct).
+  When mtvec.MODE=Direct,
   mtvec.BASE must be capable of holding any valid four-byte-aligned address.
 - medeleg bits 3, 8, 12, 13, and 15 must be writable.
 - mideleg bits 1, 5, and 9 must be writable.  mideleg bits 3, 7, and 11
