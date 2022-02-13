@@ -60,39 +60,48 @@ created only for the purpose of conversation outside of the document.
 == Introduction
 
 RISC-V was designed to provide a highly modular and extensible
-instruction set, and includes a large and growing set of standard and
-custom extensions.  This flexibility can be used to highly optimize a
+instruction set, and includes a large and growing set of standard
+extensions.  In addition, users may add their own custom
+extensions. This flexibility can be used to highly optimize a
 specialized design by including only the exact set of ISA features
 required for an application, but the same flexibility also leads to a
-potential combinatorial explosion in possible ISA choices.  Another
-pragmatic concern is the long and unwieldy ISA strings required to
-encode common sets of extensions, which will continue to grow as new
-extensions are defined.
+combinatorial explosion in possible ISA choices.  Many applications
+depend on a rich software ecosystem, which is only made possible by
+reducing the possible combinations of ISA features that the software
+ecosystem has to support.
 
-Many application areas depend on a rich software ecosystem, which is
-only made possible by reducing the possible combinations of ISA
-features that the software ecosystem has to support.  Architecture
-profiles are intended to provide a structure for describing these
+NOTE: Another pragmatic concern is the long and unwieldy ISA strings
+required to encode common sets of extensions, which will continue to
+grow as new extensions are defined.
+
+Architecture profiles provide a structure for describing these
 commonly used combinations of instruction set extensions within broad
-application domains.  Profiles provide a convenient shorthand for
-describing the ISA portions of hardware and software platforms, and
-also guide the development of software toolchains common to different
-platforms that share the same profile.
+application domains.  Each profile is built on a standard base ISA
+plus a set of mandatory ISA extensions, and provides a small set of
+standard ISA options to extend the mandatory set.  Profiles provide a
+convenient shorthand for describing the ISA portions of hardware and
+software platforms, and also guide the development of common software
+toolchains shared by different platforms that use the same profile.
+The intent is that the software ecosystem focus on supporting the
+profiles' mandatory base and standard options, instead of attempting
+to support every possible combination of individual extensions.
+Similarly, hardware vendors should aim to structure their offerings
+around standard profiles to increase the likelihood their designs will
+have mainstream software support.
 
-As RISC-V evolves over time, the set of ISA features supported by each
-platform will also want to evolve over time.  Also, new platforms may
-be added over time with their own ISA requirements.  To help manage
-this evolution, RISC-V is moving towards a model of regular annual
-delivery of a coherent set of ISA updates according to an ISA roadmap,
-and architecture profiles are intended to provide the natural
-structure for planning, packaging, and releasing these ISA updates.
+NOTE: Profiles are not intended to prohibit the use of combinations of
+individual ISA extensions, which can continue to be used for more
+specialized applications albeit without the expectation of widespread
+software support.
+
+As RISC-V evolves over time, the set of ISA features will grow, and
+new platforms will be added that may need different profiles.  To
+manage this evolution, RISC-V is adopting a model of regular annual
+releases of new ISA profiles, following an ISA roadmap managed by the
+RISC-V Technical Steering Committee.
 
 The architecture profiles will also be used for branding and to
 advertise compatibility with the RISC-V standard.
-
-Profiles are not intended to replace or prohibit the use of
-combinations of individual ISA extensions, which can continue to be
-used for more specialized applications.
 
 This document describes the general structure of RISC-V architecture
 profiles and also the specifics of the first two families of
@@ -325,53 +334,64 @@ likely relies on the Zifencei extension.
 For example, RISC-V Linux supplies the `__riscv_flush_icache` system call and
 a corresponding vDSO call.
 
-NOTE: Zifencei is not classed as supported optional because it is not
-sufficient by itself to produce the desired effect in a
-multiprogrammed multiprocessor environment without OS support, and so
-the instruction cache flush should always be performed using an OS
-call rather than using the FENCE.I instruction.  FENCE.I semantics can
-be expensive to implement for some hardware memory hierarchy designs,
-and so alternative non-standard instruction-cache coherence mechanisms
-can be used behind the OS abstraction.  A separate extension is being
-developed for more general and efficient instruction cache coherence.
+NOTE: Zifencei is not classed as supported optional in the user-mode
+profile because it is not sufficient by itself to produce the desired
+effect in a multiprogrammed multiprocessor environment without OS
+support, and so the instruction cache flush should always be performed
+using an OS call rather than using the FENCE.I instruction.  FENCE.I
+semantics can be expensive to implement for some hardware memory
+hierarchy designs, and so alternative non-standard instruction-cache
+coherence mechanisms can be used behind the OS abstraction.  A
+separate extension is being developed for more general and efficient
+instruction cache coherence.
 
 ==== RVA20U64 Incompatible Extensions
 
 None.
 
-NOTE: The RVA20 specification only considers extensions ratified in
+NOTE: The RVA20 specification only categorizes extensions ratified in
 2019.
 
 === RVA20S64 Profile
 
-The RVA20S64 profile includes the supervisor components of privileged
-architecture version 1.11.  This is the profile used by rich operating
-system platforms.
-
-The RVA20S64 mandatory base includes RVA20U64 unprivileged
-instructions, except that ECALL in user mode causes a contained trap
-to supervisor mode.
+The RVA20S64 profile describes the ISA features of a supervisor-mode
+execution environment based on privileged architecture version 1.11.
+This is the profile used by rich operating system platforms.
 
 ==== RVA20S64 Mandatory Extensions
 
-- All RVA20U64 mandatory extensions
+- The RVA20S64 mandatory base includes all the mandatory unprivileged
+instructions in RVA20U64, except that ECALL in user mode causes a
+contained trap to supervisor mode.
+
 - Zifencei
+
+NOTE: Zifencei is mandated as it is the only standard way to support
+instruction-cache coherence in RVA20 application processors.  A new
+instruction-cache coherence mechanism is under development which might
+be added as an option in the future.
+
 - Ss1p11
+
 - Sv39
+
 - In addition to Sv39, the satp mode Bare must be supported.
+
 - Main memory regions with both the cacheability and coherence PMAs must
   support hardware page-table reads.
   Such regions must additionally support hardware page-table writes if
   any harts support hardware page-table writes.
+
 - stvec.MODE must be capable of holding the value 0 (Direct).
-  When stvec.MODE=Direct,
-  stvec.BASE must be capable of holding any valid four-byte-aligned address.
+  When stvec.MODE=Direct, stvec.BASE must be capable of holding any valid four-byte-aligned address.
+
 - stval must be written with the faulting virtual address for load, store, and
   instruction page-fault, access-fault, and misaligned exceptions, and for
   breakpoint exceptions other than those caused by execution of the EBREAK or
   C.EBREAK instructions.
   For illegal-instruction exceptions, stval must be written with the faulting
   instruction.
+
 - For any hpmcounter that is not read-only zero, the corresponding bit
   in scounteren must be writable.
 
@@ -385,6 +405,10 @@ architecture that should be detailed here.
 ==== RVA20S64 Unsupported Optional Extensions
 
 - Q
+
+- stvec.MODE=Vectored
+
+NOTE: This is not generally used by rich operating systems.
 
 ==== RVA20S64 Incompatible Extensions
 
