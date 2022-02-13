@@ -118,32 +118,27 @@ Profiles only describe ISA features, not a complete execution
 environment.
 
 A _software_ _platform_ is a specification for an execution
-environment, in which software targeted for that platform can run.
+environment, in which software targeted for that software platform can
+run.
 
-NOTE: A user-level ABI under a Unix-like OS defines a software
-platform for unprivileged code execution.  The supervisor-level RISC-V
-SBI defines a software platform to run privileged code.
-
-A _hardware_ _platform_ is a specification for hardware systems (which
-can be viewed as physical realizations of an execution environment).
-
-NOTE: Most hardware platforms have a defined boot mechanism, which can
-configure and initialize an instance of a software platform (e.g.,
-Linux) on the hardware platform (e.g., a server).
+A _hardware_ _platform_ is a specification for a hardware system
+(which can be viewed as a physical realization of an execution
+environment).
 
 Both software and hardware platforms include specifications for many
-features beyond details of the ISA used by RISC-V processors in the
-platform (e.g., behavior of environment calls in a software platform
-or location of memory regions in a hardware platform).  Architecture
-profiles factor out ISA-specific definitions from platform
-definitions, to allow ISA profiles to be reused across different
-platforms, and to be used by tools (e.g., compilers) that are common
-across many different platforms.
+features beyond details of the ISA used by RISC-V harts in the
+platform (e.g., boot process, behavior of environment calls, presence
+of certain memory-mapped hardware devices, etc.).  Architecture
+profiles factor out ISA-specific definitions from platform definitions
+to allow ISA profiles to be reused across different platforms, and to
+be used by tools (e.g., compilers) that are common across many
+different platforms.
 
 A platform can add additional constraints on top of those in a
-profile.  For example, mandating an extension that is optional in the
-underlying profile, or constraining some implementation-specific
-parameter in the profile to lie within a certain range.
+profile.  For example, mandating an extension that is a standard
+option in the underlying profile, or constraining some
+implementation-specific parameter in the profile to lie within a
+certain range.
 
 A platform cannot remove constraints from a profile.
 
