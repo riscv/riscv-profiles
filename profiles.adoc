@@ -90,9 +90,9 @@ around standard profiles to increase the likelihood their designs will
 have mainstream software support.
 
 NOTE: Profiles are not intended to prohibit the use of combinations of
-individual ISA extensions, which can continue to be used for more
-specialized applications albeit without the expectation of widespread
-software support.
+individual ISA extensions or the addition of custom extensions, which
+can continue to be used for more specialized applications albeit
+without the expectation of widespread software support.
 
 As RISC-V evolves over time, the set of ISA features will grow, and
 new platforms will be added that may need different profiles.  To
@@ -183,19 +183,9 @@ exploited, for example, to emulate a privileged execution environment
 using a user-mode execution environment.
 
 In general, available instructions vary by privilege mode, and the
-behavior of RISC-V instructions can depend on the active privilege
+behavior of RISC-V instructions can depend on the current privilege
 mode.  For this reason, there are separate profiles for each
 privileged mode that a profile family supports.
-
-The profile for a privilege mode describes the ISA features for an
-execution environment that has the eponymous privilege mode as the
-most-privileged mode available, but also includes all supported
-lower-privilege modes.  For example, an S-mode profile includes U-mode
-as well as S-mode and describes the behavior of instructions when
-running in different modes in an S-mode execution environment, such as
-how an `ecall` instruction in U-mode causes a contained trap into an
-S-mode handler whereas an `ecall` in S-mode causes a requested trap
-out to the execution environment.
 
 A profile may specify that certain conditions will cause a requested
 trap (such as an `ecall` made in the highest-supported privilege mode)
@@ -207,11 +197,21 @@ profile can be implemented by an execution environment using any
 hardware or software technique that provides compatible functionality,
 up to and including pure software emulation.
 
+The profile for a privilege mode describes the ISA features for an
+execution environment that has the eponymous privilege mode as the
+most-privileged mode available, but also includes all supported
+lower-privilege modes.  For example, an S-mode profile includes U-mode
+as well as S-mode and describes the behavior of instructions when
+running in different modes in an S-mode execution environment, such as
+how an `ecall` instruction in U-mode causes a contained trap into an
+S-mode handler whereas an `ecall` in S-mode causes a requested trap
+out to the execution environment.
+
 A more-privileged profile can always support running software to
 implement a less-privileged profile from the same profile family.  For
-example, a platform supporting the S-mode profile can run an operating
-system that provides a U-mode execution environment supporting the
-U-mode profile.
+example, a platform supporting the S-mode profile can run a
+supervisor-mode operating system that provides user-mode execution
+environments supporting the U-mode profile.
 
 NOTE: Instructions in a U-mode profile, which are all executed in user
 mode, have potentially different behaviors than instructions executed
