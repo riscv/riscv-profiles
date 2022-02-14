@@ -302,11 +302,21 @@ are the first to be defined.  The others will be added later.
 
 == RVA20 Profiles
 
-The RVA20 family of profiles are intended to be used for application
-processors running rich OS stacks.
+The RVA20 profiles are intended to be used for application processors
+running rich OS stacks.  Only user-mode (RVA20U64) and supervisor-mode
+(RVA20S64) profiles are specified in this family.
 
-NOTE: Only 64-bit profiles are shown here, but the eventual intent is to
-define very similar 32-bit variants.
+NOTE: There is no machine-mode profile defined.  A machine-mode profile
+for application processors would only be used in specifying platforms
+for portable machine-mode software. Given the relatively low volume of
+portable M-mode software, the wide variety of potential M-mode code,
+and the very specific needs of each type of M-mode software, we assume
+each portable M-mode software ecosystem would specify individual ISA
+requirements as part of their M-mode platform specification.
+
+NOTE: Only 64-bit application processor profiles are currently
+defined.  It would be possible to also define very similar 32-bit
+variants.
 
 === RVA20U64 Profile
 
@@ -315,23 +325,25 @@ environments in 64-bit applications processors.  This is the most
 important profile within the application processor family in terms of
 the amount of software that targets this profile.
 
+==== RVA20U64 Mandatory Base
+
+RV64I is the mandatory base ISA for RVA20U64.
+
 ==== RVA20U64 Mandatory Extensions
 
-- M
-- A
-- F
-- D
-- C
-- Zicsr
-- Zicntr
-- Zihpm
-- Misaligned loads and stores to main memory regions with both the
-  cacheability and coherence PMAs must be supported.
+- *M* Integer multiplication and divison.
+- *A* Atomic instructions.
+- *F* Single-precision floating-point instructions.
+- *D* Double-precision floating-point instructions.
+- *C* Compressed Instructions.
+- *Zicsr*  CSR instructions.  These are implied by presence of F.
+- *Zicntr* Base counters and timers.
+- *Zihpm* Hardware performance counters.
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
 - Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
-- Implementations are strongly recommended to raise illegal-instruction
-  exceptions when attempting to execute unimplemented opcodes.
+- Misaligned loads and stores to main memory regions with both the
+  cacheability and coherence PMAs must be supported.
 
 NOTE: Even when supported, misaligned loads and stores might execute
 extremely slowly.  Standard software distributions should assume their
@@ -343,29 +355,29 @@ None.
 
 ==== RVA20U64 Unsupported Optional Extensions
 
-- Q
+- *Q* Quad-precision floating-point instructions.
 
 NOTE: Quad-precision floating-point is unlikely to be implemented in
 hardware.
 
-- Zifencei
+- *Zifencei* Instruction-fetch fence instruction.
+
+NOTE: Zifencei is not classed as supported optional in the user-mode
+profile because it is not sufficient by itself to produce the desired
+effect in a multiprogrammed multiprocessor environment without OS
+support, and so the instruction cache flush should always be performed
+using an OS call rather than using the `fence.i` instruction.  `fence.i`
+semantics can be expensive to implement for some hardware memory
+hierarchy designs, and so alternative non-standard instruction-cache
+coherence mechanisms can be used behind the OS abstraction.  A
+separate extension is being developed for more general and efficient
+instruction cache coherence.
 
 NOTE: The execution environment must provide a means to synchronize writes to
 instruction memory with instruction fetches, the implementation of which
 likely relies on the Zifencei extension.
 For example, RISC-V Linux supplies the `__riscv_flush_icache` system call and
 a corresponding vDSO call.
-
-NOTE: Zifencei is not classed as supported optional in the user-mode
-profile because it is not sufficient by itself to produce the desired
-effect in a multiprogrammed multiprocessor environment without OS
-support, and so the instruction cache flush should always be performed
-using an OS call rather than using the FENCE.I instruction.  FENCE.I
-semantics can be expensive to implement for some hardware memory
-hierarchy designs, and so alternative non-standard instruction-cache
-coherence mechanisms can be used behind the OS abstraction.  A
-separate extension is being developed for more general and efficient
-instruction cache coherence.
 
 ==== RVA20U64 Incompatible Extensions
 
@@ -374,69 +386,86 @@ None.
 NOTE: The RVA20 specification only categorizes extensions ratified in
 2019.
 
+==== RVA20U64 Recommendations
+
+Recommendations are not strictly mandated but are included to guide
+implementers making design choices.
+
+Implementations are strongly recommended to raise illegal-instruction
+exceptions on attempts to execute unimplemented opcodes.
+
 === RVA20S64 Profile
 
 The RVA20S64 profile describes the ISA features of a supervisor-mode
 execution environment based on privileged architecture version 1.11.
 This is the profile used by rich operating system platforms.
 
+==== RVA20S64 Mandatory Base
+
+RV64I is the mandatory base ISA for RVA20S64.
+
 ==== RVA20S64 Mandatory Extensions
 
 - The RVA20S64 mandatory base includes all the mandatory unprivileged
-instructions in RVA20U64, except that ECALL in user mode causes a
+instructions in RVA20U64, except that `ecall` in user mode causes a
 contained trap to supervisor mode.
 
-- Zifencei
+- *Ss1p11*  Privileged Architecture version 1.11.
 
-NOTE: Zifencei is mandated as it is the only standard way to support
-instruction-cache coherence in RVA20 application processors.  A new
-instruction-cache coherence mechanism is under development which might
-be added as an option in the future.
+- *Sv39* Page-Based 39-bit Virtual-Memory System.
 
-- Ss1p11
-
-- Sv39
-
-- In addition to Sv39, the satp mode Bare must be supported.
+- In addition to Sv39, the `satp` mode Bare must be supported.
 
 - Main memory regions with both the cacheability and coherence PMAs must
   support hardware page-table reads.
   Such regions must additionally support hardware page-table writes if
   any harts support hardware page-table writes.
 
-- stvec.MODE must be capable of holding the value 0 (Direct).
-  When stvec.MODE=Direct, stvec.BASE must be capable of holding any valid four-byte-aligned address.
+- `stvec.MODE` must be capable of holding the value 0 (Direct).
+  When `stvec.MODE=Direct`, `stvec.BASE` must be capable of holding any valid four-byte-aligned address.
 
-- stval must be written with the faulting virtual address for load, store, and
+- `stval` must be written with the faulting virtual address for load, store, and
   instruction page-fault, access-fault, and misaligned exceptions, and for
-  breakpoint exceptions other than those caused by execution of the EBREAK or
-  C.EBREAK instructions.
-  For illegal-instruction exceptions, stval must be written with the faulting
+  breakpoint exceptions other than those caused by execution of the `ebreak` or
+  `c.ebreak` instructions.
+  For illegal-instruction exceptions, `stval` must be written with the faulting
   instruction.
 
-- For any hpmcounter that is not read-only zero, the corresponding bit
-  in scounteren must be writable.
+- *Zifencei*  Instruction-Fetch Fence.
+
+NOTE: Zifencei is mandated as it is the only standard way to support
+instruction-cache coherence in RVA20 application processors.  A new
+instruction-cache coherence mechanism is under development which might
+be added as an option in the future.
+
+- For any `hpmcounter` that is not read-only zero, the corresponding bit
+  in `scounteren` must be writable.
 
 ==== RVA20S64 Supported Optional Extensions
 
-- Sv48
+RVA20S64 has no unprivileged optional extensions.
+
+- *Sv48* Page-Based 48-bit Virtual-Memory System.
 
 NOTE: There are additional options and parameters in the privileged
 architecture that should be detailed here.
 
 ==== RVA20S64 Unsupported Optional Extensions
 
-- Q
+- *Q*
 
-- stvec.MODE=Vectored
+- *stvec.MODE=Vectored* 
 
-NOTE: This is not generally used by rich operating systems.
+NOTE: Hardware vectoring of exception/interrupt traps is not generally
+used by rich operating systems.
 
 ==== RVA20S64 Incompatible Extensions
 
 None.
 
-=== RVA20M64 Profile
+////
+
+=== RVA20M64 Profile (Ignore)
 
 The RVA20M64 profile is defined to help provide compatibilty for
 application-processor platforms that specify an M-mode execution
@@ -490,6 +519,8 @@ architecture that should be detailed here.
 ==== RVA20M64 Incompatible Extensions
 
 - All RVA20S64 incompatible extensions
+
+////
 
 == RVA22 Profiles
 
