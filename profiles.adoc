@@ -127,12 +127,13 @@ environment).
 
 Both software and hardware platforms include specifications for many
 features beyond details of the ISA used by RISC-V harts in the
-platform (e.g., boot process, behavior of environment calls, presence
-of certain memory-mapped hardware devices, etc.).  Architecture
-profiles factor out ISA-specific definitions from platform definitions
-to allow ISA profiles to be reused across different platforms, and to
-be used by tools (e.g., compilers) that are common across many
-different platforms.
+platform (e.g., boot process, calling convention, behavior of
+environment calls, discovery mechanism, presence of certain
+memory-mapped hardware devices, etc.).  Architecture profiles factor
+out ISA-specific definitions from platform definitions to allow ISA
+profiles to be reused across different platforms, and to be used by
+tools (e.g., compilers) that are common across many different
+platforms.
 
 A platform can add additional constraints on top of those in a
 profile.  For example, mandating an extension that is a standard
@@ -151,93 +152,50 @@ match the needs of a new platform.
 
 Every profile is a member of a _profile_ _family_.  A profile family
 is a set of profiles that are designed for the same applications but
-vary in base ISA and privilege mode.  The initial three families are:
+vary in privilege mode.  The initial three families are:
 
 - generic unprivileged instructions (I)
 - microcontrollers for embedded systems (M)
 - application processors running rich operating systems (A)
 
-A family may be updated no more than annually, and the release
-calendar year is treated as part of the family name.
+A profile family may be updated no more than annually, and the release
+calendar year is treated as part of the profile family name.
 
-More families may be added over time.
+More profile families may be added over time.
 
-Each family is described in more detail below.
-
-=== Base and Extensions
-
-An architecture profile has a mandatory base instruction set (RV32I or
-RV64I).  In addition, the profile categorizes all available ISA
-extensions into four categories:
-
-. Mandatory
-. Supported Optional
-. Unsupported Optional
-. Incompatible
-
-As the name implies, _Mandatory_ ISA extensions are a required part of
-the profile.  Implementations of the profile must provide these, and
-software using the profile can assume they exist.
-
-_Supported_ _Optional_ extensions are those that are optional, but
-which are expected to be generally supported by the software ecosystem
-for this profile.
-
-NOTE: The level of support for Supported Optional extension will
-likely vary greatly among different software components supporting a
-profile, but at the bare minimum tools or runtimes that are claiming
-compatibility with the profile must not report errors or warnings if
-supported optional extensions are present.
-
-_Unsupported_ _Optional_ extensions are those that are optional, but
-which are not expected to be generally supported by the software
-ecosystem.
-
-NOTE: Software components claiming to support a profile are not
-expected to be able to support these extensions, and may error or
-report warnings if they are present.
-
-_Incompatible_ extensions are those that conflict with the base or
-optional extensions.  Software can assume these extensions are not
-present.
-
-All components of a ratified profile must themselves have been
-ratified.
-
-NOTE: Extensions that are ratified after a given profile is released
-are effectively either Unsupported Optional or Incompatible for that
-profile.  A later release of a profile family may choose to include
-the feature as Mandatory or Supported Optional.
-
-Platforms may provide a discovery mechanism to determine what optional
-extensions are present.
+Each profile family is described in more detail below.
 
 === Profile Privilege Mode
 
-RISC-V is a layered architecture supporting multiple privilege modes.
+RISC-V has a layered architecture supporting multiple privilege modes,
+and most RISC-V platforms support more than one privilege mode.
+Software is usually written assuming a particular privilege mode
+during execution.  For example, application code is written assuming
+it will be run in user mode, and kernel code is written assuming it
+will be run in supervisor mode.
+
+NOTE: Software can be run in a mode different than the one for which
+it was written. For example, privileged code using privileged ISA
+features can be run in a user-mode execution environment, but will
+then cause traps into the enclosing execution environment when
+privileged instructions are executed.  This behavior might be
+exploited, for example, to emulate a privileged execution environment
+using a user-mode execution environment.
+
 In general, available instructions vary by privilege mode, and the
 behavior of RISC-V instructions can depend on the active privilege
 mode.  For this reason, there are separate profiles for each
 privileged mode that a profile family supports.
 
-NOTE: Running unprivileged code is different from running code in
-user-mode.  Unprivileged code is code that does not use any privileged
-ISA features and can be run in any privilege mode.  Privileged code
-using privileged ISA features can be run in a user-mode execution
-environment but will normally cause traps into the enclosing execution
-environment when privileged instructions are executed (this behavior
-might be exploited, for example, to emulate a privileged profile in a
-user-mode execution environment).
-
-The profile for a privilege mode describes the ISA features of an
-execution environment that has the named privilege mode as the
+The profile for a privilege mode describes the ISA features for an
+execution environment that has the eponymous privilege mode as the
 most-privileged mode available, but also includes all supported
-lower-privilege modes.  For example, an S-mode profile includes the
-behavior of instructions when running in different modes in an S-mode
-execution environment, such as how an `ecall` instruction in U-mode
-causes a contained trap into an S-mode handler, or how S-mode code can
-set `sstatus.spp` to cause the processor to switch into U-mode after
-executing an `sret` instruction.
+lower-privilege modes.  For example, an S-mode profile includes U-mode
+as well as S-mode and describes the behavior of instructions when
+running in different modes in an S-mode execution environment, such as
+how an `ecall` instruction in U-mode causes a contained trap into an
+S-mode handler whereas an `ecall` in S-mode causes a requested trap
+out to the execution environment.
 
 A profile may specify that certain conditions will cause a requested
 trap (such as an `ecall` made in the highest-supported privilege mode)
@@ -247,7 +205,77 @@ NOTE: A profile does not constrain how invisible traps to a more
 privileged mode are used to emulate profile features.  In general, a
 profile can be implemented by an execution environment using any
 hardware or software technique that provides compatible functionality,
-up and including pure software emulation.
+up to and including pure software emulation.
+
+A more-privileged profile can always support running software to
+implement a less-privileged profile from the same profile family.  For
+example, a platform supporting the S-mode profile can run an operating
+system that provides a U-mode execution environment supporting the
+U-mode profile.
+
+NOTE: Instructions in a U-mode profile, which are all executed in user
+mode, have potentially different behaviors than instructions executed
+in user mode in an S-mode profile.  For this reason, a U-mode profile
+cannot be considered a subset of an S-mode profile.
+
+=== Profile ISA Features
+
+An architecture profile has a mandatory base instruction set (RV32I or
+RV64I).
+
+NOTE: RV32I and RV64I are the only currently ratified base ISAs.
+
+In addition, the profile categorizes all ratified ISA extensions for
+that base ISA into four categories:
+
+. Mandatory
+. Supported Optional
+. Unsupported Optional
+. Incompatible
+
+As the name implies, _Mandatory_ _ISA_ _extensions_ are a required
+part of the profile.  Implementations of the profile must provide
+these.  The combination of the profile base ISA plus the mandatory ISA
+extensions are termed the profile _mandates_, and software using the
+profile can assume these always exist.
+
+_Supported_ _Optional_ extensions (also known as _supported_
+_options_), are those that are optional, but which are expected to be
+generally supported by the software ecosystem for this profile.
+
+NOTE: The level of support for Supported Optional extension will
+likely vary greatly among different software components supporting a
+profile, but at the bare minimum tools or runtimes that are claiming
+compatibility with the profile must not report errors or warnings if
+supported options are present.
+
+_Unsupported_ _Optional_ _Extensions_ are those that are optional, but
+which are not expected to be generally supported by the software
+ecosystem.
+
+NOTE: Software components claiming to support a profile are not
+expected to be able to support these extensions, and may error or
+report warnings if they are present.
+
+_Incompatible_ _extensions_ are those that conflict with the base or
+optional extensions.  Software can assume these extensions are not
+present.
+
+The profile mandates and supported options describe the set of ISA
+features the software ecosystem for that profile is expected to
+support, and the granularity of that support (i.e., subsets of a
+supported option are not a supported option).
+
+All components of a ratified profile must themselves have been
+ratified.
+
+NOTE: Extensions that are ratified after a given profile is released
+are effectively either Unsupported Optional or Incompatible for that
+profile.  A later release of a profile family may choose to
+include the feature as Mandatory or Supported Optional.
+
+Platforms may provide a discovery mechanism to determine what optional
+extensions are present.
 
 === Profile Naming Convention
 
@@ -267,8 +295,7 @@ The initial profiles based on specifications ratified in 2019 are:
 - RVI20U64 basic unprivileged instructions for RV64I
 - RVM20U32, RVM20S32, RVM20M32 profiles for microcontrollers based on RV32I
 - RVM20U64, RVM20S64, RVM20M64 profiles for microcontrollers based on RV64I
-- RVA20U32, RVA20S32, RVA20M32 32-bit application-processor profiles
-- RVA20U64, RVA20S64, RVA20M64 64-bit application-processor profiles
+- RVA20U64, RVA20S64 64-bit application-processor profiles
 
 NOTE: This document currently only includes the RVAx64 profiles, which
 are the first to be defined.  The others will be added later.
