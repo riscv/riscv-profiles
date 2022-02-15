@@ -1,0 +1,116 @@
+////
+This file contains text on M-mode profiles that was deleted from the proposal.
+
+=== RVA20M64 Profile 
+
+The RVA20M64 profile is defined to help provide compatibilty for
+application-processor platforms that specify an M-mode execution
+environment for portable software.
+
+NOTE: Most OS platforms will have no code specified to run in M-mode,
+instead accessing lower-level platform services via abstract
+environment calls from supervisor mode.
+
+NOTE: M-mode will often inherently include implementation-specific
+features in addition to the profile requirements.
+
+==== RVA20M64 Mandatory Extensions
+
+- All RVA20S64 mandatory extensions, _except_ F, D, and misaligned loads
+  and stores.
+- Sm1p11
+- mvendorid, marchid, and mimpid registers must be nonzero.
+- mstatus.TVM, mstatus.TW, and mstatus.TSR must be writable.
+- mtvec.MODE must be capable of holding the value 0 (Direct).
+  When mtvec.MODE=Direct,
+  mtvec.BASE must be capable of holding any valid four-byte-aligned address.
+- medeleg bits 3, 8, 12, 13, and 15 must be writable.
+- mideleg bits 1, 5, and 9 must be writable.  mideleg bits 3, 7, and 11
+  must be read-only zero.
+- For any mhpmcounter that is writable, the corresponding bit
+  in mcounteren must be writable.
+- mtval must be written with the faulting virtual address for load, store, and
+  instruction page-fault, access-fault, and misaligned exceptions, and for
+  breakpoint exceptions other than those caused by execution of the EBREAK or
+  C.EBREAK instructions.
+  For illegal-instruction exceptions, mtval must be written with the faulting
+  instruction.
+- PMP entries 0-3 must be implemented and must support modes OFF, NAPOT,
+  and TOR, with a granularity of at most 4 KiB.
+
+==== RVA20M64 Supported Optional Extensions
+
+- All RVA20S64 supported optional extensions
+- F
+- D
+- Misaligned loads and stores
+
+NOTE: There are other options and parameters in the privileged
+architecture that should be detailed here.
+
+==== RVA20M64 Unsupported Optional Extensions
+
+- All RVA20S64 unsupported optional extensions
+
+==== RVA20M64 Incompatible Extensions
+
+- All RVA20S64 incompatible extensions
+
+////
+
+////
+IGNORE this text
+
+=== RVA22M64 Profile
+
+==== RVA22M64 Mandatory Extensions
+
+- All RVA22S64 mandatory extensions, _except_ F, D, and misaligned loads
+  and stores.
+- Sm1p12
+- mvendorid, marchid, and mimpid registers must be nonzero.
+- mstatus.TVM, mstatus.TW, and mstatus.TSR must be writable.
+- mstatus.MBE, mstatus.SBE, and mstatus.UBE must not be read-only 1.
+- mtvec.MODE must be capable of holding the value 0 (Direct).
+  When mtvec.MODE=Direct,
+  mtvec.BASE must be capable of holding any valid four-byte-aligned address.
+- medeleg bits 3, 8, 12, 13, and 15 must be writable.
+- mideleg bits 1, 5, and 9 must be writable.  mideleg bits 3, 7, and 11
+  must be read-only zero.
+- For any mhpmcounter that is writable, the corresponding bits
+  in mcounteren and mcountinhibit must be writable.
+- mtval must be written with the faulting virtual address for load, store, and
+  instruction page-fault, access-fault, and misaligned exceptions, and for
+  breakpoint exceptions other than those caused by execution of the EBREAK or
+  C.EBREAK instructions.
+  For illegal-instruction exceptions, mtval must be written with the faulting
+  instruction.
+- PMP entries 0-3 must be implemented and must support modes OFF, NAPOT,
+  and TOR, with a granularity of at most 4 KiB.
+
+If the hypervisor extension is implemented, the following are also mandatory:
+- medeleg bits 10, 20, 21, 22, and 23 must additionally be writable.
+- mtval2 must be written with the faulting guest physical address in all
+circumstances permitted by the ISA.
+
+==== RVA22M64 Supported Optional Extensions
+
+- All RVA22S64 supported optional extensions
+- F
+- D
+- Misaligned loads and stores
+
+NOTE: Consider making Zicbom supported-optional here to facilitate
+trap & emulate, for systems that use some out-of-band mechanism?
+
+NOTE: There are options and parameters in the privileged architecture
+that should be detailed here.
+
+==== RVA22M64 Unsupported Optional Extensions
+
+- All RVA22S64 unsupported optional extensions
+
+==== RVA22M64 Incompatible Extensions
+
+- All RVA22S64 incompatible extensions
+////
