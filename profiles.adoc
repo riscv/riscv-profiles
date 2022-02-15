@@ -319,10 +319,10 @@ variants.
 
 === RVA20U64 Profile
 
-The RVA20U64 profile specifies the ISA features available to
-user-mode execution environments in 64-bit applications processors.
-This is the most important profile within the application processor
-family in terms of the amount of software that targets this profile.
+The RVA20U64 profile specifies the ISA features available to user-mode
+execution environments in 64-bit applications processors.  This is the
+most important profile within the application processor family in
+terms of the amount of software that targets this profile.
 
 RVA20U64 has no supported options.
 
@@ -510,18 +510,26 @@ The RVA22 profiles are intended to be used for 64-bit application
 processors running rich OS stacks.  Only user-mode (RVA22U64) and
 supervisor-mode (RVA22S64) profiles are specified in this family.
 
+NOTE: Normally, a calendar spec release would only include a single
+year of profiles.  For this initial proposal, both RVA20 and RVA22 are
+shown together to help explain the lifecycle of the profiles.
+
 === RVA22U64 Profile
 
-The RVA22U64 profile e specifies the ISA features available to
-user-mode execution environments in 64-bit applications processors.
-This is the most important profile within the application processor
-family in terms of the amount of software that targets this profile.
+The RVA22U64 profile specifies the ISA features available to user-mode
+execution environments in 64-bit applications processors.  This is the
+most important profile within the application processor family in
+terms of the amount of software that targets this profile.
+
+RVA22U64 has 4 supported options (Zfh, V, Zkn, Zks).
 
 ==== RVA22U64 Mandatory Base
 
 RV64I is the mandatory base ISA for RVA22U64.
 
 ==== RVA22U64 Mandatory Extensions
+
+The following mandatory extensions were present in RVA20U64.
 
 - *M* Integer multiplication and divison.
 - *A* Atomic instructions.
@@ -531,13 +539,6 @@ RV64I is the mandatory base ISA for RVA22U64.
 - *Zicsr*  CSR instructions.  These are implied by presence of F.
 - *Zicntr* Base counters and timers.
 - *Zihpm* Hardware performance counters.
-- *Zicbom* 
-- *Zicbop*
-- *Zicboz*
-- *Zihintpause*
-- *Zba* Address computation.
-- *Zbb* Basic bit manipulation.
-- *Zbs* Single-bit instructions.
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
 - Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
@@ -548,40 +549,102 @@ NOTE: Even when supported, misaligned loads and stores might execute
 extremely slowly.  Standard software distributions should assume their
 existence only for correctness, not for performance.
 
+The following mandatory extensions are new for RVA22U64.
+
+- *Zihintpause* Pause instruction.
+
+NOTE: While the `pause` instruction is a HINT can be implemented as a
+NOP and hence trivially supported by hardware implementers, it's
+inclusion in the mandatory extension list signifies that software
+should use the instruction whenever it would make sense and that
+implementors are expected to exploit this information to optimize
+hardware execution.
+
+- *Zba* Address computation.
+- *Zbb* Basic bit manipulation.
+- *Zbs* Single-bit instructions.
+
+Cache blocks must be 64 bytes in size, naturally aligned in the
+address space.
+
+NOTE: While the general RISC-V specifications are agnostic to cache
+block size, selecting a common cache line size simplifies the
+specification and use of the following cache-block extensions within
+the application processor profile. Software does not have to query a
+discovery mechanism and/or provide dynamic dispatch to the appropriate
+code. The choice of 64 bytes is effectively an industry
+standard. Implementations may use longer cache lines with
+per-64-byte-sub-block metadata to reduce tag cost while remaining
+compatible. Implementations with shorter cache lines can sequence
+operations on multiple cache lines to remain compatible.
+
+- *Zicbom* Cache-Block Management Operations.
+- *Zicbop* Cache-Block Prefetch Operations.
+
+NOTE: As with other HINTS, the inclusion of prefetches in the
+mandatory set of extensions indicates that software should generate
+these instructions where they are expected to be useful, and hardware
+is expected to exploit that information.
+
+- *Zicboz* Cache-Block Zero Operations.
+
+- *Zfhmin* Half-Precision Floating-point transfer and convert.
+
+NOTE: Zfhmin is a small extension that adds support to load/store and
+convert IEEE FP16 numbers to and from IEEE FP32 format.  The hardware
+cost for this extension is low, and mandating the extension avoids
+adding an option to the profile.
+
+- *Zkt* Data-independent execution time.
+
+NOTE: Zkt requires a certain subset of integer instructions execute
+with data-independent latency.  Mandating this feature enables
+portable libraries for safe basic cryptographic operations. It is
+expected that application processors will naturally have this property
+and so implementation cost is low, if not zero, in most systems that
+would support RVA22.
+
 ==== RVA22U64 Supported Optional Extensions
 
-- Zbc   (un?)
-- Zbkb  (un?)
-- Zbkc  (un?)
-- Zbkx  (un?)
-- Zfh
-- Zfhmin (mand?)
-- Zk = { Zkn,Zkr,Zkt }
-- Zkn = { Zbkb,Zbkc,Zbkx,Zkne,Zknd,Zknh }
-- Zknd  (un?)
-- Zkne  (un?)
-- Zknh  (un?)
-- Zkr   
-- Zks = { Zbkb,Zbkc,Zbkx,Zbksed,Zbksh }
-- Zksed (un?)
-- Zksh  (un?)
-- Zkt   (mand?)
-- Zve32f (un?)
-- Zve32x (un?)
-- Zve64d (un?)
-- Zve64f (un?)
-- Zve64x (un?)
-- V
+The following optional extensions are new for RVA22U64.
 
-NOTE: Might only have the larger groups as supported, and smaller
-extension pieces as unsupported - marked (un?) above.
+- *Zfh* Half-Precision Floating-Point.
 
-NOTE: Might make Zkt and/or Zfhmin mandatory - marked (mand?) above.
+NOTE: A future profile might mandate Zfh.
+
+- *V* Vector Extension.
+
+NOTE: A future profile might mandate V.
+
+- *Zkn* Scalar Crypto NIST Algorithms.
+- *Zks* Scalar Crypto ShangMi Algorithms.
+
+NOTE: The scalar crypto extensions are expected to be superceded by
+vector crypto standards in future profiles, and the scalar extensions
+may move to "unsupported optional" category once the vector crypto is
+present.
 
 ==== RVA22U64 Unsupported Optional Extensions
 
-- Q
-- Zifencei
+The following unsupported optional extensions were present in RVA20U64:
+
+- *Q* Quad-precision floating-point instructions.
+
+NOTE: Quad-precision floating-point is unlikely to be implemented in
+hardware.
+
+- *Zifencei* Instruction-fetch fence instruction.
+
+NOTE: Zifencei is not classed as supported optional in the user-mode
+profile because it is not sufficient by itself to produce the desired
+effect in a multiprogrammed multiprocessor environment without OS
+support, and so the instruction cache flush should always be performed
+using an OS call rather than using the `fence.i` instruction.  `fence.i`
+semantics can be expensive to implement for some hardware memory
+hierarchy designs, and so alternative non-standard instruction-cache
+coherence mechanisms can be used behind the OS abstraction.  A
+separate extension is being developed for more general and efficient
+instruction cache coherence.
 
 NOTE: The execution environment must provide a means to synchronize writes to
 instruction memory with instruction fetches, the implementation of which
@@ -589,12 +652,44 @@ likely relies on the Zifencei extension.
 For example, RISC-V Linux supplies the `__riscv_flush_icache` system call and
 a corresponding vDSO call.
 
+The following unsupported optional extensions were added in RVA22U64:
+
+- *Zbc* Carryless multiply
+
+NOTE: The remaining carryless multiply instructions that are not
+included in the supported scalar crypto options are not considered
+sufficiently important to make a support option in the profile.
+Possibly the remaining instructions could be merged into the supported
+option.
+
+- *Zbkb*, *Zbkc*, *Zbkx*, *Zknd*, *Zkne*, *Zknh*, *Zksed*, *Zksh*  Scalar crypto subset extensions.
+
+NOTE: The smaller extensions are not considered important to provide
+as supported options.  Profile implementers must provide all of the
+instructions in a given algorithm suite.
+
+- *Zve32f*, *Zve32x*, *Zve64d*, *Zve64f*, *Zve64x* Vector subset extensions.
+
+NOTE: The smaller vector extensions are not considered important to
+provide as supported options in the profile. The V extension is
+specified as the supported option for application processors.
+
+- *Zkr* Entropy CSR
+
+NOTE: Access to the entropy source in a system is usually carefully
+controlled.  While the design supports unprivileged access to the
+entropy source, this is unlikely to be often used.
+
 ==== RVA22U64 Incompatible Extensions
 
-- Zfinx
-- Zdinx
-- Zhinx
-- Zhinxmin
+There were no incompatible extensions in RVA20U64.
+
+The following incompatible extensions were added for RVA22U64.
+
+- *Zfinx*, *Zdinx*, *Zhinx*, *Zhinxmin* Floating-point in X registers.
+
+NOTE: These are incompatible with the profile mandates to support the
+F and D extensions.
 
 === RVA22S64 Profile
 
