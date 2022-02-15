@@ -65,22 +65,21 @@ extensions.  In addition, users may add their own custom
 extensions. This flexibility can be used to highly optimize a
 specialized design by including only the exact set of ISA features
 required for an application, but the same flexibility also leads to a
-combinatorial explosion in possible ISA choices.  Many applications
-depend on a rich software ecosystem, which is only made possible by
-reducing the possible combinations of ISA features that the software
-ecosystem has to support.
+combinatorial explosion in possible ISA choices.  Profiles specify a
+much smaller common set of choices that capture the most value for
+most users, and which thereby provide guidance for hardware
+implementers and enable the software community to focus resources on
+building a rich software ecosystem.
 
 NOTE: Another pragmatic concern is the long and unwieldy ISA strings
 required to encode common sets of extensions, which will continue to
 grow as new extensions are defined.
 
-Architecture profiles provide a structure for describing these
-commonly used combinations of instruction set extensions within broad
-application domains.  Each profile is built on a standard base ISA
-plus a set of mandatory ISA extensions, and provides a small set of
-standard ISA options to extend the mandatory set.  Profiles provide a
-convenient shorthand for describing the ISA portions of hardware and
-software platforms, and also guide the development of common software
+Each profile is built on a standard base ISA plus a set of mandatory
+ISA extensions, and provides a small set of standard ISA options to
+extend the mandatory components.  Profiles provide a convenient
+shorthand for describing the ISA portions of hardware and software
+platforms, and also guide the development of common software
 toolchains shared by different platforms that use the same profile.
 The intent is that the software ecosystem focus on supporting the
 profiles' mandatory base and standard options, instead of attempting
