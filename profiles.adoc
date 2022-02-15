@@ -150,8 +150,9 @@ match the needs of a new platform.
 === Profile Family
 
 Every profile is a member of a _profile_ _family_.  A profile family
-is a set of profiles that are designed for the same applications but
-vary in privilege mode.  The initial three families are:
+is a set of profiles that are designed for the same applications and
+that share the same base ISA but which vary in highest-supported
+privilege mode.  The initial three types of family are:
 
 - generic unprivileged instructions (I)
 - microcontrollers for embedded systems (M)
