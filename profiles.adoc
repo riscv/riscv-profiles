@@ -66,10 +66,9 @@ extensions. This flexibility can be used to highly optimize a
 specialized design by including only the exact set of ISA features
 required for an application, but the same flexibility also leads to a
 combinatorial explosion in possible ISA choices.  Profiles specify a
-much smaller common set of choices that capture the most value for
-most users, and which thereby provide guidance for hardware
-implementers and enable the software community to focus resources on
-building a rich software ecosystem.
+much smaller common set of ISA choices that capture the most value for
+most users, and which thereby enable the software community to focus
+resources on building a rich software ecosystem.
 
 NOTE: Another pragmatic concern is the long and unwieldy ISA strings
 required to encode common sets of extensions, which will continue to
@@ -325,6 +324,8 @@ user-mode execution environments in 64-bit applications processors.
 This is the most important profile within the application processor
 family in terms of the amount of software that targets this profile.
 
+RVA20U64 has no supported options.
+
 ==== RVA20U64 Mandatory Base
 
 RV64I is the mandatory base ISA for RVA20U64.
@@ -400,6 +401,8 @@ The RVA20S64 profile specifies the ISA features available to a
 supervisor-mode execution environment in 64-bit applications
 processors.  RVA20S64 is based on privileged architecture version
 1.11.
+
+RVA20S64 has only one supported option (Sv48).
 
 ==== RVA20S64 Mandatory Base
 
@@ -500,8 +503,9 @@ creating a supervisor-mode execution environment following the
 RVA20S64 profile.
 
 ////
+OLD TEXT TO BE IGNORED
 
-=== RVA20M64 Profile (Ignore)
+=== RVA20M64 Profile 
 
 The RVA20M64 profile is defined to help provide compatibilty for
 application-processor platforms that specify an M-mode execution
