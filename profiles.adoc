@@ -243,7 +243,7 @@ _Supported_ _Optional_ extensions (also known as _supported_
 _options_), are those that are optional, but which are expected to be
 generally supported by the software ecosystem for this profile.
 
-NOTE: The level of support for Supported Optional extension will
+NOTE: The level of "support" for Supported Optional extension will
 likely vary greatly among different software components supporting a
 profile, but at the bare minimum tools or runtimes that are claiming
 compatibility with the profile must not report errors or warnings if
@@ -320,10 +320,10 @@ variants.
 
 === RVA20U64 Profile
 
-The RVA20U64 profile represents the behavior of user-mode execution
-environments in 64-bit applications processors.  This is the most
-important profile within the application processor family in terms of
-the amount of software that targets this profile.
+The RVA20U64 profile specifies the ISA features available to
+user-mode execution environments in 64-bit applications processors.
+This is the most important profile within the application processor
+family in terms of the amount of software that targets this profile.
 
 ==== RVA20U64 Mandatory Base
 
@@ -396,9 +396,10 @@ exceptions on attempts to execute unimplemented opcodes.
 
 === RVA20S64 Profile
 
-The RVA20S64 profile describes the ISA features of a supervisor-mode
-execution environment based on privileged architecture version 1.11.
-This is the profile used by rich operating system platforms.
+The RVA20S64 profile specifies the ISA features available to a
+supervisor-mode execution environment in 64-bit applications
+processors.  RVA20S64 is based on privileged architecture version
+1.11.
 
 ==== RVA20S64 Mandatory Base
 
@@ -406,9 +407,20 @@ RV64I is the mandatory base ISA for RVA20S64.
 
 ==== RVA20S64 Mandatory Extensions
 
+The following unprivileged extensions are mandatory:
+
 - The RVA20S64 mandatory base includes all the mandatory unprivileged
 instructions in RVA20U64, except that `ecall` in user mode causes a
 contained trap to supervisor mode.
+
+- *Zifencei*  Instruction-Fetch Fence.
+
+NOTE: Zifencei is mandated as it is the only standard way to support
+instruction-cache coherence in RVA20 application processors.  A new
+instruction-cache coherence mechanism is under development which might
+be added as an option in the future.
+
+The following privileged extensions are mandatory:
 
 - *Ss1p11*  Privileged Architecture version 1.11.
 
@@ -421,22 +433,16 @@ contained trap to supervisor mode.
   Such regions must additionally support hardware page-table writes if
   any harts support hardware page-table writes.
 
-- `stvec.MODE` must be capable of holding the value 0 (Direct).
-  When `stvec.MODE=Direct`, `stvec.BASE` must be capable of holding any valid four-byte-aligned address.
+- `stvec.MODE` must be capable of holding the value 0 (Direct).  When
+  `stvec.MODE=Direct`, `stvec.BASE` must be capable of holding any
+  valid four-byte-aligned address.
 
-- `stval` must be written with the faulting virtual address for load, store, and
-  instruction page-fault, access-fault, and misaligned exceptions, and for
-  breakpoint exceptions other than those caused by execution of the `ebreak` or
-  `c.ebreak` instructions.
-  For illegal-instruction exceptions, `stval` must be written with the faulting
-  instruction.
-
-- *Zifencei*  Instruction-Fetch Fence.
-
-NOTE: Zifencei is mandated as it is the only standard way to support
-instruction-cache coherence in RVA20 application processors.  A new
-instruction-cache coherence mechanism is under development which might
-be added as an option in the future.
+- `stval` must be written with the faulting virtual address for load,
+  store, and instruction page-fault, access-fault, and misaligned
+  exceptions, and for breakpoint exceptions other than those caused by
+  execution of the `ebreak` or `c.ebreak` instructions.  For
+  illegal-instruction exceptions, `stval` must be written with the
+  faulting instruction.
 
 - For any `hpmcounter` that is not read-only zero, the corresponding bit
   in `scounteren` must be writable.
@@ -445,6 +451,8 @@ be added as an option in the future.
 
 RVA20S64 has no unprivileged optional extensions.
 
+The following are privileged optional extensions:
+
 - *Sv48* Page-Based 48-bit Virtual-Memory System.
 
 NOTE: There are additional options and parameters in the privileged
@@ -452,16 +460,44 @@ architecture that should be detailed here.
 
 ==== RVA20S64 Unsupported Optional Extensions
 
-- *Q*
+The following unprivileged extensions are unsupported:
 
-- *stvec.MODE=Vectored* 
+- *Q*  Quad-Precision Floating-Point.
+
+- *N* User-Level Interrupts.
+
+NOTE: The unprivileged N extension for user-level interrupts has _not_
+been ratified, but the ratified privileged architecture v1.11 text
+refers to user-level interrupts.
+
+The following privileged extensions are unsupported:
+
+- *sstatus.UXL!=64*  Different User-Mode XLEN.
+
+NOTE: This extension is not expected to be widely used.
+
+- *stvec.MODE=Vectored*  Hardware Trap Vectoring.
 
 NOTE: Hardware vectoring of exception/interrupt traps is not generally
 used by rich operating systems.
 
+
+
+
 ==== RVA20S64 Incompatible Extensions
 
-None.
+There are no incompatible unprivileged extensions.
+
+The following are incompatible privileged extensions:
+
+- *IALIGN!=16* Masking of `sepc[1]` bit.
+
+NOTE: Increasing IALIGN to 32 by disabling compressed instructions is
+incompatible as the RVA20S64 profile mandates compressed instruction
+support.  Systems supporting dynamic switching must turn on compressed
+instruction support (e.g., by setting the `misa.c` bit) before
+creating a supervisor-mode execution environment following the
+RVA20S64 profile.
 
 ////
 
