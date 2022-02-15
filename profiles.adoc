@@ -478,6 +478,8 @@ The following privileged extensions are unsupported:
 - *sstatus.UXL!=64*  Different User-Mode XLEN.
 
 NOTE: This extension is not expected to be widely used.
+Applications that want to use 32-bit pointers to reduce memory footprint
+should use a forthcoming RV64 ILP32 ABI instead.
 
 - *stvec.MODE=Vectored*  Hardware Trap Vectoring.
 
