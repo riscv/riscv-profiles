@@ -762,6 +762,12 @@ The following privileged extensions are mandatory:
 
 - sstatus.UBE must not be read-only 1.
 
+- *Svpbmt* Page-Based Memory Types
+
+- *Svnapot* NAPOT Translation Contiguity
+
+- *Svinval* Fine-Grained Address-Translation Cache Invalidation
+
 ==== RVA22S64 Supported Optional Extensions
 
 All RVA22U64 supported optional extensions (Zfh, V, Zkn, Zks).
