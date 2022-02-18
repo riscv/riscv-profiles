@@ -793,6 +793,18 @@ NOTE: Platforms may choose to mandate the presence of Sscofpmf.
 
 When the hypervisor extension is implemented, the following are also mandatory:
 
+- *Smstateen* State-enable extension.  The supervisor-mode
+   (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`) state-enable
+   registers must be provided.
+
+NOTE: The extension specification is named as an M-mode extension as
+it includes M-mode features, but also has supervisor-mode components.
+Only the supervisor/hypervisor-mode-visible components are mandated in
+the RVA22S64 profile.  These registers are not mandated or
+supported-optional without the hypervisor extension, as otherwise
+there are no RVA22S64 supported options with relevant state to
+control.
+
 - `hstatus.VTVM`, `hstatus.VTW`, and `hstatus.VTSR` must be writable.
 
 - For any `hpmcounter` that is not read-only zero, the corresponding bit
@@ -812,9 +824,6 @@ When the hypervisor extension is implemented, the following are also mandatory:
 - For each supported virtual memory scheme SvNN supported in `satp`, the
   corresponding hgatp SvNNx4 mode must be supported.  The `hgatp` mode Bare
   must also be supported.
-
-NOTE: There may be additional options and parameters in the privileged
-architecture that should be detailed here.
 
 ==== RVA22S64 Unsupported Optional Extensions
 
