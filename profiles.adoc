@@ -712,7 +712,7 @@ processors.  RVA22S64 is based on privileged architecture version
 1.12.
 
 RVA22S64 has four unprivileged supported options (Zfh, V, Zkn, Zks)
-and three privileged supported options (Sv48, Sv57, H).
+and four privileged supported options (Sv48, Sv57, Sstc, H).
 
 ==== RVA22S64 Mandatory Base
 
@@ -777,6 +777,13 @@ The privileged optional extensions are:
 - *Sv48* Page-Based 48-bit Virtual-Memory System.
 
 - *Sv57* Page-Based 57-bit Virtual-Memory System.
+
+- *Sstc* supervisor-mode timer interrupts
+
+NOTE: Sstc was not made mandatory in RVA22S64 as it is a more
+disruptive change affecting system-level architecture, and will take
+longer for implementations to adopt.  It is expected to be made
+mandatory in the next profile release.
 
 - *H* The hypervisor extension.
 
