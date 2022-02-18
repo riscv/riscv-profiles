@@ -712,7 +712,7 @@ processors.  RVA22S64 is based on privileged architecture version
 1.12.
 
 RVA22S64 has four unprivileged supported options (Zfh, V, Zkn, Zks)
-and five privileged supported options (Sv48, Sv57, Sstc, Sscofpmf, H).
+and six privileged supported options (Sv48, Sv57, Sstc, Sscofpmf, Zkr, H).
 
 ==== RVA22S64 Mandatory Base
 
@@ -789,6 +789,8 @@ mandatory in the next profile release.
 
 NOTE: Platforms may choose to mandate the presence of Sscofpmf.
 
+- *Zkr*  Entropy CSR
+
 - *H* The hypervisor extension.
 
 When the hypervisor extension is implemented, the following are also mandatory:
@@ -829,9 +831,7 @@ control.
 
 Unprivileged unsupported optional extensions are:
 
-- RVA22S64 has the same unsupported optional extensions as RVA22U64.
-
-NOTE: The Zkr extension could be supported in RVA22S64??
+- RVA22S64 has the same unsupported optional extensions as RVA22U64 except for Zkr.
 
 The following privileged extensions are unsupported:
 
