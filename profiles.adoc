@@ -712,7 +712,7 @@ processors.  RVA22S64 is based on privileged architecture version
 1.12.
 
 RVA22S64 has four unprivileged supported options (Zfh, V, Zkn, Zks)
-and four privileged supported options (Sv48, Sv57, Sstc, H).
+and five privileged supported options (Sv48, Sv57, Sstc, Sscofpmf, H).
 
 ==== RVA22S64 Mandatory Base
 
@@ -784,6 +784,10 @@ NOTE: Sstc was not made mandatory in RVA22S64 as it is a more
 disruptive change affecting system-level architecture, and will take
 longer for implementations to adopt.  It is expected to be made
 mandatory in the next profile release.
+
+- *Sscofpmf* Count Overflow and Mode-Based Filtering
+
+NOTE: Platforms may choose to mandate the presence of Sscofpmf.
 
 - *H* The hypervisor extension.
 
