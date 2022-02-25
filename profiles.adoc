@@ -546,13 +546,20 @@ The following mandatory extensions were present in RVA20U64.
 - *Zihpm* Hardware performance counters.
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
-- Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
 - Misaligned loads and stores to main memory regions with both the
   cacheability and coherence PMAs must be supported.
 
 NOTE: Even when supported, misaligned loads and stores might execute
 extremely slowly.  Standard software distributions should assume their
 existence only for correctness, not for performance.
+
+The following mandatory feature was further restricted in RVA22U64:
+
+- Reservation sets are a maximum of 64 bytes, and must be naturally aligned to a power-of-2 byte-address boundary.
+
+NOTE: The maximum reservation size has been reduced to match the
+required cache line size.  The minimum reservation size is effectively
+set by the instructions in the mandatory A extension.
 
 The following mandatory extensions are new for RVA22U64.
 
