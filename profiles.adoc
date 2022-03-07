@@ -92,14 +92,13 @@ individual ISA extensions or the addition of custom extensions, which
 can continue to be used for more specialized applications albeit
 without the expectation of widespread software support.
 
-As RISC-V evolves over time, the set of ISA features will grow, and
-new platforms will be added that may need different profiles.  To
+NOTE: As RISC-V evolves over time, the set of ISA features will grow,
+and new platforms will be added that may need different profiles.  To
 manage this evolution, RISC-V is adopting a model of regular annual
 releases of new ISA profiles, following an ISA roadmap managed by the
-RISC-V Technical Steering Committee.
-
-The architecture profiles will also be used for branding and to
-advertise compatibility with the RISC-V standard.
+RISC-V Technical Steering Committee.  The architecture profiles will
+also be used for branding and to advertise compatibility with the
+RISC-V standard.
 
 This document describes the general structure of RISC-V architecture
 profiles and also the specifics of the first two families of
@@ -149,18 +148,18 @@ match the needs of a new platform.
 === Profile Family
 
 Every profile is a member of a _profile_ _family_.  A profile family
-is a set of profiles that are designed for the same applications and
-that share the same base ISA but which vary in highest-supported
-privilege mode.  The initial three types of family are:
+is a set of profiles that share the same base ISA but which vary in
+highest-supported privilege mode.  The initial three types of family
+are:
 
 - generic unprivileged instructions (I)
 - microcontrollers for embedded systems (M)
 - application processors running rich operating systems (A)
 
+NOTE: More profile families may be added over time.
+
 A profile family may be updated no more than annually, and the release
 calendar year is treated as part of the profile family name.
-
-More profile families may be added over time.
 
 Each profile family is described in more detail below.
 
@@ -186,15 +185,23 @@ behavior of RISC-V instructions can depend on the current privilege
 mode.  For this reason, there are separate profiles for each
 privileged mode that a profile family supports.
 
+A profile will specify the behavior of any contained traps within the
+privilege modes included in the profile.
+
 A profile may specify that certain conditions will cause a requested
 trap (such as an `ecall` made in the highest-supported privilege mode)
-or fatal trap to the enclosing execution environment.
+or fatal trap to the enclosing execution environment.  The profile
+does not specify the behavior of the enclosing execution environment
+in handling requested or fatal traps.
 
-NOTE: A profile does not constrain how invisible traps to a more
-privileged mode are used to emulate profile features.  In general, a
-profile can be implemented by an execution environment using any
-hardware or software technique that provides compatible functionality,
-up to and including pure software emulation.
+NOTE: In general, a profile can be implemented by an execution
+environment using any hardware or software technique that provides
+compatible functionality, up to and including pure software emulation.
+
+A profile does not specify any invisible traps.
+
+NOTE: In particular, a profile does not constrain how invisible traps
+to a more-privileged mode can be used to emulate profile features.
 
 The profile for a privilege mode describes the ISA features for an
 execution environment that has the eponymous privilege mode as the
