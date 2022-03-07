@@ -255,17 +255,25 @@ profile, but at the bare minimum tools or runtimes that are claiming
 compatibility with the profile must not report errors or warnings if
 supported options are present.
 
-Proper subsets of a supported option are not a supported option.
+Supported options may comprise many individually named and ratified
+extensions but the option requires all consitituent extensions are
+present, i.e., proper subsets of a supported option are not a
+supported option.  In particular, unless explicitly listed as a
+supported option, individual extensions are not by themselves a
+supported option even when included as part of a supported option.
 
-NOTE: The profile mandates and supported options describe the set of
-ISA features the software ecosystem for that profile is expected to
-support, as well as the granularity of that support.  Unless
-explicitly listed as a supported option, individual extensions are not
-expected to be supported.
+NOTE: Supported options effectively describe the granularity at which
+the broad software ecosystem is expected to cope with combinations of
+extensions.
 
 _Unsupported_ _Optional_ _Extensions_ are those that are optional, but
 which are not expected to be generally supported by the software
-ecosystem.
+ecosystem as an option.  Individual extensions that are components of
+a supported option are categorized as unsupported optional extensions
+if not explicitly listed as a supported option.  Other extensions that
+are not part of a supported option but which have no conflict with
+profile mandates or supported options are also listed as unsupported
+options.
 
 NOTE: Software components claiming to support a profile are not
 expected to be able to support these extensions, and may error or
@@ -279,9 +287,9 @@ All components of a ratified profile must themselves have been
 ratified.
 
 NOTE: Extensions that are ratified after a given profile is released
-are effectively either Unsupported Optional or Incompatible for that
-profile.  A later release of a profile family may choose to
-include the feature as Mandatory or Supported Optional.
+are either Unsupported Optional or Incompatible for that profile.  A
+later release of a profile may choose to include the new extension as
+Mandatory or Supported Optional.
 
 Platforms may provide a discovery mechanism to determine what optional
 extensions are present.
