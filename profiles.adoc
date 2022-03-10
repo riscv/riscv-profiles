@@ -303,13 +303,13 @@ extensions are present.
 
 A profile name is a string comprised of, in order:
 
-. prefix RV for RISC-V
-. a specific profile family string (I, M, or A)
-. a numeric string giving the first complete calendar year for which
+. Prefix *RV* for RISC-V.
+. A specific profile family name string.  Initially a single letter (*I*, *M*, or *A*), but later profiles may have longer family name strings.
+. A numeric string giving the first complete calendar year for which
 the profile is ratified, represented as number of years after year
-2000 (i.e., 20 for profiles built on specifications ratified during 2019)
-. a privilege mode (U, S, M)
-. a base ISA specifier (32, 64)
+2000, i.e., *20* for profiles built on specifications ratified during 2019. The year string will be longer than two digits in the next century.
+. A privilege mode (*U*, *S*, *M*).  Hypervisor support is treated as an option.
+. A base ISA XLEN specifier (*32*, *64*).
 
 The initial profiles based on specifications ratified in 2019 are:
 
