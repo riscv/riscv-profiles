@@ -231,7 +231,7 @@ RV64I).
 
 NOTE: RV32I and RV64I are the only currently ratified base ISAs.
 
-In addition, the profile categorizes all ratified ISA extensions for
+In addition, the profile groups all ratified ISA extensions for
 that base ISA into four categories:
 
 . Mandatory
@@ -245,22 +245,23 @@ these.  The combination of the profile base ISA plus the mandatory ISA
 extensions are termed the profile _mandates_, and software using the
 profile can assume these always exist.
 
-_Supported_ _Optional_ extensions (also known as _supported_
-_options_), are those that are optional, but which are expected to be
-generally supported by the software ecosystem for this profile.
+The _Supported_ _Optional_ category (also known as _supported_
+_options_) is expected to be generally supported by the software
+ecosystem for this profile.
 
 NOTE: The level of "support" for Supported Optional extension will
 likely vary greatly among different software components supporting a
-profile, but at the bare minimum tools or runtimes that are claiming
-compatibility with the profile must not report errors or warnings if
-supported options are present.
+profile.  Users would expect that software claiming compatibility with
+a profile would make use of any available supported options, but as a
+bare minimum software should not report errors or warnings when
+supported options are present in a system.
 
-Supported options may comprise many individually named and ratified
+A supported option may comprise many individually named and ratified
 extensions but the option requires all consitituent extensions are
 present, i.e., proper subsets of a supported option are not a
 supported option.  In particular, unless explicitly listed as a
 supported option, individual extensions are not by themselves a
-supported option even when included as part of a supported option.
+supported option even when required as part of a supported option.
 
 NOTE: Supported options effectively describe the granularity at which
 the broad software ecosystem is expected to cope with combinations of
@@ -276,8 +277,12 @@ profile mandates or supported options are also listed as unsupported
 options.
 
 NOTE: Software components claiming to support a profile are not
-expected to be able to support these extensions, and may error or
-report warnings if they are present.
+expected to be able to support these extensions.  While individual
+unsupported extensions may be a component of a supported option,
+software is not expected to cope with separately enabling the
+unsupported individual extensions, and may (but are not required to)
+error or report warnings if they are present but not part of a
+complete supported option.
 
 _Incompatible_ _extensions_ are those that conflict with the base or
 optional extensions.  Software can assume these extensions are not
