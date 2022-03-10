@@ -546,10 +546,6 @@ The RVA22 profiles are intended to be used for 64-bit application
 processors running rich OS stacks.  Only user-mode (RVA22U64) and
 supervisor-mode (RVA22S64) profiles are specified in this family.
 
-NOTE: Normally, a calendar spec release would only include a single
-year of profiles.  For this initial proposal, both RVA20 and RVA22 are
-shown together to help explain the lifecycle of the profiles.
-
 === RVA22U64 Profile
 
 The RVA22U64 profile specifies the ISA features available to user-mode
@@ -602,7 +598,7 @@ The following mandatory extensions are new for RVA22U64.
 - *Zihintpause* Pause instruction.
 
 NOTE: While the `pause` instruction is a HINT can be implemented as a
-NOP and hence trivially supported by hardware implementers, it's
+NOP and hence trivially supported by hardware implementers, its
 inclusion in the mandatory extension list signifies that software
 should use the instruction whenever it would make sense and that
 implementors are expected to exploit this information to optimize
@@ -620,11 +616,12 @@ block size, selecting a common cache line size simplifies the
 specification and use of the following cache-block extensions within
 the application processor profile. Software does not have to query a
 discovery mechanism and/or provide dynamic dispatch to the appropriate
-code. The choice of 64 bytes is effectively an industry
-standard. Implementations may use longer cache lines with
-per-64-byte-sub-block metadata to reduce tag cost while remaining
-compatible. Implementations with shorter cache lines can sequence
-operations on multiple cache lines to remain compatible.
+code. We choose 64 bytes at it is effectively an industry
+standard. Implementations may use longer cache lines to reduce tag
+cost provided they use 64-byte sub-blocks to remain
+compatible. Implementations may use shorter cache lines provided they
+sequence cache operations across the multiple cache lines comprising a
+64-byte block to remain compatible.
 
 - *Zicbom* Cache-Block Management Operations.
 - *Zicbop* Cache-Block Prefetch Operations.
@@ -652,9 +649,9 @@ expected that application processors will naturally have this property
 and so implementation cost is low, if not zero, in most systems that
 would support RVA22.
 
-==== RVA22U64 Supported Optional Extensions
+==== RVA22U64 Supported Options
 
-The following optional extensions are new for RVA22U64.
+The following supported options are new for RVA22U64:
 
 - *Zfh* Half-Precision Floating-Point.
 
@@ -678,27 +675,7 @@ The following unsupported optional extensions were present in RVA20U64:
 
 - *Q* Quad-precision floating-point instructions.
 
-NOTE: Quad-precision floating-point is unlikely to be implemented in
-hardware.
-
 - *Zifencei* Instruction-fetch fence instruction.
-
-NOTE: Zifencei is not classed as supported optional in the user-mode
-profile because it is not sufficient by itself to produce the desired
-effect in a multiprogrammed multiprocessor environment without OS
-support, and so the instruction cache flush should always be performed
-using an OS call rather than using the `fence.i` instruction.  `fence.i`
-semantics can be expensive to implement for some hardware memory
-hierarchy designs, and so alternative non-standard instruction-cache
-coherence mechanisms can be used behind the OS abstraction.  A
-separate extension is being developed for more general and efficient
-instruction cache coherence.
-
-NOTE: The execution environment must provide a means to synchronize writes to
-instruction memory with instruction fetches, the implementation of which
-likely relies on the Zifencei extension.
-For example, RISC-V Linux supplies the `__riscv_flush_icache` system call and
-a corresponding vDSO call.
 
 The following unsupported optional extensions were added in RVA22U64:
 
@@ -706,21 +683,22 @@ The following unsupported optional extensions were added in RVA22U64:
 
 NOTE: The remaining carryless multiply instructions that are not
 included in the supported scalar crypto options are not considered
-sufficiently important to make a support option in the profile.
+sufficiently important to make a supported option in the profile.
 Possibly the remaining instructions could be merged into the supported
 option.
 
 - *Zbkb*, *Zbkc*, *Zbkx*, *Zknd*, *Zkne*, *Zknh*, *Zksed*, *Zksh*  Scalar crypto subset extensions.
 
-NOTE: The smaller extensions are not considered important to provide
-as supported options.  Profile implementers must provide all of the
-instructions in a given algorithm suite.
+NOTE: The smaller component scalar crypto extensions are not provided
+as separately supported options in the profile.  Profile implementers
+should provide all of the instructions in a given algorithm suite as
+part of the Zkn or Zks supported options.
 
 - *Zve32f*, *Zve32x*, *Zve64d*, *Zve64f*, *Zve64x* Vector subset extensions.
 
-NOTE: The smaller vector extensions are not considered important to
-provide as supported options in the profile. The V extension is
-specified as the supported option for application processors.
+NOTE: The smaller vector extensions are not provided as separately
+supported options in the profile. The full V extension is specified as
+the supported option for application processors.
 
 - *Zkr* Entropy CSR
 
@@ -821,18 +799,18 @@ The privileged optional extensions are:
 
 - *Sv57* Page-Based 57-bit Virtual-Memory System.
 
-- *Sstc* supervisor-mode timer interrupts
+- *Sstc* supervisor-mode timer interrupts.
 
 NOTE: Sstc was not made mandatory in RVA22S64 as it is a more
 disruptive change affecting system-level architecture, and will take
 longer for implementations to adopt.  It is expected to be made
 mandatory in the next profile release.
 
-- *Sscofpmf* Count Overflow and Mode-Based Filtering
+- *Sscofpmf* Count Overflow and Mode-Based Filtering.
 
 NOTE: Platforms may choose to mandate the presence of Sscofpmf.
 
-- *Zkr*  Entropy CSR
+- *Zkr*  Entropy CSR.
 
 - *H* The hypervisor extension.
 
@@ -846,9 +824,9 @@ NOTE: The extension specification is named as an M-mode extension as
 it includes M-mode features, but also has supervisor-mode components.
 Only the supervisor/hypervisor-mode-visible components are mandated in
 the RVA22S64 profile.  These registers are not mandated or
-supported-optional without the hypervisor extension, as otherwise
+supported options without the hypervisor extension, as
 there are no RVA22S64 supported options with relevant state to
-control.
+control in the absence of the hypervisor extension.
 
 - For any `hpmcounter` that is not read-only zero, the corresponding bit
   in `hcounteren` must be writable.
