@@ -322,6 +322,148 @@ The initial profiles based on specifications ratified in 2019 are:
 NOTE: This document currently only includes the RVAx64 profiles, which
 are the first to be defined.  The others will be added later.
 
+== RVI20 Profiles
+
+The RVI20 profiles document the initial set of unprivileged
+instructions.  These provide a generic target for software toolchains
+and represent the minimum level of compatibility with RISC-V ratified
+standards.  The two profiles RVI20U32 and RVIU64 correspond to the
+RV32I and RV64I base ISAs respectively.
+
+NOTE: These are designed as _unprivileged_ profiles as opposed to
+_user_-_mode_ profiles.  Code using this profile can run in any
+privilege mode, and so requested and fatal traps may be horizontal
+traps into an execution environment running in the same privilege
+mode.
+
+=== RVI20U32
+
+RVI20U32 specifies the ISA features available to generic unprivileged
+execution environments.
+
+==== RVI20U32 Mandatory Base
+
+RV32I is the mandatory base ISA for RVI20U32.
+
+Misaligned loads and stores may not be supported.
+
+==== RVI20U32 Mandatory Extensions
+
+There are no mandatory extensions for RVI20U32.
+
+==== RVI20U32 Supported Optional Extensions
+
+- `fence.tso` instruction
+
+NOTE: The `fence.tso` was encoded within the standard `fence` encoding
+such that implementations could treat as a simple global fence.
+However, the goal of the explicit extension is to signal that an
+implementation takes advantage of the more relaxed TSO ordering and
+that software should exploit this where beneficial.
+
+- *M* Integer multiplication and divison.
+
+- *A* Atomic instructions.
+
+- *F* Single-precision floating-point instructions.
+  
+- *D* Double-precision floating-point instructions.
+
+- *C* Compressed Instructions.
+
+- *Zifencei* Instruction-fetch fence instruction.
+
+- Misaligned loads and stores may be supported.
+
+NOTE: Counters and timers (Zicntr and Zihpm) were not ratified in
+2019.
+
+==== RVI20U32 Unsupported Optional Extensions
+
+- *Zicsr* CSR instructions.
+
+NOTE: The Zicsr extension is not supported independent of the F
+extension.
+
+- *Q* Quad-precision floating-point instructions.
+
+NOTE: The rationale for make Q an unsupported extension is that
+quad-precision floating-point is unlikely to be implemented in
+hardware, and so we do not require or expect software to expend effort
+optimizing use of Q instructions in case they are present.
+
+
+==== RVI20U32 Incompatible Extensions
+
+None.
+
+NOTE: The RVA20 specification only categorizes extensions ratified in
+2019.
+
+=== RVI20U64
+
+RVI20U64 specifies the ISA features available to generic unprivileged
+execution environments.
+
+==== RVI20U64 Mandatory Base
+
+RV64I is the mandatory base ISA for RVI20U64.
+
+Misaligned loads and stores may not be supported.
+
+==== RVI20U64 Mandatory Extensions
+
+There are no mandatory extensions for RVI20U64.
+
+==== RVI20U64 Supported Optional Extensions
+
+- `fence.tso` instruction
+
+NOTE: The `fence.tso` was encoded within the standard `fence` encoding
+such that implementations could treat as a simple global fence.
+However, the goal of the explicit extension is to signal that an
+implementation takes advantage of the more relaxed TSO ordering, and
+software should exploit this where beneficial.
+
+- *M* Integer multiplication and divison.
+
+- *A* Atomic instructions.
+
+- *F* Single-precision floating-point instructions.
+  
+- *D* Double-precision floating-point instructions.
+
+- *C* Compressed Instructions.
+
+- *Zifencei* Instruction-fetch fence instruction.
+
+- Misaligned loads and stores may be supported.
+
+NOTE: Counters and timers (Zicntr and Zihpm) were not ratified in
+2019.
+
+==== RVI20U64 Unsupported Optional Extensions
+
+- *Zicsr* CSR instructions.
+
+NOTE: The Zicsr extension is not supported independent of the F
+extension.
+
+- *Q* Quad-precision floating-point instructions.
+
+NOTE: The rationale for make Q an unsupported extension is that
+quad-precision floating-point is unlikely to be implemented in
+hardware, and so we do not require or expect software to expend effort
+optimizing use of Q instructions in case they are present.
+
+==== RVI20U64 Incompatible Extensions
+
+None.
+
+NOTE: The RVA20 specification only categorizes extensions ratified in
+2019.
+
+
 == RVA20 Profiles
 
 The RVA20 profiles are intended to be used for 64-bit application
