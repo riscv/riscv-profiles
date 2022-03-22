@@ -504,8 +504,6 @@ RV64I is the mandatory base ISA for RVA20U64.
 - *D* Double-precision floating-point instructions.
 - *C* Compressed Instructions.
 - *Zicsr*  CSR instructions.  These are implied by presence of F.
-- *Zicntr* Base counters and timers.
-- *Zihpm* Hardware performance counters.
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
 - Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
@@ -520,6 +518,9 @@ existence only for correctness, not for performance.
   up to four bytes must be atomic.
 
 NOTE: This requirement facilitates runtime patching of aligned instructions.
+
+NOTE: Counters and timers (Zicntr and Zihpm) were not ratified in
+2019.
 
 ==== RVA20U64 Supported Optional Extensions
 
@@ -621,8 +622,7 @@ The following privileged extensions are mandatory:
   illegal-instruction exceptions, `stval` must be written with the
   faulting instruction.
 
-- For any `hpmcounter` that is not read-only zero, the corresponding bit
-  in `scounteren` must be writable.
+NOTE: HPM counters were not ratified in 2019.
 
 ==== RVA20S64 Supported Optional Extensions
 
