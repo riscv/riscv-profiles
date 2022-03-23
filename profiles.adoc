@@ -353,19 +353,23 @@ RV32I is the mandatory base ISA for RVI20U32.
 
 Misaligned loads and stores may not be supported.
 
+The `fence.tso` instruction is mandatory.
+
+NOTE: The `fence.tso` instruction was incorrectly described as
+optional in the 2019 ratified specifications. However, `fence.tso` is
+encoded within the standard `fence` encoding such that implementations
+must treat it as a simple global fence if they do not natively support
+TSO-ordering optimizations.  As software can always assume without any
+penalty that `fence.tso` is being exploited by a hardware
+implementation, there is no advantage to making the instruction a
+supported option.  Later versions of the unprivileged ISA
+specifications correctly indicate that `fence.tso` is mandatory.
+
 ==== RVI20U32 Mandatory Extensions
 
 There are no mandatory extensions for RVI20U32.
 
 ==== RVI20U32 Supported Optional Extensions
-
-- `fence.tso` instruction
-
-NOTE: The `fence.tso` was encoded within the standard `fence` encoding
-such that implementations could treat as a simple global fence.
-However, the goal of the explicit extension is to signal that an
-implementation takes advantage of the more relaxed TSO ordering and
-that software should exploit this where beneficial.
 
 - *M* Integer multiplication and divison.
 
@@ -421,19 +425,23 @@ RV64I is the mandatory base ISA for RVI20U64.
 
 Misaligned loads and stores may not be supported.
 
+The `fence.tso` instruction is mandatory.
+
+NOTE: The `fence.tso` instruction was incorrectly described as
+optional in the 2019 ratified specifications. However, `fence.tso` is
+encoded within the standard `fence` encoding such that implementations
+must treat it as a simple global fence if they do not natively support
+TSO-ordering optimizations.  As software can always assume without any
+penalty that `fence.tso` is being exploited by a hardware
+implementation, there is no advantage to making the instruction a
+supported option.  Later versions of the unprivileged ISA
+specifications correctly indicate that `fence.tso` is mandatory.
+
 ==== RVI20U64 Mandatory Extensions
 
 There are no mandatory extensions for RVI20U64.
 
 ==== RVI20U64 Supported Optional Extensions
-
-- `fence.tso` instruction
-
-NOTE: The `fence.tso` was encoded within the standard `fence` encoding
-such that implementations could treat as a simple global fence.
-However, the goal of the explicit extension is to signal that an
-implementation takes advantage of the more relaxed TSO ordering, and
-software should exploit this where beneficial.
 
 - *M* Integer multiplication and divison.
 
@@ -500,11 +508,23 @@ execution environments in 64-bit applications processors.  This is the
 most important profile within the application processor family in
 terms of the amount of software that targets this profile.
 
-RVA20U64 has one supported option (`fence.tso`).
+RVA20U64 has no supported options.
 
 ==== RVA20U64 Mandatory Base
 
 RV64I is the mandatory base ISA for RVA20U64.
+
+The `fence.tso` instruction is mandatory.
+
+NOTE: The `fence.tso` instruction was incorrectly described as
+optional in the 2019 ratified specifications. However, `fence.tso` is
+encoded within the standard `fence` encoding such that implementations
+must treat it as a simple global fence if they do not natively support
+TSO-ordering optimizations.  As software can always assume without any
+penalty that `fence.tso` is being exploited by a hardware
+implementation, there is no advantage to making the instruction a
+supported option.  Later versions of the unprivileged ISA
+specifications correctly indicate that `fence.tso` is mandatory.
 
 ==== RVA20U64 Mandatory Extensions
 
@@ -534,13 +554,7 @@ NOTE: Counters and timers (Zicntr and Zihpm) were not ratified in
 
 ==== RVA20U64 Supported Optional Extensions
 
-- `fence.tso` instruction
-
-NOTE: The `fence.tso` was encoded within the standard `fence` encoding
-such that implementations could treat as a simple global fence.
-However, the goal of the explicit extension is to signal that an
-implementation takes advantage of the more relaxed TSO ordering and
-that software should exploit this where beneficial.
+There are no supported optional extensions in RVA20U64.
 
 ==== RVA20U64 Unsupported Optional Extensions
 
@@ -593,8 +607,8 @@ supervisor-mode execution environment in 64-bit applications
 processors.  RVA20S64 is based on privileged architecture version
 1.11.
 
-RVA20S64 has one unprivileged supported option (`fence.tso`) and one
-privileged supported option (Sv48).
+RVA20S64 has no unprivileged supported options and one privileged
+supported option (Sv48).
 
 ==== RVA20S64 Mandatory Base
 
@@ -643,15 +657,7 @@ NOTE: HPM counters were not ratified in 2019.
 
 ==== RVA20S64 Supported Optional Extensions
 
-RVA20U64 has the following unprivileged supported options:
-
-- `fence.tso` instruction
-
-NOTE: The `fence.tso` was encoded within the standard `fence` encoding
-such that implementations could treat as a simple global fence.
-However, the goal of the explicit extension is to signal that an
-implementation takes advantage of the more relaxed TSO ordering and
-that software should exploit this where beneficial.
+RVA20U64 has no unprivileged supported options.
 
 RVA20S64 has the following privileged supported options:
 
@@ -720,11 +726,14 @@ execution environments in 64-bit applications processors.  This is the
 most important profile within the application processor family in
 terms of the amount of software that targets this profile.
 
-RVA22U64 has 5 supported options (`fence.tso`, Zfh, V, Zkn, Zks).
+RVA22U64 has 4 supported options (Zfh, V, Zkn, Zks).
 
 ==== RVA22U64 Mandatory Base
 
-RV64I is the mandatory base ISA for RVA22U64.
+RV64I is the mandatory base ISA for RVA22U64, including mandatory `fence.tso`.
+
+NOTE: Later versions of the RV64I unprivileged ISA specification
+ratified in 2021 made clear that `fence.tso` is mandatory.
 
 ==== RVA22U64 Mandatory Extensions
 
@@ -818,16 +827,6 @@ would support RVA22.
 
 ==== RVA22U64 Supported Options
 
-The following unprivileged supported option were present in RVA20U64:
-
-- `fence.tso` instruction
-
-NOTE: The `fence.tso` was encoded within the standard `fence` encoding
-such that implementations could treat as a simple global fence.
-However, the goal of the explicit extension is to signal that an
-implementation takes advantage of the more relaxed TSO ordering and
-that software should exploit this where beneficial.
-
 The following supported options are new for RVA22U64:
 
 - *Zfh* Half-Precision Floating-Point.
@@ -909,12 +908,15 @@ supervisor-mode execution environment in 64-bit applications
 processors.  RVA22S64 is based on privileged architecture version
 1.12.
 
-RVA22S64 has 5 unprivileged supported options (`fence.tso`, Zfh, V, Zkn, Zks)
+RVA22S64 has 4 unprivileged supported options (Zfh, V, Zkn, Zks)
 and 6 privileged supported options (Sv48, Sv57, Sstc, Sscofpmf, Zkr, H).
 
 ==== RVA22S64 Mandatory Base
 
-RV64I is the mandatory base ISA for RVA22S64.
+RV64I is the mandatory base ISA for RVA22U64, including mandatory `fence.tso`.
+
+NOTE: Later versions of the RV64I unprivileged ISA specification
+ratified in 2021 made clear that `fence.tso` is mandatory.
 
 ==== RVA22S64 Mandatory Extensions
 
@@ -968,7 +970,7 @@ The following privileged extensions are mandatory:
 
 ==== RVA22S64 Supported Optional Extensions
 
-All RVA22U64 supported optional extensions (`fence.tso`, Zfh, V, Zkn, Zks).
+All RVA22U64 supported optional extensions (Zfh, V, Zkn, Zks).
 
 The privileged optional extensions are:
 
