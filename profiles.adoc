@@ -351,6 +351,9 @@ execution environments.
 
 RV32I is the mandatory base ISA for RVI20U32.
 
+The `ecall` instruction causes a requested trap to the execution
+environment.
+
 Misaligned loads and stores may not be supported.
 
 The `fence.tso` instruction is mandatory.
@@ -422,6 +425,9 @@ execution environments.
 ==== RVI20U64 Mandatory Base
 
 RV64I is the mandatory base ISA for RVI20U64.
+
+The `ecall` instruction causes a requested trap to the execution
+environment.
 
 Misaligned loads and stores may not be supported.
 
@@ -513,6 +519,9 @@ RVA20U64 has no supported options.
 ==== RVA20U64 Mandatory Base
 
 RV64I is the mandatory base ISA for RVA20U64.
+
+The `ecall` instruction causes a requested trap to the execution
+environment.
 
 The `fence.tso` instruction is mandatory.
 
@@ -614,13 +623,16 @@ supported option (Sv48).
 
 RV64I is the mandatory base ISA for RVA20S64.
 
+An `ecall` in user mode causes a contained trap to supervisor mode.
+An `ecall` in supervisor mode causes a requested trap to the execution
+environment.
+
 ==== RVA20S64 Mandatory Extensions
 
 The following unprivileged extensions are mandatory:
 
-- The RVA20S64 mandatory base includes all the mandatory unprivileged
-instructions in RVA20U64, except that `ecall` in user mode causes a
-contained trap to supervisor mode.
+- The RVA20S64 mandatory unprivileged extensions include all the
+mandatory unprivileged extensions in RVA20U64.
 
 - *Zifencei*  Instruction-Fetch Fence.
 
@@ -734,6 +746,9 @@ RV64I is the mandatory base ISA for RVA22U64, including mandatory `fence.tso`.
 
 NOTE: Later versions of the RV64I unprivileged ISA specification
 ratified in 2021 made clear that `fence.tso` is mandatory.
+
+The `ecall` instruction causes a requested trap to the execution
+environment.
 
 ==== RVA22U64 Mandatory Extensions
 
@@ -918,13 +933,16 @@ RV64I is the mandatory base ISA for RVA22U64, including mandatory `fence.tso`.
 NOTE: Later versions of the RV64I unprivileged ISA specification
 ratified in 2021 made clear that `fence.tso` is mandatory.
 
+An `ecall` in user mode causes a contained trap to supervisor mode.
+An `ecall` in supervisor mode causes a requested trap to the execution
+environment.
+
 ==== RVA22S64 Mandatory Extensions
 
 The following unprivileged extensions are mandatory:
 
-- The RVA22S64 mandatory base includes all the mandatory unprivileged
-instructions in RVA22U64, except that `ecall` in user mode causes a
-contained trap to supervisor mode.
+- The RVA22S64 mandatory unprivileged extensions include all the
+mandatory unprivileged extensions in RVA22U64.
 
 - *Zifencei*  Instruction-Fetch Fence.
 
