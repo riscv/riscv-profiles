@@ -1126,6 +1126,7 @@ of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 - Zifencei Instruction-Fetch Synchronization Extension
 - Zicsr Extension for Control and Status Register Access
 - Zicntr Extension for Basic Performance Counters
+- Zihpm Extension for Hardware Performance Counters
 - Zihintpause Pause Hint Extension
 - Zfh Extension for Half-Precision Floating-Point
 - Zfhmin Minimal Extension for Half-Precision Floating-Point
@@ -1140,6 +1141,10 @@ of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 - Sv32 Page-based Virtual Memory Extension, 32-bit
 - Sv39 Page-based Virtual Memory Extension, 39-bit
 - Sv48 Page-based Virtual Memory Extension, 48-bit
+- Sv57 Page-based Virtual Memory Extension, 57-bit
+- Svpbmt, Page-Based Memory Types
+- Svnapot, NAPOT Translation Contiguity
+- Svinval, Fine-Grained Address-Translation Cache Invalidation
 - Hypervisor Extension
 - Sm1p11, Machine Architecture v1.11
 - Sm1p12, Machine Architecture v1.12
@@ -1176,3 +1181,6 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - https://github.com/riscv/riscv-CMOs[Zicbom Extension for Cache-Block Management]
 - https://github.com/riscv/riscv-CMOs[Zicbop Extension for Cache-Block Prefetching]
 - https://github.com/riscv/riscv-CMOs[Zicboz Extension for Cache-Block Zeroing]
+- https://github.com/riscv/riscv-time-compare[Sstc Extension for Supervisor-mode Timer Interrupts]
+- https://github.com/riscv/riscv-count-overflow[Sscofpmf Extension for Count Overflow and Mode-Based Filtering]
+- https://github.com/riscv/riscv-state-enable[Smstateen Extension for State-enable]
