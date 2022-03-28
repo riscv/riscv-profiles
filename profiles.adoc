@@ -1126,6 +1126,7 @@ of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 - Zifencei Instruction-Fetch Synchronization Extension
 - Zicsr Extension for Control and Status Register Access
 - Zicntr Extension for Basic Performance Counters
+- Zihpm Extension for Hardware Performance Counters
 - Zihintpause Pause Hint Extension
 - Zfh Extension for Half-Precision Floating-Point
 - Zfhmin Minimal Extension for Half-Precision Floating-Point
