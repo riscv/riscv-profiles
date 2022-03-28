@@ -388,34 +388,37 @@ There are no mandatory extensions for RVI20U32.
 
 - Misaligned loads and stores may be supported.
 
-NOTE: Counters and timers (Zicntr and Zihpm) were not ratified in
-2019.
+- *Zicntr* Basic counters.
+
+- *Zihpm* Hardware performance counters.
+
+NOTE: Counters and timers (now known as Zicntr and Zihpm) were frozen
+but not ratified in 2019, as they were removed from the base ISAs
+during the ratification process.  Due to an oversight they were not
+later ratified.  As they are required for the RVA20 and RVA22
+profiles, the proposal is to ratify these extensions in 2022 and
+retroactively add to the 2020 and 2022 profiles as an exception.
 
 ==== RVI20U32 Unsupported Optional Extensions
 
 - *Zicsr* CSR instructions.
 
-NOTE: The Zicsr extension is not supported independent of the F
-extension.
+NOTE: The Zicsr extension is not supported independent of the Zicntr or
+F extensions.
 
 - *Q* Quad-precision floating-point instructions.
 
-NOTE: The rationale for make Q an unsupported extension is that
+NOTE: The rationale to make Q an unsupported extension is that
 quad-precision floating-point is unlikely to be implemented in
 hardware, and so we do not require or expect software to expend effort
 optimizing use of Q instructions in case they are present.
-
 
 ==== RVI20U32 Incompatible Extensions
 
 None.
 
-NOTE: The RVA20 specification only categorizes extensions ratified in
-2019.
-
-
-
-
+NOTE: The RVI20U32 specification only categorizes extensions ratified in
+2019 (except for Zicntr and Zihpm).
 
 === RVI20U64
 
@@ -463,19 +466,27 @@ There are no mandatory extensions for RVI20U64.
 
 - Misaligned loads and stores may be supported.
 
-NOTE: Counters and timers (Zicntr and Zihpm) were not ratified in
-2019.
+- *Zicntr* Basic counters.
+
+- *Zihpm* Hardware performance counters.
+
+NOTE: Counters and timers (now known as Zicntr and Zihpm) were frozen
+but not ratified in 2019, as they were removed from the base ISAs
+during the ratification process.  Due to an oversight they were not
+later ratified.  As they are required for the RVA20 and RVA22
+profiles, the proposal is to ratify these extensions in 2022 and
+retroactively add to the 2020 and 2022 profiles as an exception.
 
 ==== RVI20U64 Unsupported Optional Extensions
 
 - *Zicsr* CSR instructions.
 
-NOTE: The Zicsr extension is not supported independent of the F
-extension.
+NOTE: The Zicsr extension is not supported independent of the Zicntr or
+F extensions.
 
 - *Q* Quad-precision floating-point instructions.
 
-NOTE: The rationale for make Q an unsupported extension is that
+NOTE: The rationale to make Q an unsupported extension is that
 quad-precision floating-point is unlikely to be implemented in
 hardware, and so we do not require or expect software to expend effort
 optimizing use of Q instructions in case they are present.
@@ -484,8 +495,8 @@ optimizing use of Q instructions in case they are present.
 
 None.
 
-NOTE: The RVA20 specification only categorizes extensions ratified in
-2019.
+NOTE: The RVI20U64 specification only categorizes extensions ratified in
+2019 (except for Zicntr and Zihpm).
 
 
 == RVA20 Profiles
@@ -514,7 +525,7 @@ execution environments in 64-bit applications processors.  This is the
 most important profile within the application processor family in
 terms of the amount of software that targets this profile.
 
-RVA20U64 has no supported options.
+RVA20U64 has one unprivileged supported option (Zihpm).
 
 ==== RVA20U64 Mandatory Base
 
@@ -542,7 +553,16 @@ specifications correctly indicate that `fence.tso` is mandatory.
 - *F* Single-precision floating-point instructions.
 - *D* Double-precision floating-point instructions.
 - *C* Compressed Instructions.
-- *Zicsr*  CSR instructions.  These are implied by presence of F.
+- *Zicsr*  CSR instructions.  These are implied by presence of Zicntr or F.
+- *Zicntr* Basic counters.
+
+NOTE: Counters and timers (now known as Zicntr and Zihpm) were frozen
+but not ratified in 2019, as they were removed from the base ISAs
+during the ratification process.  Due to an oversight they were not
+later ratified.  As they are required for the RVA20 and RVA22
+profiles, the proposal is to ratify these extensions in 2022 and
+retroactively add to the 2020 and 2022 profiles as an exception.
+
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
 - Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
@@ -558,18 +578,19 @@ existence only for correctness, not for performance.
 
 NOTE: This requirement facilitates runtime patching of aligned instructions.
 
-NOTE: Counters and timers (Zicntr and Zihpm) were not ratified in
-2019.
 
 ==== RVA20U64 Supported Optional Extensions
 
-There are no supported optional extensions in RVA20U64.
+- *Zihpm* Hardware performance counters.
+
+NOTE: Hardware performance counters are a supported option in RVA20.
+The number of counters is platform-specific.
 
 ==== RVA20U64 Unsupported Optional Extensions
 
 - *Q* Quad-precision floating-point instructions.
 
-NOTE: The rationale for make Q an unsupported extension is that
+NOTE: The rationale to make Q an unsupported extension is that
 quad-precision floating-point is unlikely to be implemented in
 hardware, and so we do not require or expect A-profile software to
 expend effort optimizing use of Q instructions in case they are
@@ -599,7 +620,7 @@ a corresponding vDSO call.
 None.
 
 NOTE: The RVA20 specification only categorizes extensions ratified in
-2019.
+2019  (except for Zicntr and Zihpm).
 
 ==== RVA20U64 Recommendations
 
@@ -616,7 +637,7 @@ supervisor-mode execution environment in 64-bit applications
 processors.  RVA20S64 is based on privileged architecture version
 1.11.
 
-RVA20S64 has no unprivileged supported options and one privileged
+RVA20S64 has one unprivileged supported option (Zihpm) and one privileged
 supported option (Sv48).
 
 ==== RVA20S64 Mandatory Base
@@ -665,11 +686,13 @@ The following privileged extensions are mandatory:
   illegal-instruction exceptions, `stval` must be written with the
   faulting instruction.
 
-NOTE: HPM counters were not ratified in 2019.
-
 ==== RVA20S64 Supported Optional Extensions
 
-RVA20U64 has no unprivileged supported options.
+RVA20U64 has one unprivileged supported option.
+
+- *Zihpm* Hardware performance counters.
+
+NOTE: The number of counters is platform-specific.
 
 RVA20S64 has the following privileged supported options:
 
@@ -723,8 +746,6 @@ RVA20S64 profile.
 
 
 
-
-
 == RVA22 Profiles
 
 The RVA22 profiles are intended to be used for 64-bit application
@@ -762,6 +783,14 @@ The following mandatory extensions were present in RVA20U64.
 - *Zicsr*  CSR instructions.  These are implied by presence of F.
 - *Zicntr* Base counters and timers.
 - *Zihpm* Hardware performance counters.
+
+NOTE: Counters and timers (now known as Zicntr and Zihpm) were frozen
+but not ratified in 2019, as they were removed from the base ISAs
+during the ratification process.  Due to an oversight they were not
+later ratified.  As they are required for the RVA20 and RVA22
+profiles, the proposal is to ratify these extensions in 2022 and
+retroactively add to the 2020 and 2022 profiles as an exception.
+
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
 - Misaligned loads and stores to main memory regions with both the
