@@ -688,7 +688,7 @@ The following privileged extensions are mandatory:
 
 ==== RVA20S64 Supported Optional Extensions
 
-RVA20U64 has one unprivileged supported option.
+RVA20S64 has one unprivileged supported option.
 
 - *Zihpm* Hardware performance counters.
 
@@ -957,7 +957,7 @@ and 6 privileged supported options (Sv48, Sv57, Sstc, Sscofpmf, Zkr, H).
 
 ==== RVA22S64 Mandatory Base
 
-RV64I is the mandatory base ISA for RVA22U64, including mandatory `fence.tso`.
+RV64I is the mandatory base ISA for RVA22S64, including mandatory `fence.tso`.
 
 NOTE: Later versions of the RV64I unprivileged ISA specification
 ratified in 2021 made clear that `fence.tso` is mandatory.
