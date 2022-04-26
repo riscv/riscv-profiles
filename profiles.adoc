@@ -563,8 +563,17 @@ later ratified.  As they are required for the RVA20 and RVA22
 profiles, the proposal is to ratify these extensions in 2022 and
 retroactively add to the 2020 and 2022 profiles as an exception.
 
+- *Ziccif* Main memory regions with both the cacheability and
+  coherence PMAs must support instruction fetch, and any instruction
+  fetches of naturally aligned power-of-2 sizes up to min(ILEN,XLEN)
+  (i.e., 32 bits for RVA20) are atomic.
+
+NOTE: Ziccif is a new extension name capturing this feature.  The
+fetch atomicity requirement facilitates runtime patching of aligned
+instructions.
+
 - Main memory regions with both the cacheability and coherence PMAs must
-  support instruction fetch, AMOArithmetic, and RsrvEventual.
+  support AMOArithmetic, and RsrvEventual.
 
 - *Za128rs* Reservation sets must be contiguous, naturally aligned,
    and at most 128 bytes in size.
@@ -580,11 +589,6 @@ NOTE: This introduces a new extension name for this feature.  Even
 though mandated, misaligned loads and stores might execute extremely
 slowly.  Standard software distributions should assume their existence
 only for correctness, not for performance.
-
-- Within main-memory regions, fetching a naturally aligned instruction of
-  up to four bytes must be atomic.
-
-NOTE: This requirement facilitates runtime patching of aligned instructions.
 
 
 ==== RVA20U64 Supported Optional Extensions
@@ -799,8 +803,13 @@ later ratified.  As they are required for the RVA20 and RVA22
 profiles, the proposal is to ratify these extensions in 2022 and
 retroactively add to the 2020 and 2022 profiles as an exception.
 
+- *Ziccif* Main memory regions with both the cacheability and
+  coherence PMAs must support instruction fetch, and any instruction
+  fetches of naturally aligned power-of-2 sizes up to min(ILEN,XLEN)
+  (i.e., 32 bits for RVA22) are atomic.
+
 - Main memory regions with both the cacheability and coherence PMAs must
-  support instruction fetch, AMOArithmetic, and RsrvEventual.
+  support AMOArithmetic, and RsrvEventual.
 
 - *Zicclsm* Misaligned loads and stores to main memory regions with both the
   cacheability and coherence PMAs must be supported.
@@ -808,11 +817,6 @@ retroactively add to the 2020 and 2022 profiles as an exception.
 NOTE: Even though mandated, misaligned loads and stores might execute
 extremely slowly.  Standard software distributions should assume their
 existence only for correctness, not for performance.
-
-- Within main-memory regions, fetching a naturally aligned instruction of
-  up to four bytes must be atomic.
-
-NOTE: This requirement facilitates runtime patching of aligned instructions.
 
 The following mandatory feature was further restricted in RVA22U64:
 
