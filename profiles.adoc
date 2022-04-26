@@ -685,9 +685,11 @@ The following privileged extensions are mandatory:
 
 - *Ss1p11*  Privileged Architecture version 1.11.
 
-- *Sv39* Page-Based 39-bit Virtual-Memory System.
+- *Svbare* The `satp` mode Bare must be supported.
 
-- In addition to Sv39, the `satp` mode Bare must be supported.
+NOTE: This is a new extension name.
+
+- *Sv39* Page-Based 39-bit Virtual-Memory System.
 
 - Main memory regions with both the cacheability and coherence PMAs must
   support hardware page-table reads.
@@ -1012,9 +1014,9 @@ The following privileged extensions are mandatory:
 
 - *Ss1p12*  Privileged Architecture version 1.12.
 
-- *Sv39* Page-Based 39-bit Virtual-Memory System.
+- *Svbare* The `satp` mode Bare must be supported.
 
-- In addition to Sv39, the `satp` mode Bare must be supported.
+- *Sv39* Page-Based 39-bit Virtual-Memory System.
 
 - Main memory regions with both the cacheability and coherence PMAs must
   support hardware page-table reads.
