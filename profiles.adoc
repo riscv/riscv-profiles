@@ -573,12 +573,13 @@ NOTE: Za128rs is a new extension name capturing this feature.  The
 minimum reservation set size is effectively determined by the size of
 atomic accesses in the A extension.
 
-- Misaligned loads and stores to main memory regions with both the
+- *Zicclsm* Misaligned loads and stores to main memory regions with both the
   cacheability and coherence PMAs must be supported.
 
-NOTE: Even when supported, misaligned loads and stores might execute
-extremely slowly.  Standard software distributions should assume their
-existence only for correctness, not for performance.
+NOTE: This introduces a new extension name for this feature.  Even
+though mandated, misaligned loads and stores might execute extremely
+slowly.  Standard software distributions should assume their existence
+only for correctness, not for performance.
 
 - Within main-memory regions, fetching a naturally aligned instruction of
   up to four bytes must be atomic.
@@ -800,10 +801,11 @@ retroactively add to the 2020 and 2022 profiles as an exception.
 
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
-- Misaligned loads and stores to main memory regions with both the
+
+- *Zicclsm* Misaligned loads and stores to main memory regions with both the
   cacheability and coherence PMAs must be supported.
 
-NOTE: Even when supported, misaligned loads and stores might execute
+NOTE: Even though mandated, misaligned loads and stores might execute
 extremely slowly.  Standard software distributions should assume their
 existence only for correctness, not for performance.
 
