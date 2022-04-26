@@ -354,7 +354,7 @@ RV32I is the mandatory base ISA for RVI20U32.
 The `ecall` instruction causes a requested trap to the execution
 environment.
 
-Misaligned loads and stores may not be supported.
+Misaligned loads and stores might not be supported.
 
 The `fence.tso` instruction is mandatory.
 
@@ -432,7 +432,7 @@ RV64I is the mandatory base ISA for RVI20U64.
 The `ecall` instruction causes a requested trap to the execution
 environment.
 
-Misaligned loads and stores may not be supported.
+Misaligned loads and stores might not be supported.
 
 The `fence.tso` instruction is mandatory.
 
