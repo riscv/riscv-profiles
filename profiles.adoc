@@ -572,8 +572,15 @@ NOTE: Ziccif is a new extension name capturing this feature.  The
 fetch atomicity requirement facilitates runtime patching of aligned
 instructions.
 
-- Main memory regions with both the cacheability and coherence PMAs must
-  support AMOArithmetic, and RsrvEventual.
+- *Ziccrse* Main memory regions with both the cacheability and coherence PMAs must
+  support RsrvEventual.
+
+NOTE: Ziccrse is a new extension name capturing this feature.
+
+- *Ziccamoa* Main memory regions with both the cacheability and coherence PMAs must
+  support AMOArithmetic.
+
+NOTE: Ziccamoa is a new extension name capturing this feature.
 
 - *Za128rs* Reservation sets must be contiguous, naturally aligned,
    and at most 128 bytes in size.
@@ -808,8 +815,15 @@ retroactively add to the 2020 and 2022 profiles as an exception.
   fetches of naturally aligned power-of-2 sizes up to min(ILEN,XLEN)
   (i.e., 32 bits for RVA22) are atomic.
 
-- Main memory regions with both the cacheability and coherence PMAs must
-  support AMOArithmetic, and RsrvEventual.
+- *Ziccrse* Main memory regions with both the cacheability and coherence PMAs must
+  support RsrvEventual.
+
+NOTE: Ziccrse is a new extension name capturing this feature.
+
+- *Ziccamoa* Main memory regions with both the cacheability and coherence PMAs must
+  support AMOArithmetic.
+
+NOTE: Ziccamoa is a new extension name capturing this feature.
 
 - *Zicclsm* Misaligned loads and stores to main memory regions with both the
   cacheability and coherence PMAs must be supported.
