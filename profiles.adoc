@@ -565,7 +565,14 @@ retroactively add to the 2020 and 2022 profiles as an exception.
 
 - Main memory regions with both the cacheability and coherence PMAs must
   support instruction fetch, AMOArithmetic, and RsrvEventual.
-- Reservation sets must be contiguous and at least 16 bytes and at most 128 bytes in size.
+
+- *Za128rs* Reservation sets must be contiguous, naturally aligned,
+   and at most 128 bytes in size.
+
+NOTE: Za128rs is a new extension name capturing this feature.  The
+minimum reservation set size is effectively determined by the size of
+atomic accesses in the A extension.
+
 - Misaligned loads and stores to main memory regions with both the
   cacheability and coherence PMAs must be supported.
 
@@ -807,7 +814,8 @@ NOTE: This requirement facilitates runtime patching of aligned instructions.
 
 The following mandatory feature was further restricted in RVA22U64:
 
-- Reservation sets are a maximum of 64 bytes, and must be naturally aligned to a power-of-2 byte-address boundary.
+- *Za64rs* Reservation sets are contiguous, naturally aligned, and a
+   maximum of 64 bytes.
 
 NOTE: The maximum reservation size has been reduced to match the
 required cache line size.  The minimum reservation size is effectively
