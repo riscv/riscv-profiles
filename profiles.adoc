@@ -763,17 +763,6 @@ The following are incompatible privileged extensions:
 NOTE: This is incompatible as it requires a pervasive change to
 supervisor-level software when hardware can write A and D bits.
 
-- *IALIGN!=16* Masking of `sepc[1]` bit.
-
-NOTE: Increasing IALIGN to 32 by disabling compressed instructions is
-incompatible as the RVA20S64 profile mandates compressed instruction
-support.  Systems supporting dynamic switching must turn on compressed
-instruction support (e.g., by setting the `misa.c` bit) before
-creating a supervisor-mode execution environment following the
-RVA20S64 profile.
-
-
-
 
 == RVA22 Profiles
 
@@ -1142,15 +1131,6 @@ The following are incompatible privileged extensions:
 
 NOTE: This is incompatible as it requires a pervasive change to
 supervisor-level software when hardware can write A and D bits.
-
-- *IALIGN!=16* Masking of `sepc[1]` bit.
-
-NOTE: Increasing IALIGN to 32 by disabling compressed instructions is
-incompatible as the RVA20S64 profile mandates compressed instruction
-support.  Systems supporting dynamic switching must turn on compressed
-instruction support (e.g., by setting the `misa.c` bit) before
-creating a supervisor-mode execution environment following the
-RVA20S64 profile.
 
 ==== RVA22S64 Recommendations
 
