@@ -698,7 +698,7 @@ NOTE: This is a new extension name.
   `stvec.MODE=Direct`, `stvec.BASE` must be capable of holding any
   valid four-byte-aligned address.
 
-- `stval` must be written with the faulting virtual address for load,
+- *Sstvala* `stval` must be written with the faulting virtual address for load,
   store, and instruction page-fault, access-fault, and misaligned
   exceptions, and for breakpoint exceptions other than those caused by
   execution of the `ebreak` or `c.ebreak` instructions.  For
@@ -1024,16 +1024,16 @@ The following privileged extensions are mandatory:
 - *Ssccptr* Main memory regions with both the cacheability and
    coherence PMAs must support hardware page-table reads.
 
-- - *Sstvdcc* `stvec.MODE` must be capable of holding the value 0
+- *Sstvdcc* `stvec.MODE` must be capable of holding the value 0
   (Direct).  When `stvec.MODE=Direct`, `stvec.BASE` must be capable of
   holding any valid four-byte-aligned address.
 
-- stval must be written with the faulting virtual address for load, store, and
-  instruction page-fault, access-fault, and misaligned exceptions, and for
-  breakpoint exceptions other than those caused by execution of the EBREAK or
-  C.EBREAK instructions.
-  For illegal-instruction exceptions, stval must be written with the faulting
-  instruction.
+- *Sstvala* stval must be written with the faulting virtual address
+  for load, store, and instruction page-fault, access-fault, and
+  misaligned exceptions, and for breakpoint exceptions other than
+  those caused by execution of the EBREAK or C.EBREAK instructions.
+  For illegal-instruction exceptions, stval must be written with the
+  faulting instruction.
 
 - For any hpmcounter that is not read-only zero, the corresponding bit
   in scounteren must be writable.
