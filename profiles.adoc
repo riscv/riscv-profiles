@@ -717,6 +717,11 @@ RVA20S64 has the following privileged supported options:
 
 - *Sv48* Page-Based 48-bit Virtual-Memory System.
 
+- *Ssu64xl* `sstatus.UXL`=64 
+
+NOTE: Software should cope with `status.UXL` field being set to 64.
+This field will be 0 if UXL feature is not implemented.
+
 NOTE: There may be additional options and parameters in the privileged
 architecture that should be detailed here.
 
@@ -734,13 +739,13 @@ refers to user-level interrupts.
 
 The following privileged extensions are unsupported:
 
-- *sstatus.UXL!=64*  Different User-Mode XLEN.
+- *Ssu32xl* `sstatus.UXL`=32 
 
 NOTE: This extension is not expected to be widely used, as RISC-V
 applications processors were initially, and are still predominantly,
 XLEN=64, avoiding the need to support legacy XLEN=32 binaries.
 Applications that want to use 32-bit pointers to reduce memory
-footprint should use a forthcoming RV64 ILP32 ABI instead.
+footprint should consider using a forthcoming RV64 ILP32 ABI instead.
 
 - *stvec.MODE=Vectored*  Hardware Trap Vectoring.
 
@@ -1056,6 +1061,11 @@ The privileged optional extensions are:
 
 - *Sv57* Page-Based 57-bit Virtual-Memory System.
 
+- *Ssu64xl* `sstatus.UXL`=64 
+
+NOTE: Software should cope with `status.UXL` field being set to 64.
+This field will be 0 if UXL feature is not implemented.
+
 - *Sstc* supervisor-mode timer interrupts.
 
 NOTE: Sstc was not made mandatory in RVA22S64 as it is a more
@@ -1111,7 +1121,7 @@ Unprivileged unsupported optional extensions are:
 
 The following privileged extensions are unsupported:
 
-- *sstatus.UXL!=64*  Different User-Mode XLEN.
+- *Ssu32xl* `sstatus.UXL`=32 
 
 NOTE: This extension is not expected to be widely used.
 
