@@ -691,10 +691,8 @@ NOTE: This is a new extension name.
 
 - *Sv39* Page-Based 39-bit Virtual-Memory System.
 
-- Main memory regions with both the cacheability and coherence PMAs must
-  support hardware page-table reads.
-  Such regions must additionally support hardware page-table writes if
-  any harts support hardware page-table writes.
+- *Ssccptr* Main memory regions with both the cacheability and
+   coherence PMAs must support hardware page-table reads.
 
 - `stvec.MODE` must be capable of holding the value 0 (Direct).  When
   `stvec.MODE=Direct`, `stvec.BASE` must be capable of holding any
@@ -754,6 +752,11 @@ used by rich operating systems.
 There are no incompatible unprivileged extensions.
 
 The following are incompatible privileged extensions:
+
+- *Ssptwad*  Hardware writes to A and D bits of page table entries.
+
+NOTE: This is incompatible as it requires a pervasive change to
+supervisor-level software when hardware can write A and D bits.
 
 - *IALIGN!=16* Masking of `sepc[1]` bit.
 
@@ -1018,10 +1021,8 @@ The following privileged extensions are mandatory:
 
 - *Sv39* Page-Based 39-bit Virtual-Memory System.
 
-- Main memory regions with both the cacheability and coherence PMAs must
-  support hardware page-table reads.
-  Such regions must additionally support hardware page-table writes if
-  any harts support hardware page-table writes.
+- *Ssccptr* Main memory regions with both the cacheability and
+   coherence PMAs must support hardware page-table reads.
 
 - stvec.MODE must be capable of holding the value 0 (Direct).
   When stvec.MODE=Direct,
@@ -1126,6 +1127,11 @@ Incompatible unprivileged extensions are:
 - All RVA22U64 incompatible extensions
 
 The following are incompatible privileged extensions:
+
+- *Ssptwad*  Hardware writes to A and D bits of page table entries.
+
+NOTE: This is incompatible as it requires a pervasive change to
+supervisor-level software when hardware can write A and D bits.
 
 - *IALIGN!=16* Masking of `sepc[1]` bit.
 
