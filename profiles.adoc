@@ -837,7 +837,7 @@ The following mandatory feature was further restricted in RVA22U64:
    maximum of 64 bytes.
 
 NOTE: The maximum reservation size has been reduced to match the
-required cache line size.  The minimum reservation size is effectively
+required cache block size.  The minimum reservation size is effectively
 set by the instructions in the mandatory A extension.
 
 The following mandatory extensions are new for RVA22U64.
@@ -855,19 +855,19 @@ hardware execution.
 - *Zbb* Basic bit manipulation.
 - *Zbs* Single-bit instructions.
 
-Cache blocks must be 64 bytes in size, naturally aligned in the
+- *Zic64b* Cache blocks must be 64 bytes in size, naturally aligned in the
 address space.
 
 NOTE: While the general RISC-V specifications are agnostic to cache
-block size, selecting a common cache line size simplifies the
+block size, selecting a common cache block size simplifies the
 specification and use of the following cache-block extensions within
 the application processor profile. Software does not have to query a
 discovery mechanism and/or provide dynamic dispatch to the appropriate
 code. We choose 64 bytes at it is effectively an industry
-standard. Implementations may use longer cache lines to reduce tag
+standard. Implementations may use longer cache blocks to reduce tag
 cost provided they use 64-byte sub-blocks to remain
-compatible. Implementations may use shorter cache lines provided they
-sequence cache operations across the multiple cache lines comprising a
+compatible. Implementations may use shorter cache blocks provided they
+sequence cache operations across the multiple cache blocks comprising a
 64-byte block to remain compatible.
 
 - *Zicbom* Cache-Block Management Operations.
