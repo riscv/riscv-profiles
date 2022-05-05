@@ -322,12 +322,6 @@ The initial profiles based on specifications ratified in 2019 are:
 NOTE: This document currently only includes the RVAx64 profiles, which
 are the first to be defined.  The others will be added later.
 
-
-
-
-
-
-
 == RVI20 Profiles
 
 The RVI20 profiles document the initial set of unprivileged
@@ -349,7 +343,7 @@ execution environments.
 
 ==== RVI20U32 Mandatory Base
 
-RV32I is the mandatory base ISA for RVI20U32.
+RV32I is the mandatory base ISA for RVI20U32, and is little-endian.
 
 The `ecall` instruction causes a requested trap to the execution
 environment.
@@ -427,7 +421,7 @@ execution environments.
 
 ==== RVI20U64 Mandatory Base
 
-RV64I is the mandatory base ISA for RVI20U64.
+RV64I is the mandatory base ISA for RVI20U64, and is little-endian.
 
 The `ecall` instruction causes a requested trap to the execution
 environment.
@@ -529,7 +523,7 @@ RVA20U64 has one unprivileged supported option (Zihpm).
 
 ==== RVA20U64 Mandatory Base
 
-RV64I is the mandatory base ISA for RVA20U64.
+RV64I is the mandatory base ISA for RVA20U64, and is little-endian.
 
 The `ecall` instruction causes a requested trap to the execution
 environment.
@@ -661,7 +655,7 @@ supported option (Sv48).
 
 ==== RVA20S64 Mandatory Base
 
-RV64I is the mandatory base ISA for RVA20S64.
+RV64I is the mandatory base ISA for RVA20S64, and is little-endian.
 
 An `ecall` in user mode causes a contained trap to supervisor mode.
 An `ecall` in supervisor mode causes a requested trap to the execution
@@ -763,7 +757,6 @@ The following are incompatible privileged extensions:
 NOTE: This is incompatible as it requires a pervasive change to
 supervisor-level software when hardware can write A and D bits.
 
-
 == RVA22 Profiles
 
 The RVA22 profiles are intended to be used for 64-bit application
@@ -781,7 +774,7 @@ RVA22U64 has 4 supported options (Zfh, V, Zkn, Zks).
 
 ==== RVA22U64 Mandatory Base
 
-RV64I is the mandatory base ISA for RVA22U64, including mandatory `fence.tso`.
+RV64I is the mandatory base ISA for RVA22U64, including mandatory `fence.tso`, and is little-endian.
 
 NOTE: Later versions of the RV64I unprivileged ISA specification
 ratified in 2021 made clear that `fence.tso` is mandatory.
@@ -984,7 +977,8 @@ and 6 privileged supported options (Sv48, Sv57, Sstc, Sscofpmf, Zkr, H).
 
 ==== RVA22S64 Mandatory Base
 
-RV64I is the mandatory base ISA for RVA22S64, including mandatory `fence.tso`.
+RV64I is the mandatory base ISA for RVA22S64, including mandatory
+`fence.tso`, and is little-endian.
 
 NOTE: Later versions of the RV64I unprivileged ISA specification
 ratified in 2021 made clear that `fence.tso` is mandatory.
@@ -1031,8 +1025,6 @@ The following privileged extensions are mandatory:
 
 - For any hpmcounter that is not read-only zero, the corresponding bit
   in scounteren must be writable.
-
-- sstatus.UBE must not be read-only 1.
 
 - *Svpbmt* Page-Based Memory Types
 
@@ -1114,6 +1106,13 @@ The following privileged extensions are unsupported:
 
 NOTE: This extension is not expected to be widely used.
 
+- *Ssube* `sstatus.ube=1` Big-endian user-space.
+
+NOTE: Writable `sstatus.ube` to support running big-endian user-space
+applications with a little-endian kernel is not expected to be widely
+used.  Hard-wiring `sstatus.ube=1` would be incompatible with
+requirement to support RV64I little-endian as the base ISA.
+
 - *Sstvecv* stvec.MODE=Vectored  Hardware Trap Vectoring.
 
 NOTE: Hardware vectoring of exception/interrupt traps is not generally
@@ -1136,7 +1135,6 @@ supervisor-level software when hardware can write A and D bits.
 
 - Implementations are strongly recommended to raise illegal-instruction
   exceptions when attempting to execute unimplemented opcodes.
-
 
 == Glossary of ISA Extensions
 
