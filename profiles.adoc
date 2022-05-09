@@ -1079,10 +1079,10 @@ absence of the hypervisor extension.
 
 - *Shcounterenw* For any `hpmcounter` that is not read-only zero, the corresponding bit in `hcounteren` must be writable.
 
-- `vstval` must be written in all cases described above for `stval`.
+- *Shvstvala* `vstval` must be written in all cases described above for `stval`.
 
-- `htval` must be written with the faulting guest physical address in all
-  circumstances permitted by the ISA.
+- *Shtvala* `htval` must be written with the faulting guest physical
+   address in all circumstances permitted by the ISA.
 
 - `vstvec.MODE` must be capable of holding the value 0 (Direct).
   When `vstvec.MODE`=Direct, `vstvec.BASE` must be capable of holding
