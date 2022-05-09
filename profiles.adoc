@@ -1088,7 +1088,7 @@ absence of the hypervisor extension.
   When `vstvec.MODE`=Direct, `vstvec.BASE` must be capable of holding
   any valid four-byte-aligned address.
 
-- All translation modes supported in `satp` must be supported in `vsatp`.
+- *Shvsatpa* All translation modes supported in `satp` must be supported in `vsatp`.
 
 - For each supported virtual memory scheme SvNN supported in `satp`, the
   corresponding hgatp SvNNx4 mode must be supported.  The `hgatp` mode Bare
