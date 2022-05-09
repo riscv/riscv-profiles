@@ -1,8 +1,8 @@
 [[riscv-doc-template]]
 :description: Short, text description of spect…
 :company: RISC-V
-:revdate: May 9, 2022
-:revnumber: 0.6
+:revdate: May 10, 2022
+:revnumber: 0.7-draft
 :revremark: This document is in Discussion state.  Change should be expected.
 :url-riscv: http://riscv.org
 :doctype: book
