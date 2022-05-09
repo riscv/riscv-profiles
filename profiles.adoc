@@ -1090,9 +1090,9 @@ absence of the hypervisor extension.
 
 - *Shvsatpa* All translation modes supported in `satp` must be supported in `vsatp`.
 
-- For each supported virtual memory scheme SvNN supported in `satp`, the
-  corresponding hgatp SvNNx4 mode must be supported.  The `hgatp` mode Bare
-  must also be supported.
+- *Shgatpa* For each supported virtual memory scheme SvNN supported in
+  `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
+  `hgatp` mode Bare must also be supported.
 
 ==== RVA22S64 Unsupported Optional Extensions
 
