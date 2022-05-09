@@ -1064,17 +1064,18 @@ NOTE: Platforms may choose to mandate the presence of Sscofpmf.
 
 When the hypervisor extension is implemented, the following are also mandatory:
 
-- *Smstateen* State-enable extension.  The supervisor-mode
-   (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`) state-enable
-   registers must be provided.
+- *Ssstateen* Supervisor-mode view of the state-enable extension.  The
+   supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
+   state-enable registers must be provided.
 
-NOTE: The extension specification is named as an M-mode extension as
-it includes M-mode features, but also has supervisor-mode components.
-Only the supervisor/hypervisor-mode-visible components are mandated in
-the RVA22S64 profile.  These registers are not mandated or
-supported options without the hypervisor extension, as
-there are no RVA22S64 supported options with relevant state to
-control in the absence of the hypervisor extension.
+NOTE: The Smstaten extension specification is an M-mode extension as
+it includes M-mode features, but the supervisor-mode visible
+components of the extension are named as the Ssstaten extension.  Only
+Ssstateen is mandated in the RVA22S64 profile when the hypervisor
+extension is implemented.  These registers are not mandated or
+supported options without the hypervisor extension, as there are no
+RVA22S64 supported options with relevant state to control in the
+absence of the hypervisor extension.
 
 - For any `hpmcounter` that is not read-only zero, the corresponding bit
   in `hcounteren` must be writable.
