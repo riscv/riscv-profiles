@@ -1067,7 +1067,7 @@ When the hypervisor extension is implemented, the following are also mandatory:
 - *Ssstateen* Supervisor-mode view of the state-enable extension.  The
    supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
    state-enable registers must be provided.
-
+<
 NOTE: The Smstaten extension specification is an M-mode extension as
 it includes M-mode features, but the supervisor-mode visible
 components of the extension are named as the Ssstaten extension.  Only
@@ -1077,8 +1077,7 @@ supported options without the hypervisor extension, as there are no
 RVA22S64 supported options with relevant state to control in the
 absence of the hypervisor extension.
 
-- For any `hpmcounter` that is not read-only zero, the corresponding bit
-  in `hcounteren` must be writable.
+- *Shcounterenw* For any `hpmcounter` that is not read-only zero, the corresponding bit in `hcounteren` must be writable.
 
 - `vstval` must be written in all cases described above for `stval`.
 
