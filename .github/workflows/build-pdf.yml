@@ -11,6 +11,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      prerelease:
+        description: 'Generate a pre-release.'
+        required: false 
+        type: boolean
 
 jobs:
   build:
@@ -59,3 +64,25 @@ jobs:
         name: profiles.pdf
         path: profiles.pdf
         retention-days: 7
+    - name: Create Release
+      id: create_release
+      if: ${{ github.event.inputs.prerelease }}
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: Release ${{ github.ref_name }}
+        draft: false
+        prerelease: true
+    - name: Upload Release Asset
+      id: upload-release-asset
+      if: ${{ github.event.inputs.prerelease }}
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./profiles.pdf
+        asset_name: profiles.pdf
+        asset_content_type: application/pdf
