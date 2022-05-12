@@ -101,11 +101,11 @@ also be used for branding and to advertise compatibility with the
 RISC-V standard.
 
 This document describes the general structure of RISC-V architecture
-profiles and also the specifics of the first two families of
-architecture profiles for application processors: RVA20 and RVA22.
+profiles and also the specifics of the first few profiles: RVI20 is a
+generic RISC-V unprivileged software profile, and RVA20 and RVA22 are
+architecture profiles for application processors.
 
-NOTE: Other profiles are under development: RVI20 for basic RISC-V
-unprivileged software compatibility, and RVM20 and RVM22 for
+NOTE: Other profiles are under development: RVM20 and RVM22 for
 microcontroller platforms and these will be added in a future version
 of this document.
 
@@ -315,12 +315,12 @@ The initial profiles based on specifications ratified in 2019 are:
 
 - RVI20U32 basic unprivileged instructions for RV32I
 - RVI20U64 basic unprivileged instructions for RV64I
-- RVM20U32, RVM20S32, RVM20M32 profiles for microcontrollers based on RV32I
-- RVM20U64, RVM20S64, RVM20M64 profiles for microcontrollers based on RV64I
 - RVA20U64, RVA20S64 64-bit application-processor profiles
 
-NOTE: This document currently only includes the RVAx64 profiles, which
-are the first to be defined.  The others will be added later.
+NOTE: Other profiles are to be added later including RVM20U32,
+ RVM20S32, RVM20M32 profiles for microcontrollers based on RV32I, and
+ RVM20U64, RVM20S64, RVM20M64 profiles for microcontrollers based on
+ RV64I.
 
 == RVI20 Profiles
 
