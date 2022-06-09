@@ -586,10 +586,13 @@ atomic accesses in the A extension.
 - *Zicclsm* Misaligned loads and stores to main memory regions with both the
   cacheability and coherence PMAs must be supported.
 
-NOTE: This introduces a new extension name for this feature.  Even
-though mandated, misaligned loads and stores might execute extremely
-slowly.  Standard software distributions should assume their existence
-only for correctness, not for performance.
+NOTE: This introduces a new extension name for this feature.  This
+requires misaligned support for all regular load and store
+instructions (including scalar and vector) but not AMOs or other
+specialized forms of memory access.  Even though mandated, misaligned
+loads and stores might execute extremely slowly.  Standard software
+distributions should assume their existence only for correctness, not
+for performance.
 
 
 ==== RVA20U64 Supported Optional Extensions
