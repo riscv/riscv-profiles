@@ -327,7 +327,7 @@ NOTE: Other profiles are to be added later including RVM20U32,
 The RVI20 profiles document the initial set of unprivileged
 instructions.  These provide a generic target for software toolchains
 and represent the minimum level of compatibility with RISC-V ratified
-standards.  The two profiles RVI20U32 and RVIU64 correspond to the
+standards.  The two profiles RVI20U32 and RVI20U64 correspond to the
 RV32I and RV64I base ISAs respectively.
 
 NOTE: These are designed as _unprivileged_ profiles as opposed to
@@ -446,7 +446,7 @@ There are no mandatory extensions for RVI20U64.
 
 ==== RVI20U64 Supported Optional Extensions
 
-- *M* Integer multiplication and divison.
+- *M* Integer multiplication and division.
 
 - *A* Atomic instructions.
 
