@@ -446,7 +446,7 @@ There are no mandatory extensions for RVI20U64.
 
 ==== RVI20U64 Supported Optional Extensions
 
-- *M* Integer multiplication and divison.
+- *M* Integer multiplication and division.
 
 - *A* Atomic instructions.
 
