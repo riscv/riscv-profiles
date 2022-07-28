@@ -1031,8 +1031,6 @@ The following privileged extensions are mandatory:
 
 - *Svpbmt* Page-Based Memory Types
 
-- *Svnapot* NAPOT Translation Contiguity
-
 - *Svinval* Fine-Grained Address-Translation Cache Invalidation
 
 ==== RVA22S64 Supported Optional Extensions
@@ -1044,6 +1042,10 @@ The privileged optional extensions are:
 - *Sv48* Page-Based 48-bit Virtual-Memory System.
 
 - *Sv57* Page-Based 57-bit Virtual-Memory System.
+
+- *Svnapot* NAPOT Translation Contiguity
+
+NOTE: It is expected that Svnapot will be mandatory in RVA23.
 
 - *Ssu64xl* `sstatus.UXL`=64 
 
