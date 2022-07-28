@@ -2,7 +2,7 @@
 :description: Short, text description of spect…
 :company: RISC-V
 :revdate: July 27, 2022
-:revnumber: 0.7
+:revnumber: 0.8-draft
 :revremark: This document is in Discussion state.  Change should be expected.
 :url-riscv: http://riscv.org
 :doctype: book
@@ -44,7 +44,7 @@ endif::[]
 
 = RISC-V Profiles
 
-//: This is the Preable
+//: This is the Premable
 
 [WARNING]
 .This document is in the link:http://riscv.org/spec-state[Discussion state]
