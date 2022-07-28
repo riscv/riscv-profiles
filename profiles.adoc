@@ -688,6 +688,9 @@ NOTE: This is a new extension name.
 
 - *Sv39* Page-Based 39-bit Virtual-Memory System.
 
+- *Ssptead* Page-fault exceptions are raised when a page is accessed
+   when A bit is clear, or written when D bit is clear.
+
 - *Ssccptr* Main memory regions with both the cacheability and
    coherence PMAs must support hardware page-table reads.
 
@@ -752,13 +755,6 @@ used by rich operating systems.
 ==== RVA20S64 Incompatible Extensions
 
 There are no incompatible unprivileged extensions.
-
-The following are incompatible privileged extensions:
-
-- *Ssptwad*  Hardware writes to A and D bits of page table entries.
-
-NOTE: This is incompatible as it requires a pervasive change to
-supervisor-level software when hardware can write A and D bits.
 
 == RVA22 Profiles
 
@@ -1012,6 +1008,9 @@ The following privileged extensions are mandatory:
 
 - *Sv39* Page-Based 39-bit Virtual-Memory System.
 
+- *Ssptead* Page-fault exceptions are raised when a page is accessed
+   when A bit is clear, or written when D bit is clear.
+
 - *Ssccptr* Main memory regions with both the cacheability and
    coherence PMAs must support hardware page-table reads.
 
@@ -1128,13 +1127,6 @@ used by rich operating systems.
 Incompatible unprivileged extensions are:
 
 - All RVA22U64 incompatible extensions
-
-The following are incompatible privileged extensions:
-
-- *Ssptwad*  Hardware writes to A and D bits of page table entries.
-
-NOTE: This is incompatible as it requires a pervasive change to
-supervisor-level software when hardware can write A and D bits.
 
 ==== RVA22S64 Recommendations
 
