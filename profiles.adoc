@@ -345,8 +345,8 @@ execution environments.
 
 RV32I is the mandatory base ISA for RVI20U32, and is little-endian.
 
-The `ecall` instruction causes a requested trap to the execution
-environment.
+As per the unprivileged architecture specification, the `ecall`
+instruction causes a requested trap to the execution environment.
 
 Misaligned loads and stores might not be supported.
 
@@ -423,8 +423,8 @@ execution environments.
 
 RV64I is the mandatory base ISA for RVI20U64, and is little-endian.
 
-The `ecall` instruction causes a requested trap to the execution
-environment.
+As per the unprivileged architecture specification, the `ecall`
+instruction causes a requested trap to the execution environment.
 
 Misaligned loads and stores might not be supported.
 
@@ -525,8 +525,8 @@ RVA20U64 has one unprivileged supported option (Zihpm).
 
 RV64I is the mandatory base ISA for RVA20U64, and is little-endian.
 
-The `ecall` instruction causes a requested trap to the execution
-environment.
+As per the unprivileged architecture specification, the `ecall`
+instruction causes a requested trap to the execution environment.
 
 The `fence.tso` instruction is mandatory.
 
@@ -660,9 +660,10 @@ supported option (Sv48).
 
 RV64I is the mandatory base ISA for RVA20S64, and is little-endian.
 
-An `ecall` in user mode causes a contained trap to supervisor mode.
-An `ecall` in supervisor mode causes a requested trap to the execution
-environment.
+The `ecall` instruction operates as per the unprivileged architecture
+specification.  An `ecall` in user mode causes a contained trap to
+supervisor mode.  An `ecall` in supervisor mode causes a requested
+trap to the execution environment.
 
 ==== RVA20S64 Mandatory Extensions
 
@@ -778,8 +779,8 @@ RV64I is the mandatory base ISA for RVA22U64, including mandatory `fence.tso`, a
 NOTE: Later versions of the RV64I unprivileged ISA specification
 ratified in 2021 made clear that `fence.tso` is mandatory.
 
-The `ecall` instruction causes a requested trap to the execution
-environment.
+As per the unprivileged architecture specification, the `ecall`
+instruction causes a requested trap to the execution environment.
 
 ==== RVA22U64 Mandatory Extensions
 
@@ -982,9 +983,10 @@ RV64I is the mandatory base ISA for RVA22S64, including mandatory
 NOTE: Later versions of the RV64I unprivileged ISA specification
 ratified in 2021 made clear that `fence.tso` is mandatory.
 
-An `ecall` in user mode causes a contained trap to supervisor mode.
-An `ecall` in supervisor mode causes a requested trap to the execution
-environment.
+The `ecall` instruction operates as per the unprivileged architecture
+specification.  An `ecall` in user mode causes a contained trap to
+supervisor mode.  An `ecall` in supervisor mode causes a requested
+trap to the execution environment.
 
 ==== RVA22S64 Mandatory Extensions
 
