@@ -90,7 +90,8 @@ have mainstream software support.
 NOTE: Profiles are not intended to prohibit the use of combinations of
 individual ISA extensions or the addition of custom extensions, which
 can continue to be used for more specialized applications albeit
-without the expectation of widespread software support.
+without the expectation of widespread software support or portability
+between hardware platforms.
 
 NOTE: As RISC-V evolves over time, the set of ISA features will grow,
 and new platforms will be added that may need different profiles.  To
@@ -104,10 +105,6 @@ This document describes the general structure of RISC-V architecture
 profiles and also the specifics of the first few profiles: RVI20 is a
 generic RISC-V unprivileged software profile, and RVA20 and RVA22 are
 architecture profiles for application processors.
-
-NOTE: Other profiles are under development: RVM20 and RVM22 for
-microcontroller platforms and these will be added in a future version
-of this document.
 
 == Profiles versus Platforms
 
@@ -149,11 +146,10 @@ match the needs of a new platform.
 
 Every profile is a member of a _profile_ _family_.  A profile family
 is a set of profiles that share the same base ISA but which vary in
-highest-supported privilege mode.  The initial three types of family
+highest-supported privilege mode.  The initial two types of family
 are:
 
 - generic unprivileged instructions (I)
-- microcontrollers for embedded systems (M)
 - application processors running rich operating systems (A)
 
 NOTE: More profile families may be added over time.
@@ -196,7 +192,7 @@ in handling requested or fatal traps.
 
 NOTE: In general, a profile can be implemented by an execution
 environment using any hardware or software technique that provides
-compatible functionality, up to and including pure software emulation.
+compatible functionality, including pure software emulation.
 
 A profile does not specify any invisible traps.
 
@@ -232,12 +228,10 @@ RV64I).
 NOTE: RV32I and RV64I are the only currently ratified base ISAs.
 
 In addition, the profile groups all ratified ISA extensions for
-that base ISA into four categories:
+that base ISA into two categories:
 
 . Mandatory
-. Supported Optional
-. Unsupported Optional
-. Incompatible
+. Optional
 
 As the name implies, _Mandatory_ _ISA_ _extensions_ are a required
 part of the profile.  Implementations of the profile must provide
@@ -245,59 +239,50 @@ these.  The combination of the profile base ISA plus the mandatory ISA
 extensions are termed the profile _mandates_, and software using the
 profile can assume these always exist.
 
-The _Supported_ _Optional_ category (also known as _supported_
-_options_) is expected to be generally supported by the software
-ecosystem for this profile.
+The _Optional_ category (also known as _options_) contains extensions
+that may be added as options, and which are expected to be generally
+supported as options by the software ecosystem for this profile.
 
-NOTE: The level of "support" for Supported Optional extension will
-likely vary greatly among different software components supporting a
-profile.  Users would expect that software claiming compatibility with
-a profile would make use of any available supported options, but as a
-bare minimum software should not report errors or warnings when
-supported options are present in a system.
+NOTE: The level of "support" for an Optional extension will likely
+vary greatly among different software components supporting a profile.
+Users would expect that software claiming compatibility with a profile
+would make use of any available supported options, but as a bare
+minimum software should not report errors or warnings when supported
+options are present in a system.
 
-A supported option may comprise many individually named and ratified
-extensions but the option requires all consitituent extensions are
-present, i.e., proper subsets of a supported option are not a
-supported option.  In particular, unless explicitly listed as a
-supported option, individual extensions are not by themselves a
-supported option even when required as part of a supported option.
+An optional extension may comprise many individually named and
+ratified extensions but the option requires all consitituent
+extensions are present.  In particular, unless explicitly listed as a
+profile option, individual extensions are not by themselves a profile
+option even when required as part of a profile option.  For example,
+the Zbkb extension is not by itself an option even though it is a
+required component of the Zkn option.
 
-NOTE: Supported options effectively describe the granularity at which
-the broad software ecosystem is expected to cope with combinations of
-extensions.
-
-_Unsupported_ _Optional_ _Extensions_ are those that are optional, but
-which are not expected to be generally supported by the software
-ecosystem as an option.  Individual extensions that are components of
-a supported option are categorized as unsupported optional extensions
-if not explicitly listed as a supported option.  Other extensions that
-are not part of a supported option but which have no conflict with
-profile mandates or supported options are also listed as unsupported
-options.
-
-NOTE: Software is not required to be able to support these extensions
-to claim compatibility with a profile, but may choose to provide
-support.  For individual unsupported extensions that are a component
-of a supported option, software is not expected to cope with
-separately enabling the unsupported individual extensions and may, but
-is not required to, error or report warnings if they are present but
-not part of a complete supported option.
-
-_Incompatible_ _extensions_ are those that conflict with the base or
-optional extensions.  Software can assume these extensions are not
-present.
+NOTE: Profile optional extensions are intended to capture the
+granularity at which the broad software ecosystem is expected to cope
+with combinations of extensions.
 
 All components of a ratified profile must themselves have been
 ratified.
 
-NOTE: Extensions that are ratified after a given profile is released
-are either Unsupported Optional or Incompatible for that profile.  A
-later release of a profile may choose to move the new extension to
-Mandatory or Supported Optional categories.
-
 Platforms may provide a discovery mechanism to determine what optional
 extensions are present.
+
+Extensions that are not explicitly listed in the mandatory or optional
+categories, _non-profile_ extensions, are not parts of the profile.
+Some non-profile extensions can be added to an implementation without
+conflicting with the mandatory or optional components of a profile.
+In this case, the implementation is still compatible with the profile
+even though additional non-profile extensions are present.  Other
+non-profile extensions added to an implementation might alter or
+conflict with the behavior of the mandatory or optional extensions in
+a profile, in which case the implementation would not be compatible
+with the profile.
+
+NOTE: Extensions that are released after a given profile is released
+are by definition non-profile extensions.  For example, new mandatory
+or optional profile extensions for a new profile might be prototyped
+as non-profile extensions on an earlier profile.
 
 === Profile Naming Convention
 
@@ -316,11 +301,6 @@ The initial profiles based on specifications ratified in 2019 are:
 - RVI20U32 basic unprivileged instructions for RV32I
 - RVI20U64 basic unprivileged instructions for RV64I
 - RVA20U64, RVA20S64 64-bit application-processor profiles
-
-NOTE: Other profiles are to be added later including RVM20U32,
- RVM20S32, RVM20M32 profiles for microcontrollers based on RV32I, and
- RVM20U64, RVM20S64, RVM20M64 profiles for microcontrollers based on
- RV64I.
 
 == RVI20 Profiles
 
@@ -358,15 +338,15 @@ encoded within the standard `fence` encoding such that implementations
 must treat it as a simple global fence if they do not natively support
 TSO-ordering optimizations.  As software can always assume without any
 penalty that `fence.tso` is being exploited by a hardware
-implementation, there is no advantage to making the instruction a
-supported option.  Later versions of the unprivileged ISA
-specifications correctly indicate that `fence.tso` is mandatory.
+implementation, there is no advantage to making the instruction an
+option.  Later versions of the unprivileged ISA specifications
+correctly indicate that `fence.tso` is mandatory.
 
 ==== RVI20U32 Mandatory Extensions
 
 There are no mandatory extensions for RVI20U32.
 
-==== RVI20U32 Supported Optional Extensions
+==== RVI20U32 Optional Extensions
 
 - *M* Integer multiplication and divison.
 
@@ -376,6 +356,11 @@ There are no mandatory extensions for RVI20U32.
   
 - *D* Double-precision floating-point instructions.
 
+NOTE: The rationale to not include Q as an optional extension is that
+quad-precision floating-point is unlikely to be implemented in
+hardware, and so we do not require or expect software to expend effort
+optimizing use of Q instructions in case they are present.
+
 - *C* Compressed Instructions.
 
 - *Zifencei* Instruction-fetch fence instruction.
@@ -383,6 +368,9 @@ There are no mandatory extensions for RVI20U32.
 - Misaligned loads and stores may be supported.
 
 - *Zicntr* Basic counters.
+
+NOTE: The Zicsr extension is not supported independent of the Zicntr or
+F extensions.
 
 - *Zihpm* Hardware performance counters.
 
@@ -392,27 +380,6 @@ during the ratification process.  Due to an oversight they were not
 later ratified.  As they are required for the RVA20 and RVA22
 profiles, the proposal is to ratify these extensions in 2022 and
 retroactively add to the 2020 and 2022 profiles as an exception.
-
-==== RVI20U32 Unsupported Optional Extensions
-
-- *Zicsr* CSR instructions.
-
-NOTE: The Zicsr extension is not supported independent of the Zicntr or
-F extensions.
-
-- *Q* Quad-precision floating-point instructions.
-
-NOTE: The rationale to make Q an unsupported extension is that
-quad-precision floating-point is unlikely to be implemented in
-hardware, and so we do not require or expect software to expend effort
-optimizing use of Q instructions in case they are present.
-
-==== RVI20U32 Incompatible Extensions
-
-None.
-
-NOTE: The RVI20U32 specification only categorizes extensions ratified in
-2019 (except for Zicntr and Zihpm).
 
 === RVI20U64
 
@@ -437,14 +404,14 @@ must treat it as a simple global fence if they do not natively support
 TSO-ordering optimizations.  As software can always assume without any
 penalty that `fence.tso` is being exploited by a hardware
 implementation, there is no advantage to making the instruction a
-supported option.  Later versions of the unprivileged ISA
-specifications correctly indicate that `fence.tso` is mandatory.
+profile option.  Later versions of the unprivileged ISA specifications
+correctly indicate that `fence.tso` is mandatory.
 
 ==== RVI20U64 Mandatory Extensions
 
 There are no mandatory extensions for RVI20U64.
 
-==== RVI20U64 Supported Optional Extensions
+==== RVI20U64 Optional Extensions
 
 - *M* Integer multiplication and division.
 
@@ -454,6 +421,11 @@ There are no mandatory extensions for RVI20U64.
   
 - *D* Double-precision floating-point instructions.
 
+NOTE: The rationale to not include Q as a profile option is that
+quad-precision floating-point is unlikely to be implemented in
+hardware, and so we do not require or expect software to expend effort
+optimizing use of Q instructions in case they are present.
+
 - *C* Compressed Instructions.
 
 - *Zifencei* Instruction-fetch fence instruction.
@@ -461,6 +433,9 @@ There are no mandatory extensions for RVI20U64.
 - Misaligned loads and stores may be supported.
 
 - *Zicntr* Basic counters.
+
+NOTE: The Zicsr extension is not supported independent of the Zicntr or
+F extensions.
 
 - *Zihpm* Hardware performance counters.
 
@@ -470,28 +445,6 @@ during the ratification process.  Due to an oversight they were not
 later ratified.  As they are required for the RVA20 and RVA22
 profiles, the proposal is to ratify these extensions in 2022 and
 retroactively add to the 2020 and 2022 profiles as an exception.
-
-==== RVI20U64 Unsupported Optional Extensions
-
-- *Zicsr* CSR instructions.
-
-NOTE: The Zicsr extension is not supported independent of the Zicntr or
-F extensions.
-
-- *Q* Quad-precision floating-point instructions.
-
-NOTE: The rationale to make Q an unsupported extension is that
-quad-precision floating-point is unlikely to be implemented in
-hardware, and so we do not require or expect software to expend effort
-optimizing use of Q instructions in case they are present.
-
-==== RVI20U64 Incompatible Extensions
-
-None.
-
-NOTE: The RVI20U64 specification only categorizes extensions ratified in
-2019 (except for Zicntr and Zihpm).
-
 
 == RVA20 Profiles
 
@@ -519,7 +472,7 @@ execution environments in 64-bit applications processors.  This is the
 most important profile within the application processor family in
 terms of the amount of software that targets this profile.
 
-RVA20U64 has one unprivileged supported option (Zihpm).
+RVA20U64 has one optional extension (Zihpm).
 
 ==== RVA20U64 Mandatory Base
 
@@ -537,7 +490,7 @@ must treat it as a simple global fence if they do not natively support
 TSO-ordering optimizations.  As software can always assume without any
 penalty that `fence.tso` is being exploited by a hardware
 implementation, there is no advantage to making the instruction a
-supported option.  Later versions of the unprivileged ISA
+profile option.  Later versions of the unprivileged ISA
 specifications correctly indicate that `fence.tso` is mandatory.
 
 ==== RVA20U64 Mandatory Extensions
@@ -594,25 +547,18 @@ loads and stores might execute extremely slowly.  Standard software
 distributions should assume their existence only for correctness, not
 for performance.
 
-
-==== RVA20U64 Supported Optional Extensions
+==== RVA20U64 Optional Extensions
 
 - *Zihpm* Hardware performance counters.
 
 NOTE: Hardware performance counters are a supported option in RVA20.
 The number of counters is platform-specific.
 
-==== RVA20U64 Unsupported Optional Extensions
-
-- *Q* Quad-precision floating-point instructions.
-
-NOTE: The rationale to make Q an unsupported extension is that
+NOTE: The rationale to not make Q an optional extension is that
 quad-precision floating-point is unlikely to be implemented in
 hardware, and so we do not require or expect A-profile software to
 expend effort optimizing use of Q instructions in case they are
 present.
-
-- *Zifencei* Instruction-fetch fence instruction.
 
 NOTE: Zifencei is not classed as a supported option in the user-mode
 profile because it is not sufficient by itself to produce the desired
@@ -631,13 +577,6 @@ likely relies on the Zifencei extension.
 For example, RISC-V Linux supplies the `__riscv_flush_icache` system call and
 a corresponding vDSO call.
 
-==== RVA20U64 Incompatible Extensions
-
-None.
-
-NOTE: The RVA20 specification only categorizes extensions ratified in
-2019  (except for Zicntr and Zihpm).
-
 ==== RVA20U64 Recommendations
 
 Recommendations are not strictly mandated but are included to guide
@@ -653,8 +592,8 @@ supervisor-mode execution environment in 64-bit applications
 processors.  RVA20S64 is based on privileged architecture version
 1.11.
 
-RVA20S64 has one unprivileged supported option (Zihpm) and one privileged
-supported option (Sv48).
+RVA20S64 has one unprivileged option (Zihpm) and one privileged option
+(Sv48).
 
 ==== RVA20S64 Mandatory Base
 
@@ -706,15 +645,15 @@ NOTE: This is a new extension name.
   illegal-instruction exceptions, `stval` must be written with the
   faulting instruction.
 
-==== RVA20S64 Supported Optional Extensions
+==== RVA20S64 Optional Extensions
 
-RVA20S64 has one unprivileged supported option.
+RVA20S64 has one unprivileged option.
 
 - *Zihpm* Hardware performance counters.
 
 NOTE: The number of counters is platform-specific.
 
-RVA20S64 has the following privileged supported options:
+RVA20S64 has the following privileged options:
 
 - *Sv48* Page-Based 48-bit Virtual-Memory System.
 
@@ -722,40 +661,6 @@ RVA20S64 has the following privileged supported options:
 
 NOTE: Software should cope with `status.UXL` field being set to 64.
 This field will be 0 if UXL feature is not implemented.
-
-NOTE: There may be additional options and parameters in the privileged
-architecture that should be detailed here.
-
-==== RVA20S64 Unsupported Optional Extensions
-
-The following unprivileged extensions are unsupported:
-
-- *Q*  Quad-Precision Floating-Point.
-
-- *N* User-Level Interrupts.
-
-NOTE: The unprivileged N extension for user-level interrupts has _not_
-been ratified, but the ratified privileged architecture v1.11 text
-refers to user-level interrupts.
-
-The following privileged extensions are unsupported:
-
-- *Ssu32xl* `sstatus.UXL`=32 
-
-NOTE: This extension is not expected to be widely used, as RISC-V
-applications processors were initially, and are still predominantly,
-XLEN=64, avoiding the need to support legacy XLEN=32 binaries.
-Applications that want to use 32-bit pointers to reduce memory
-footprint should consider using a forthcoming RV64 ILP32 ABI instead.
-
-- *Sstvecv* stvec.MODE=Vectored  Hardware Trap Vectoring.
-
-NOTE: Hardware vectoring of exception/interrupt traps is not generally
-used by rich operating systems.
-
-==== RVA20S64 Incompatible Extensions
-
-There are no incompatible unprivileged extensions.
 
 == RVA22 Profiles
 
@@ -769,8 +674,6 @@ The RVA22U64 profile specifies the ISA features available to user-mode
 execution environments in 64-bit applications processors.  This is the
 most important profile within the application processor family in
 terms of the amount of software that targets this profile.
-
-RVA22U64 has 4 supported options (Zfh, V, Zkn, Zks).
 
 ==== RVA22U64 Mandatory Base
 
@@ -807,13 +710,11 @@ retroactively add to the 2020 and 2022 profiles as an exception.
   fetches of naturally aligned power-of-2 sizes up to min(ILEN,XLEN)
   (i.e., 32 bits for RVA22) are atomic.
 
-- *Ziccrse* Main memory regions with both the cacheability and coherence PMAs must
-  support RsrvEventual.
+- *Ziccrse* Main memory regions with both the cacheability and coherence PMAs must support RsrvEventual.
 
 NOTE: Ziccrse is a new extension name capturing this feature.
 
-- *Ziccamoa* Main memory regions with both the cacheability and coherence PMAs must
-  support AMOArithmetic.
+- *Ziccamoa* Main memory regions with both the cacheability and coherence PMAs must support AMOArithmetic.
 
 NOTE: Ziccamoa is a new extension name capturing this feature.
 
@@ -889,15 +790,19 @@ expected that application processors will naturally have this property
 and so implementation cost is low, if not zero, in most systems that
 would support RVA22.
 
-==== RVA22U64 Supported Options
+==== RVA22U64 Optional Extensions
 
-The following supported options are new for RVA22U64:
+RVA22U64 has four profile options (Zfh, V, Zkn, Zks):
 
 - *Zfh* Half-Precision Floating-Point.
 
 NOTE: A future profile might mandate Zfh.
 
 - *V* Vector Extension.
+
+NOTE: The smaller vector extensions (Zve32f, Zve32x, Zve64d, Zve64f,
+Zve64x) are not provided as separately supported profile options. The
+full V extension is specified as the only supported profile option.
 
 NOTE: A future profile might mandate V.
 
@@ -906,56 +811,22 @@ NOTE: A future profile might mandate V.
 
 NOTE: The scalar crypto extensions are expected to be superceded by
 vector crypto standards in future profiles, and the scalar extensions
-may move to "unsupported optional" category once the vector crypto is
-present.
+may be removed as supported options once vector crypto is present.
 
-==== RVA22U64 Unsupported Optional Extensions
+NOTE: The smaller component scalar crypto extensions (Zbc, Zbkb, Zbkc,
+Zbkx, Zknd, Zkne, Zknh, Zksed, Zksh) are not provided as separate
+options in the profile.  Profile implementers should provide all of
+the instructions in a given algorithm suite as part of the Zkn or Zks
+supported options.
 
-The following unsupported optional extensions were present in RVA20U64:
+NOTE: Access to the entropy source (Zkr) in a system is usually
+carefully controlled.  While the design supports unprivileged access
+to the entropy source, this is unlikely to be commonly used in an
+application processor, and so Zkr was not added as a profile option.
+This also means the roll-up Zk was not added as a profile option.
 
-- *Q* Quad-precision floating-point instructions.
-
-- *Zifencei* Instruction-fetch fence instruction.
-
-The following unsupported optional extensions were added in RVA22U64:
-
-- *Zbc* Carryless multiply
-
-NOTE: The remaining carryless multiply instructions that are not
-included in the supported scalar crypto options are not considered
-sufficiently important to make a supported option in the profile.
-Possibly the remaining instructions could be merged into the supported
-option.
-
-- *Zbkb*, *Zbkc*, *Zbkx*, *Zknd*, *Zkne*, *Zknh*, *Zksed*, *Zksh*  Scalar crypto subset extensions.
-
-NOTE: The smaller component scalar crypto extensions are not provided
-as separately supported options in the profile.  Profile implementers
-should provide all of the instructions in a given algorithm suite as
-part of the Zkn or Zks supported options.
-
-- *Zve32f*, *Zve32x*, *Zve64d*, *Zve64f*, *Zve64x* Vector subset extensions.
-
-NOTE: The smaller vector extensions are not provided as separately
-supported options in the profile. The full V extension is specified as
-the supported option for application processors.
-
-- *Zkr* Entropy CSR
-
-NOTE: Access to the entropy source in a system is usually carefully
-controlled.  While the design supports unprivileged access to the
-entropy source, this is unlikely to be often used.
-
-==== RVA22U64 Incompatible Extensions
-
-There were no incompatible extensions in RVA20U64.
-
-The following incompatible extensions were added for RVA22U64.
-
-- *Zfinx*, *Zdinx*, *Zhinx*, *Zhinxmin* Floating-point in X registers.
-
-NOTE: These are incompatible with the profile mandates to support the
-F and D extensions.
+NOTE: The Zfinx, Zdinx, Zhinx, Zhinxmin extensions are incompatible
+with the profile mandates to support the F and D extensions.
 
 ==== RVA22U64 Recommendations
 
@@ -971,9 +842,6 @@ The RVA22S64 profile specifies the ISA features available to a
 supervisor-mode execution environment in 64-bit applications
 processors.  RVA22S64 is based on privileged architecture version
 1.12.
-
-RVA22S64 has 4 unprivileged supported options (Zfh, V, Zkn, Zks)
-and 6 privileged supported options (Sv48, Sv57, Sstc, Sscofpmf, Zkr, H).
 
 ==== RVA22S64 Mandatory Base
 
@@ -1006,6 +874,8 @@ The following privileged extensions are mandatory:
 
 - *Ss1p12*  Privileged Architecture version 1.12.
 
+NOTE: Ss1p12 supercedes Ss1p11.
+
 - *Svbare* The `satp` mode Bare must be supported.
 
 - *Sv39* Page-Based 39-bit Virtual-Memory System.
@@ -1034,9 +904,11 @@ The following privileged extensions are mandatory:
 
 - *Svinval* Fine-Grained Address-Translation Cache Invalidation
 
-==== RVA22S64 Supported Optional Extensions
+==== RVA22S64 Optional Extensions
 
-All RVA22U64 supported optional extensions (Zfh, V, Zkn, Zks).
+RVA22S64 has four unprivileged options (Zfh, V, Zkn, Zks) from
+RVA22U64, and eight privileged options (Sv48, Sv57, Svnapot, Ssu64xl,
+Sstc, Sscofpmf, Zkr, H).
 
 The privileged optional extensions are:
 
@@ -1046,7 +918,8 @@ The privileged optional extensions are:
 
 - *Svnapot* NAPOT Translation Contiguity
 
-NOTE: It is expected that Svnapot will be mandatory in RVA23.
+NOTE: It is expected that Svnapot will be mandatory in the next
+profile release.
 
 - *Ssu64xl* `sstatus.UXL`=64 
 
@@ -1065,6 +938,10 @@ mandatory in the next profile release.
 NOTE: Platforms may choose to mandate the presence of Sscofpmf.
 
 - *Zkr*  Entropy CSR.
+
+NOTE: Technically, Zk is also a privileged-mode option capturing that
+Zkr, Zkn, and Zkt are all implemented.  However, the Zk rollup is less
+descriptive than specifying the individual extensions explicitly.
 
 - *H* The hypervisor extension.
 
@@ -1099,36 +976,6 @@ absence of the hypervisor extension.
 - *Shgatpa* For each supported virtual memory scheme SvNN supported in
   `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
   `hgatp` mode Bare must also be supported.
-
-==== RVA22S64 Unsupported Optional Extensions
-
-Unprivileged unsupported optional extensions are:
-
-- RVA22S64 has the same unsupported optional extensions as RVA22U64 except for Zkr.
-
-The following privileged extensions are unsupported:
-
-- *Ssu32xl* `sstatus.UXL`=32 
-
-NOTE: This extension is not expected to be widely used.
-
-- *Ssube* `sstatus.ube=1` Big-endian user-space.
-
-NOTE: Writable `sstatus.ube` to support running big-endian user-space
-applications with a little-endian kernel is not expected to be widely
-used.  Hard-wiring `sstatus.ube=1` would be incompatible with
-requirement to support RV64I little-endian as the base ISA.
-
-- *Sstvecv* stvec.MODE=Vectored  Hardware Trap Vectoring.
-
-NOTE: Hardware vectoring of exception/interrupt traps is not generally
-used by rich operating systems.
-
-==== RVA22S64 Incompatible Extensions
-
-Incompatible unprivileged extensions are:
-
-- All RVA22U64 incompatible extensions
 
 ==== RVA22S64 Recommendations
 
