@@ -269,20 +269,21 @@ Platforms may provide a discovery mechanism to determine what optional
 extensions are present.
 
 Extensions that are not explicitly listed in the mandatory or optional
-categories, _non-profile_ extensions, are not parts of the profile.
-Some non-profile extensions can be added to an implementation without
-conflicting with the mandatory or optional components of a profile.
-In this case, the implementation is still compatible with the profile
-even though additional non-profile extensions are present.  Other
-non-profile extensions added to an implementation might alter or
-conflict with the behavior of the mandatory or optional extensions in
-a profile, in which case the implementation would not be compatible
-with the profile.
+categories are termed _non-profile_ extensions, and are not considered
+parts of the profile.  Some non-profile extensions can be added to an
+implementation without conflicting with the mandatory or optional
+components of a profile.  In this case, the implementation is still
+compatible with the profile even though additional non-profile
+extensions are present.  Other non-profile extensions added to an
+implementation might alter or conflict with the behavior of the
+mandatory or optional extensions in a profile, in which case the
+implementation would not be compatible with the profile.
 
 NOTE: Extensions that are released after a given profile is released
-are by definition non-profile extensions.  For example, new mandatory
-or optional profile extensions for a new profile might be prototyped
-as non-profile extensions on an earlier profile.
+are by definition non-profile extensions.  For example, mandatory or
+optional profile extensions for a new profile might be prototyped as
+non-profile extensions on an earlier profile.
+
 
 === Profile Naming Convention
 
