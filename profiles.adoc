@@ -3,7 +3,7 @@
 :company: RISC-V
 :revdate: October 25, 2022
 :revnumber: 0.8
-:revremark: This document is in Discussion state.  Change should be expected.
+:revremark: This document is in Frozen state.  Change is unlikely unless a critical issue is identified.
 :url-riscv: http://riscv.org
 :doctype: book
 :preface-title: Preamble
@@ -47,12 +47,9 @@ endif::[]
 //: This is the Premable
 
 [WARNING]
-.This document is in the link:http://riscv.org/spec-state[Discussion state]
+.This document is in the link:http://riscv.org/spec-state[Frozen state]
 ====
-Assume everything can change. This document is not complete yet and was 
-created only for the purpose of conversation outside of the document.
-
-*This is only an initial proposal and is likely to change substantially if it is standardized.*
+Change is extremely unlikely. A high threshold will be used, and a change will only occur because of some truly critical issue being identified during the public review cycle. Any other desired or needed changes can be the subject of a follow-on profile.
 ====
 
 :sectnums:
