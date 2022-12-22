@@ -12,6 +12,7 @@ libcairo2-dev
 libffi-dev
 libgdk-pixbuf2.0-dev
 libpango1.0-dev
+libwebp-dev
 libxml2-dev
 make
 pkg-config
