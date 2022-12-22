@@ -632,7 +632,7 @@ NOTE: This is a new extension name.
 
 - *Sv39* Page-Based 39-bit Virtual-Memory System.
 
-- *Ssptead* Page-fault exceptions are raised when a page is accessed
+- *Svptead* Page-fault exceptions are raised when a page is accessed
    when A bit is clear, or written when D bit is clear.
 
 - *Ssccptr* Main memory regions with both the cacheability and
@@ -884,7 +884,7 @@ NOTE: Ss1p12 supercedes Ss1p11.
 
 - *Sv39* Page-Based 39-bit Virtual-Memory System.
 
-- *Ssptead* Page-fault exceptions are raised when a page is accessed
+- *Svptead* Page-fault exceptions are raised when a page is accessed
    when A bit is clear, or written when D bit is clear.
 
 - *Ssccptr* Main memory regions with both the cacheability and
