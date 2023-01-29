@@ -52,6 +52,15 @@ endif::[]
 Change is extremely unlikely. A high threshold will be used, and a change will only occur because of some truly critical issue being identified during the public review cycle. Any other desired or needed changes can be the subject of a follow-on profile.
 ====
 
+:sectnums!:
+
+== Changes since Public Review version 0.8
+
+- Clarified that profile name can be used as ISA base string
+- Renamed Ssptead to Svade
+- Fixed Ssu64xl to make supporting UXL=64 mandatory
+- Added section listing new extension names in profiles document
+
 :sectnums:
 
 == Introduction
@@ -632,7 +641,7 @@ NOTE: This is a new extension name for this feature.
 
 - *Sv39* Page-Based 39-bit Virtual-Memory System.
 
-- *Svptead* Page-fault exceptions are raised when a page is accessed
+- *Svade* Page-fault exceptions are raised when a page is accessed
    when A bit is clear, or written when D bit is clear.
 
 NOTE: This is a new extension name for this feature.
@@ -896,7 +905,7 @@ NOTE: This is a new extension name for this feature.
 
 - *Sv39* Page-Based 39-bit Virtual-Memory System.
 
-- *Svptead* Page-fault exceptions are raised when a page is accessed
+- *Svade* Page-fault exceptions are raised when a page is accessed
    when A bit is clear, or written when D bit is clear.
 
 - *Ssccptr* Main memory regions with both the cacheability and
@@ -1023,7 +1032,7 @@ names for existing features, but none require new features:
 - *Za128rs*: Reservation set size of 128 bytes
 - *Zic64b*: Cache block size isf 64 bytes
 - *Svbare*: Bare mode virtual-memory translation supported
-- *Svptead*: Raise exceptions on improper A/D bits
+- *Svade*: Raise exceptions on improper A/D bits
 - *Ssccptr*: Main memory supports page table reads
 - *Sstvecd*: `stvec` supports Direct mode
 - *Sstvala*: `stval` provides all needed values
