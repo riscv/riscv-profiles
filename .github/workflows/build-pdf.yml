@@ -11,22 +11,35 @@ on:
     branches:
       - main
   workflow_dispatch:
-    inputs:
-      prerelease:
-        description: 'Generate a pre-release.'
-        required: false 
-        type: boolean
+  workflow_call:
+    outputs:
+      name:
+        description: "The base name of the pdf file (without .pdf extensions)"
+        value: ${{ jobs.build.outputs.name }}
+      pdf-name:
+        description: "The name of the pdf file (with .pdf extensions)"
+        value: ${{ jobs.build.outputs.pdf-name }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     env:
+      NAME: profiles
       APT_PACKAGES_FILE: ${{ github.workspace }}/dependencies/apt_packages.txt
       BUNDLE_GEMFILE: ${{ github.workspace }}/dependencies/Gemfile
       BUNDLE_BIN: ${{ github.workspace }}/bin
       NPM_PACKAGE_FOLDER: ${{ github.workspace }}/dependencies
+    outputs:
+      name: ${{ steps.step1.outputs.name }}
+      pdf-name: ${{ steps.step2.outputs.pdf-name }}
     steps:
+    - name: Set outputs.name
+      id: step1
+      run: echo "::set-output name=name::$NAME"
+    - name: Set outputs.pdf-name
+      id: step2
+      run: echo "::set-output name=pdf-name::$NAME.pdf"
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
@@ -61,28 +74,6 @@ jobs:
     - name: Archive PDF result
       uses: actions/upload-artifact@v2
       with:
-        name: profiles.pdf
-        path: profiles.pdf
+        name: ${{ env.NAME }}.pdf
+        path: ${{ env.NAME }}.pdf
         retention-days: 7
-    - name: Create Release
-      id: create_release
-      if: ${{ github.event.inputs.prerelease }}
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref_name }}
-        release_name: Release ${{ github.ref_name }}
-        draft: false
-        prerelease: true
-    - name: Upload Release Asset
-      id: upload-release-asset
-      if: ${{ github.event.inputs.prerelease }}
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./profiles.pdf
-        asset_name: profiles.pdf
-        asset_content_type: application/pdf
