@@ -2,7 +2,7 @@
 :description: Short, text description of spect…
 :company: RISC-V
 :revdate: January 29, 2023
-:revnumber: 0.9.1
+:revnumber: 0.9.2
 :revremark: This document is in Frozen state.  Change is unlikely unless a critical issue is identified.
 :url-riscv: http://riscv.org
 :doctype: book
