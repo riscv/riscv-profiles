@@ -922,8 +922,9 @@ NOTE: This is a new extension name for this feature.
   For illegal-instruction exceptions, stval must be written with the
   faulting instruction.
 
-- For any hpmcounter that is not read-only zero, the corresponding bit
-  in scounteren must be writable.
+- *Sscounterenw* For any hpmcounter that is not read-only zero, the corresponding bit in scounteren must be writable.
+
+NOTE: This is new extension name capturing this feature.
 
 - *Svpbmt* Page-Based Memory Types
 
@@ -1034,6 +1035,7 @@ names for existing features, but none require new features:
 - *Svbare*: Bare mode virtual-memory translation supported
 - *Svade*: Raise exceptions on improper A/D bits
 - *Ssccptr*: Main memory supports page table reads
+- *Sscounterenw*: Support writeable enables for any supported counter
 - *Sstvecd*: `stvec` supports Direct mode
 - *Sstvala*: `stval` provides all needed values
 - *Ssu64xl*: UXLEN=64 must be supported
