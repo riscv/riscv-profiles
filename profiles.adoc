@@ -44,7 +44,7 @@ endif::[]
 
 = RISC-V Profiles
 
-//: This is the Premable
+//: This is the Preamble
 
 [WARNING]
 .This document is in the link:http://riscv.org/spec-state[Frozen state]
@@ -258,7 +258,7 @@ minimum software should not report errors or warnings when supported
 options are present in a system.
 
 An optional extension may comprise many individually named and
-ratified extensions but the option requires all consitituent
+ratified extensions but the option requires all constituent
 extensions are present.  In particular, unless explicitly listed as a
 profile option, individual extensions are not by themselves a profile
 option even when required as part of a profile option.  For example,
@@ -362,7 +362,7 @@ There are no mandatory extensions for RVI20U32.
 
 ==== RVI20U32 Optional Extensions
 
-- *M* Integer multiplication and divison.
+- *M* Integer multiplication and division.
 
 - *A* Atomic instructions.
 
@@ -509,7 +509,7 @@ specifications correctly indicate that `fence.tso` is mandatory.
 
 ==== RVA20U64 Mandatory Extensions
 
-- *M* Integer multiplication and divison.
+- *M* Integer multiplication and division.
 - *A* Atomic instructions.
 - *F* Single-precision floating-point instructions.
 - *D* Double-precision floating-point instructions.
@@ -711,7 +711,7 @@ instruction causes a requested trap to the execution environment.
 
 The following mandatory extensions were present in RVA20U64.
 
-- *M* Integer multiplication and divison.
+- *M* Integer multiplication and division.
 - *A* Atomic instructions.
 - *F* Single-precision floating-point instructions.
 - *D* Double-precision floating-point instructions.
@@ -833,7 +833,7 @@ NOTE: A future profile might mandate V.
 - *Zkn* Scalar Crypto NIST Algorithms.
 - *Zks* Scalar Crypto ShangMi Algorithms.
 
-NOTE: The scalar crypto extensions are expected to be superceded by
+NOTE: The scalar crypto extensions are expected to be superseded by
 vector crypto standards in future profiles, and the scalar extensions
 may be removed as supported options once vector crypto is present.
 
@@ -898,7 +898,7 @@ The following privileged extensions are mandatory:
 
 - *Ss1p12*  Privileged Architecture version 1.12.
 
-NOTE: Ss1p12 supercedes Ss1p11.
+NOTE: Ss1p12 supersedes Ss1p11.
 
 - *Svbare* The `satp` mode Bare must be supported.
 
@@ -978,9 +978,9 @@ When the hypervisor extension is implemented, the following are also mandatory:
    supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
    state-enable registers must be provided.
 
-NOTE: The Smstaten extension specification is an M-mode extension as
+NOTE: The Smstateen extension specification is an M-mode extension as
 it includes M-mode features, but the supervisor-mode visible
-components of the extension are named as the Ssstaten extension.  Only
+components of the extension are named as the Ssstateen extension.  Only
 Ssstateen is mandated in the RVA22S64 profile when the hypervisor
 extension is implemented.  These registers are not mandated or
 supported options without the hypervisor extension, as there are no
