@@ -1,0 +1,387 @@
+[[riscv-doc-template]]
+:description: Short, text description of spect…
+:company: RISC-V
+:revdate: January 30, 2023
+:revnumber: 0.1-draft
+:revremark: This document is in Development stage.  Everything could change before ratification.
+:url-riscv: http://riscv.org
+:doctype: book
+:preface-title: Preamble
+:colophon:
+:appendix-caption: Appendix
+:imagesdir: images
+:title-logo-image: image:riscv-images/risc-v_logo.png[pdfwidth=3.25in,align=center]
+// Settings:
+:experimental:
+:reproducible:
+:WaveDromEditorApp: wavedrom-cli
+:imagesoutdir: images
+:icons: font
+:lang: en
+:listing-caption: Listing
+:sectnums:
+:sectnumlevels: 5
+:toclevels: 5
+:toc: left
+:source-highlighter: pygments
+ifdef::backend-pdf[]
+:source-highlighter: coderay
+endif::[]
+:data-uri:
+:hide-uri-scheme:
+:stem: latexmath
+:footnote:
+:xrefstyle: short
+:numbered:
+:stem: latexmath
+:le: &#8804;
+:ge: &#8805;
+:ne: &#8800;
+:approx: &#8776;
+:inf: &#8734;
+
+:sectnums!:
+
+= RVA23 Profile
+
+//: This is the Premable
+
+[WARNING]
+.This document is in the development state.
+====
+Do not use for implementations.  Assume everything can change.
+====
+
+== Introduction
+
+This document captures the current proposal for the RVA23 profile
+family.
+
+RVA23 is intended to be a major release of the RISC-V Appplication
+Processor Profiles.
+
+== RVA23 Profiles
+
+The RVA23 profiles are intended to be used for 64-bit application
+processors running rich OS stacks.  Only user-mode (RVA23U64) and
+supervisor-mode (RVA23S64) profiles are specified in this family.
+
+=== RVA23U64 Profile
+
+The RVA23U64 profile specifies the ISA features available to user-mode
+execution environments in 64-bit applications processors.  This is the
+most important profile within the application processor family in
+terms of the amount of software that targets this profile.
+
+==== RVA23U64 Mandatory Base
+
+RV64I is the mandatory base ISA for RVA23U64 and is little-endian.  As
+per the unprivileged architecture specification, the `ecall`
+instruction causes a requested trap to the execution environment.
+
+==== RVA23U64 Mandatory Extensions
+
+The following mandatory extensions were present in RVA22U64.
+
+- *M* Integer multiplication and divison.
+- *A* Atomic instructions.
+- *F* Single-precision floating-point instructions.
+- *D* Double-precision floating-point instructions.
+- *C* Compressed Instructions.
+- *Zicsr*  CSR instructions.  These are implied by presence of F.
+- *Zicntr* Base counters and timers.
+- *Zihpm* Hardware performance counters.
+- *Ziccif* Main memory regions with both the cacheability and
+  coherence PMAs must support instruction fetch, and any instruction
+  fetches of naturally aligned power-of-2 sizes up to min(ILEN,XLEN)
+  (i.e., 32 bits for RVA23) are atomic.
+- *Ziccrse* Main memory regions with both the cacheability and coherence PMAs must support RsrvEventual.
+- *Ziccamoa* Main memory regions with both the cacheability and coherence PMAs must support AMOArithmetic.
+- *Zicclsm* Misaligned loads and stores to main memory regions with both the
+  cacheability and coherence PMAs must be supported.
+- *Za64rs* Reservation sets are contiguous, naturally aligned, and a
+   maximum of 64 bytes.
+- *Zihintpause* Pause instruction.
+- *Zba* Address computation.
+- *Zbb* Basic bit manipulation.
+- *Zbs* Single-bit instructions.
+- *Zic64b* Cache blocks must be 64 bytes in size, naturally aligned in the
+address space.
+- *Zicbom* Cache-Block Management Operations.
+- *Zicbop* Cache-Block Prefetch Operations.
+- *Zicboz* Cache-Block Zero Operations.
+- *Zfhmin* Half-Precision Floating-point transfer and convert.
+- *Zkt* Data-independent execution time.
+
+The following mandatory extensions are new in RVA23U64:
+
+- *V* Vector Extension.
+
+NOTE: V was optional in RVA22U64.
+
+- *Zvfhmin* Vector FP16 conversion instructions.
+
+- *Zihintntl* Non-temporal locality hints.
+
+- *Zcb* Additional 16b compressed instructions.
+
+- *Zfa* Additional scalar FP instructions.
+
+- *Zawrs* Wait on reservation set.
+
+- *Zjpm* Pointer masking (ignore high bits of addresses)
+
+==== RVA23U64 Optional Extensions
+
+RVA23U64 has seven profile options (Zfh, Zvkn, Zvks, Zvfh,
+Zfbfmin, Zvfbfmin, Zvfbfwma).
+
+The following profile option was also present in RVA22U64:
+
+- *Zfh* Scalar Half-Precision Floating-Point (FP16).
+
+RVA23U64 has six new profile options (Zvfh, Zfbfmin, Zvfbfmin,
+Zvfbfwma, Zvkn, Zvks):
+
+- *Zvfh* Vector half-precision floating-point (FP16)
+- *Zfbfmin* Scalar BF16 FP conversions
+- *Zvfbfmin* Vector BF16 FP conversions
+- *Zvfbfwma* Vector BF16 widening mul-add
+
+- *Zvkn* Vector Crypto NIST Algorithms.
+- *Zvks* Vector Crypto ShangMi Algorithms.
+
+NOTE: The scalar crypto extensions Zkn and Zks that were options in
+RVA22 are not options in RVA23.
+
+==== RVA23U64 Recommendations
+
+Implementations are strongly recommended to raise illegal-instruction
+exceptions on attempts to execute unimplemented opcodes.
+
+=== RVA23S64 Profile
+
+The RVA23S64 profile specifies the ISA features available to a
+supervisor-mode execution environment in 64-bit applications
+processors.  RVA23S64 is based on privileged architecture version
+1.13.
+
+NOTE: Priv 1.13 is still being defined.
+
+==== RVA23S64 Mandatory Base
+
+RV64I is the mandatory base ISA for RVA23S64 and is little-endian.
+The `ecall` instruction operates as per the unprivileged architecture
+specification.  An `ecall` in user mode causes a contained trap to
+supervisor mode.  An `ecall` in supervisor mode causes a requested
+trap to the execution environment.
+
+==== RVA23S64 Mandatory Extensions
+
+The following unprivileged extensions are mandatory:
+
+- The RVA23S64 mandatory unprivileged extensions include all the
+mandatory unprivileged extensions in RVA23U64.
+
+- *Zifencei*  Instruction-Fetch Fence.
+
+NOTE: Zifencei is mandated as it is the only standard way to support
+instruction-cache coherence in RVA23 application processors.  A new
+instruction-cache coherence mechanism is under development
+(tentatively named Zjid) which might be added as an option in the
+future.
+
+The following privileged extensions are mandatory:
+
+- *Ss1p13*  Privileged Architecture version 1.13.
+
+NOTE: Ss1p13 supercedes Ss1p12 but is not yet ratified.
+
+The following privileged extensions were also mandatory in RVA22S64:
+
+- *Svbare* The `satp` mode Bare must be supported.
+
+- *Sv39* Page-Based 39-bit Virtual-Memory System.
+
+- *Svade* Page-fault exceptions are raised when a page is accessed
+   when A bit is clear, or written when D bit is clear.
+
+- *Ssccptr* Main memory regions with both the cacheability and
+   coherence PMAs must support hardware page-table reads.
+
+- *Sstvecd* `stvec.MODE` must be capable of holding the value 0
+  (Direct).  When `stvec.MODE=Direct`, `stvec.BASE` must be capable of
+  holding any valid four-byte-aligned address.
+
+- *Sstvala* stval must be written with the faulting virtual address
+  for load, store, and instruction page-fault, access-fault, and
+  misaligned exceptions, and for breakpoint exceptions other than
+  those caused by execution of the EBREAK or C.EBREAK instructions.
+  For illegal-instruction exceptions, stval must be written with the
+  faulting instruction.
+
+- *Sscounterenw* For any hpmcounter that is not read-only zero, the corresponding bit in scounteren must be writable.
+
+- *Svpbmt* Page-Based Memory Types
+
+- *Svinval* Fine-Grained Address-Translation Cache Invalidation
+
+- *Ssu64xl* `sstatus.UXL` must be capable of holding the value 2
+(i.e., UXLEN=64 must be supported).
+
+The following are new mandatory extensions:
+
+- *Svnapot* NAPOT Translation Contiguity
+
+NOTE: Svnapot was optional in RVA22.
+
+- *Sstc* supervisor-mode timer interrupts.
+
+NOTE: Sstc was optional in RVA22.
+
+==== RVA23S64 Optional Extensions
+
+RVA23S64 has seven unprivileged options (Zfh, Zvkn, Zvks, Zvfh,
+Zfbfmin, Zvfbfmin, Zvfbfwma) from RVA23U64, and six privileged options
+(Sv48, Sv57, Svadu, Sscofpmf, Zkr, H).
+
+The privileged optional extensions are:
+
+- *Sv48* Page-Based 48-bit Virtual-Memory System.
+
+- *Sv57* Page-Based 57-bit Virtual-Memory System.
+
+- *Svadu* Hardware A/D bit updates.
+
+- *Sscofpmf* Count Overflow and Mode-Based Filtering.
+
+- *Zkr*  Entropy CSR.
+
+The following hypervisor extension and mandates were also in RVA22S64:
+
+- *H* The hypervisor extension.
+
+When the hypervisor extension is implemented, the following are also mandatory:
+
+- *Ssstateen* Supervisor-mode view of the state-enable extension.  The
+   supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
+   state-enable registers must be provided.
+
+- *Shcounterenw* For any `hpmcounter` that is not read-only zero, the corresponding bit in `hcounteren` must be writable.
+
+- *Shvstvala* `vstval` must be written in all cases described above for `stval`.
+
+- *Shtvala* `htval` must be written with the faulting guest physical
+   address in all circumstances permitted by the ISA.
+
+- *Shvstvecd* `vstvec.MODE` must be capable of holding the value 0 (Direct).
+  When `vstvec.MODE`=Direct, `vstvec.BASE` must be capable of holding
+  any valid four-byte-aligned address.
+
+- *Shvsatpa* All translation modes supported in `satp` must be supported in `vsatp`.
+
+- *Shgatpa* For each supported virtual memory scheme SvNN supported in
+  `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
+  `hgatp` mode Bare must also be supported.
+
+==== RVA23S64 Recommendations
+
+- Implementations are strongly recommended to raise illegal-instruction
+  exceptions when attempting to execute unimplemented opcodes.
+
+== Glossary of ISA Extensions
+
+The following unprivileged ISA extensions are defined in Volume I
+of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+
+- M Extension for Integer Multiplication and Division
+- A Extension for Atomic Memory Operations
+- F Extension for Single-Precision Floating-Point
+- D Extension for Double-Precision Floating-Point
+- Q Extension for Quad-Precision Floating-Point
+- C Extension for Compressed Instructions
+- Zifencei Instruction-Fetch Synchronization Extension
+- Zicsr Extension for Control and Status Register Access
+- Zicntr Extension for Basic Performance Counters
+- Zihpm Extension for Hardware Performance Counters
+- Zihintpause Pause Hint Extension
+- Zfh Extension for Half-Precision Floating-Point
+- Zfhmin Minimal Extension for Half-Precision Floating-Point
+- Zfinx Extension for Single-Precision Floating-Point in x-registers
+- Zdinx Extension for Double-Precision Floating-Point in x-registers
+- Zhinx Extension for Half-Precision Floating-Point in x-registers
+- Zhinxmin Minimal Extension for Half-Precision Floating-Point in x-registers
+
+The following privileged ISA extensions are defined in Volume II
+of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+
+- Sv32 Page-based Virtual Memory Extension, 32-bit
+- Sv39 Page-based Virtual Memory Extension, 39-bit
+- Sv48 Page-based Virtual Memory Extension, 48-bit
+- Sv57 Page-based Virtual Memory Extension, 57-bit
+- Svpbmt, Page-Based Memory Types
+- Svnapot, NAPOT Translation Contiguity
+- Svinval, Fine-Grained Address-Translation Cache Invalidation
+- Hypervisor Extension
+- Sm1p11, Machine Architecture v1.11
+- Sm1p12, Machine Architecture v1.12
+- Ss1p11, Supervisor Architecture v1.11
+- Ss1p12, Supervisor Architecture v1.12
+- Ss1p13, Supervisor Architecture v1.13
+
+The following extensions have not yet been incorporated into the RISC-V
+Instruction Set Manual; the hyperlinks lead to their separate specifications.
+
+- https://github.com/riscv/riscv-bitmanip[Zba Address Computation Extension]
+- https://github.com/riscv/riscv-bitmanip[Zbb Bit Manipulation Extension]
+- https://github.com/riscv/riscv-bitmanip[Zbc Carryless Multiplication Extension]
+- https://github.com/riscv/riscv-bitmanip[Zbs Single-Bit Manipulation Extension]
+- https://github.com/riscv/riscv-crypto[Zbkb Extension for Bit Manipulation for Cryptography]
+- https://github.com/riscv/riscv-crypto[Zbkc Extension for Carryless Multiplication for Cryptography]
+- https://github.com/riscv/riscv-crypto[Zbkx Crossbar Permutation Extension]
+- https://github.com/riscv/riscv-crypto[Zk Standard Scalar Cryptography Extension]
+- https://github.com/riscv/riscv-crypto[Zkn NIST Cryptography Extension]
+- https://github.com/riscv/riscv-crypto[Zknd AES Decryption Extension]
+- https://github.com/riscv/riscv-crypto[Zkne AES Encryption Extension]
+- https://github.com/riscv/riscv-crypto[Zknh SHA2 Hashing Extension]
+- https://github.com/riscv/riscv-crypto[Zkr Entropy Source Extension]
+- https://github.com/riscv/riscv-crypto[Zks ShangMi Cryptography Extension]
+- https://github.com/riscv/riscv-crypto[Zksed SM4 Block Cypher Extension]
+- https://github.com/riscv/riscv-crypto[Zksh SM3 Hashing Extension]
+- https://github.com/riscv/riscv-crypto[Zkt Extension for Data-Independent Execution Latency]
+- https://github.com/riscv/riscv-v-spec[V Extension for Vector Computation]
+- https://github.com/riscv/riscv-v-spec[Zve32x Extension for Embedded Vector Computation (32-bit integer)]
+- https://github.com/riscv/riscv-v-spec[Zve32f Extension for Embedded Vector Computation (32-bit integer, 32-bit FP)]
+- https://github.com/riscv/riscv-v-spec[Zve32d Extension for Embedded Vector Computation (32-bit integer, 64-bit FP)]
+- https://github.com/riscv/riscv-v-spec[Zve64x Extension for Embedded Vector Computation (64-bit integer)]
+- https://github.com/riscv/riscv-v-spec[Zve64f Extension for Embedded Vector Computation (64-bit integer, 32-bit FP)]
+- https://github.com/riscv/riscv-v-spec[Zve64d Extension for Embedded Vector Computation (64-bit integer, 64-bit FP)]
+- https://github.com/riscv/riscv-CMOs[Zicbom Extension for Cache-Block Management]
+- https://github.com/riscv/riscv-CMOs[Zicbop Extension for Cache-Block Prefetching]
+- https://github.com/riscv/riscv-CMOs[Zicboz Extension for Cache-Block Zeroing]
+- https://github.com/riscv/riscv-time-compare[Sstc Extension for Supervisor-mode Timer Interrupts]
+- https://github.com/riscv/riscv-count-overflow[Sscofpmf Extension for Count Overflow and Mode-Based Filtering]
+- https://github.com/riscv/riscv-state-enable[Smstateen Extension for State-enable]
+
+- *Ziccif*: Main memory supports instruction fetch with atomicity requirement
+- *Ziccrse*: Main memory supports forward progress on LR/SC sequences
+- *Ziccamoa*: Main memory supports all atomics in A
+- *Zicclsm*: Main memory supports misaligned loads/stores
+- *Za64rs*: Reservation set size of 64 bytes
+- *Za128rs*: Reservation set size of 128 bytes
+- *Zic64b*: Cache block size isf 64 bytes
+- *Svbare*: Bare mode virtual-memory translation supported
+- *Svade*: Raise exceptions on improper A/D bits
+- *Ssccptr*: Main memory supports page table reads
+- *Sscounterenw*: Support writeable enables for any supported counter
+- *Sstvecd*: `stvec` supports Direct mode
+- *Sstvala*: `stval` provides all needed values
+- *Ssu64xl*: UXLEN=64 must be supported
+- *Ssstateen*: Supervisor-mode view of the state-enable extension
+- *Shcounterenw*: Support writeable enables for any supported counter
+- *Shvstvala*:  `vstval` provides all needed values
+- *Shtvala*:  `htval` provides all needed values
+- *Shvstvecd*: `vstvec` supports Direct mode
+- *Shvsatpa*: `vsatp` supports all modes supported by `satp`
+- *Shgatpa*: SvNNx4 mode supported for all modes supported by `satp`, as well as Bare
+
