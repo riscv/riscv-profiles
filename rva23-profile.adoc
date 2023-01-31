@@ -44,7 +44,7 @@ endif::[]
 
 = RVA23 Profile
 
-//: This is the Premable
+//: This is the Preamble
 
 [WARNING]
 .This document is in the development state.
@@ -57,7 +57,7 @@ Do not use for implementations.  Assume everything can change.
 This document captures the current proposal for the RVA23 profile
 family.
 
-RVA23 is intended to be a major release of the RISC-V Appplication
+RVA23 is intended to be a major release of the RISC-V Application
 Processor Profiles.
 
 == RVA23 Profiles
@@ -83,7 +83,7 @@ instruction causes a requested trap to the execution environment.
 
 The following mandatory extensions were present in RVA22U64.
 
-- *M* Integer multiplication and divison.
+- *M* Integer multiplication and division.
 - *A* Atomic instructions.
 - *F* Single-precision floating-point instructions.
 - *D* Double-precision floating-point instructions.
@@ -195,7 +195,7 @@ The following privileged extensions are mandatory:
 
 - *Ss1p13*  Privileged Architecture version 1.13.
 
-NOTE: Ss1p13 supercedes Ss1p12 but is not yet ratified.
+NOTE: Ss1p13 supersedes Ss1p12 but is not yet ratified.
 
 The following privileged extensions were also mandatory in RVA22S64:
 
