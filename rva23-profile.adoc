@@ -339,6 +339,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - https://github.com/riscv/riscv-crypto[Zbkb Extension for Bit Manipulation for Cryptography]
 - https://github.com/riscv/riscv-crypto[Zbkc Extension for Carryless Multiplication for Cryptography]
 - https://github.com/riscv/riscv-crypto[Zbkx Crossbar Permutation Extension]
+- https://github.com/riscv/riscv-crypto[Zk Standard Scalar Cryptography Extension]
 - https://github.com/riscv/riscv-crypto[Zkr Entropy Source Extension]
 - https://github.com/riscv/riscv-crypto[Zkt Extension for Data-Independent Execution Latency]
 - https://github.com/riscv/riscv-v-spec[V Extension for Vector Computation]
