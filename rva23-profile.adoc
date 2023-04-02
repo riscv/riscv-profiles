@@ -133,7 +133,7 @@ NOTE: V was optional in RVA22U64.
 
 ==== RVA23U64 Optional Extensions
 
-RVA23U64 has seven profile options (Zfh, Zvkn, Zvks, Zvfh,
+RVA23U64 has eight profile options (Zfh, Zvkn, Zvks, Zvkg, Zvfh,
 Zfbfmin, Zvfbfmin, Zvfbfwma).
 
 The following profile option was also present in RVA22U64:
@@ -149,6 +149,7 @@ Zvfbfwma, Zvkn, Zvks):
 - *Zvfbfwma* Vector BF16 widening mul-add
 
 - *Zvkn* Vector Crypto NIST Algorithms.
+- *Zvkg* Vector GHASH instructions.
 - *Zvks* Vector Crypto ShangMi Algorithms.
 
 NOTE: The scalar crypto extensions Zkn and Zks that were options in
@@ -244,7 +245,7 @@ NOTE: Sstc was optional in RVA22.
 
 ==== RVA23S64 Optional Extensions
 
-RVA23S64 has seven unprivileged options (Zfh, Zvkn, Zvks, Zvfh,
+RVA23S64 has eight unprivileged options (Zfh, Zvkn, Zvkg, Zvks, Zvfh,
 Zfbfmin, Zvfbfmin, Zvfbfwma) from RVA23U64, and six privileged options
 (Sv48, Sv57, Svadu, Sscofpmf, Zkr, H).
 
