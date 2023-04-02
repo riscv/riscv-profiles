@@ -152,7 +152,10 @@ Zvfbfwma, Zvkn, Zvks):
 - *Zvks* Vector Crypto ShangMi Algorithms.
 
 NOTE: The scalar crypto extensions Zkn and Zks that were options in
-RVA22 are not options in RVA23.
+RVA22 are not options in RVA23.  The goal is for both hardware and
+software vendors to move to use vector crypto, as vectors are now
+mandatory and vector crypto is substantially faster than scalar
+crypto.
 
 ==== RVA23U64 Recommendations
 
