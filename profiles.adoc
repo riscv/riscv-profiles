@@ -230,13 +230,9 @@ cannot be considered a subset of an S-mode profile.
 
 === Profile ISA Features
 
-An architecture profile has a mandatory base instruction set (RV32I or
-RV64I).
-
-NOTE: RV32I and RV64I are the only currently ratified base ISAs.
-
-In addition, the profile groups all ratified ISA extensions for
-that base ISA into two categories:
+An architecture profile has a mandatory ratified base instruction set
+(RV32I or RV64I for the current profiles).  The profile also includes
+ratified ISA extensions placed into two categories:
 
 . Mandatory
 . Optional
@@ -259,11 +255,11 @@ minimum software should not report errors or warnings when supported
 options are present in a system.
 
 An optional extension may comprise many individually named and
-ratified extensions but the option requires all constituent
+ratified extensions but a profile option requires all constituent
 extensions are present.  In particular, unless explicitly listed as a
 profile option, individual extensions are not by themselves a profile
 option even when required as part of a profile option.  For example,
-the Zbkb extension is not by itself an option even though it is a
+the Zbkb extension is not by itself a profile option even though it is a
 required component of the Zkn option.
 
 NOTE: Profile optional extensions are intended to capture the
@@ -291,7 +287,6 @@ NOTE: Extensions that are released after a given profile is released
 are by definition non-profile extensions.  For example, mandatory or
 optional profile extensions for a new profile might be prototyped as
 non-profile extensions on an earlier profile.
-
 
 === Profile Naming Convention
 
