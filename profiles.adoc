@@ -144,7 +144,8 @@ option in the underlying profile, or constraining some
 implementation-specific parameter in the profile to lie within a
 certain range.
 
-A platform cannot remove constraints from a profile.
+A platform cannot remove mandates or reduce other requirements in a
+profile.
 
 NOTE: A new profile should be proposed if existing profiles do not
 match the needs of a new platform.
