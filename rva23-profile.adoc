@@ -63,8 +63,18 @@ Processor Profiles.
 == RVA23 Profiles
 
 The RVA23 profiles are intended to be used for 64-bit application
-processors running rich OS stacks.  Only user-mode (RVA23U64) and
-supervisor-mode (RVA23S64) profiles are specified in this family.
+processors that will run rich OS stacks from standard binary OS
+distributions and with a substantial number of third-party binary user
+applications that will be supported over a considerable length of time
+in the field.  The approach is to provide a large guaranteed set of
+features that can safely be exploited by third-party developers to
+ship binaries that will provide a better experience across a large
+number of alternative implementations over time.  It is explicitly a
+non-goal of RVA23 to allow more hardware implementation flexibility by
+supporting only a minimal set of features.
+
+Only user-mode (RVA23U64) and supervisor-mode (RVA23S64) profiles are
+specified in this family.
 
 === RVA23U64 Profile
 
