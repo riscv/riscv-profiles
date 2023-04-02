@@ -76,8 +76,8 @@ required for an application, but the same flexibility also leads to a
 combinatorial explosion in possible ISA choices.  Profiles specify a
 much smaller common set of ISA choices that capture the most value for
 most users, and which thereby enable the software community to focus
-resources on building a rich software ecosystem with portability
-across different implementations.
+resources on building a rich software ecosystem with application and
+operating system portability across different implementations.
 
 NOTE: Another pragmatic concern is the long and unwieldy ISA strings
 required to encode common sets of extensions, which will continue to
