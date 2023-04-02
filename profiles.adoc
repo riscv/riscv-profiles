@@ -2,7 +2,7 @@
 :description: Short, text description of spect…
 :company: RISC-V
 :revdate: April 2, 2023
-:revnumber: 1.0
+:revnumber: 1.1-draft
 :revremark: This document is in Ratified state.
 :url-riscv: http://riscv.org
 :doctype: book
