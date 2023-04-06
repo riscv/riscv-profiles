@@ -150,8 +150,8 @@ The following profile option was also present in RVA22U64:
 
 - *Zfh* Scalar Half-Precision Floating-Point (FP16).
 
-RVA23U64 has six new profile options (Zvfh, Zfbfmin, Zvfbfmin,
-Zvfbfwma, Zvkn, Zvks):
+RVA23U64 has seven new profile options (Zvfh, Zfbfmin, Zvfbfmin,
+Zvfbfwma, Zvkn, Zvkg Zvks):
 
 - *Zvfh* Vector half-precision floating-point (FP16)
 - *Zfbfmin* Scalar BF16 FP conversions
