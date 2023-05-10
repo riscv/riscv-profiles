@@ -133,6 +133,8 @@ NOTE: V was optional in RVA22U64.
 
 - *Zihintntl* Non-temporal locality hints.
 
+- *Zicond* Conditional Zeroing instructions.
+
 - *Zcb* Additional 16b compressed instructions.
 
 - *Zfa* Additional scalar FP instructions.
