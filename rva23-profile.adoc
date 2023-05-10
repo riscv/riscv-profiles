@@ -152,8 +152,8 @@ The following profile option was also present in RVA22U64:
 
 - *Zfh* Scalar Half-Precision Floating-Point (FP16).
 
-RVA23U64 has six new profile options (Zvfh, Zfbfmin, Zvfbfmin,
-Zvfbfwma, Zvkn, Zvks):
+RVA23U64 has nine new profile options (Zbc, Zvfh, Zfbfmin, Zvfbfmin,
+Zvfbfwma, Zvkng, Zvksg, Zvbb, Zvbc):
 
 - *Zbc* Scalar carryless multiply.
 - *Zvfh* Vector half-precision floating-point (FP16).
@@ -161,10 +161,10 @@ Zvfbfwma, Zvkn, Zvks):
 - *Zvfbfmin* Vector BF16 FP conversions.
 - *Zvfbfwma* Vector BF16 widening mul-add.
 
-- *Zvbb* Vector bitmanip extension.
-- *Zvbc* Vector carryless multiply.
 - *Zvkng* Vector Crypto NIST Algorithms including GHASH.
 - *Zvksg* Vector Crypto ShangMi Algorithms including GHASH.
+- *Zvbb* Vector bitmanip extension.
+- *Zvbc* Vector carryless multiply.
 
 NOTE: The scalar crypto extensions Zkn and Zks that were options in
 RVA22 are not options in RVA23.  The goal is for both hardware and
