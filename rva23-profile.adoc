@@ -145,8 +145,8 @@ NOTE: V was optional in RVA22U64.
 
 ==== RVA23U64 Optional Extensions
 
-RVA23U64 has eight profile options (Zfh, Zvkn, Zvks, Zvkg, Zvfh,
-Zfbfmin, Zvfbfmin, Zvfbfwma).
+RVA23U64 has ten profile options (Zbc, Zfh, Zvfh,
+Zfbfmin, Zvfbfmin, Zvfbfwma, Zvkng, Zvksg, Zvbb, Zvbc).
 
 The following profile option was also present in RVA22U64:
 
@@ -155,20 +155,30 @@ The following profile option was also present in RVA22U64:
 RVA23U64 has six new profile options (Zvfh, Zfbfmin, Zvfbfmin,
 Zvfbfwma, Zvkn, Zvks):
 
-- *Zvfh* Vector half-precision floating-point (FP16)
-- *Zfbfmin* Scalar BF16 FP conversions
-- *Zvfbfmin* Vector BF16 FP conversions
-- *Zvfbfwma* Vector BF16 widening mul-add
+- *Zbc* Scalar carryless multiply.
+- *Zvfh* Vector half-precision floating-point (FP16).
+- *Zfbfmin* Scalar BF16 FP conversions.
+- *Zvfbfmin* Vector BF16 FP conversions.
+- *Zvfbfwma* Vector BF16 widening mul-add.
 
-- *Zvkn* Vector Crypto NIST Algorithms.
-- *Zvkg* Vector GHASH instructions.
-- *Zvks* Vector Crypto ShangMi Algorithms.
+- *Zvbb* Vector bitmanip extension.
+- *Zvbc* Vector carryless multiply.
+- *Zvkng* Vector Crypto NIST Algorithms including GHASH.
+- *Zvksg* Vector Crypto ShangMi Algorithms including GHASH.
 
 NOTE: The scalar crypto extensions Zkn and Zks that were options in
 RVA22 are not options in RVA23.  The goal is for both hardware and
 software vendors to move to use vector crypto, as vectors are now
 mandatory and vector crypto is substantially faster than scalar
 crypto.
+
+NOTE: We have included only the Zvkng/Zvksg options with GHASH to
+standardize on a higher performance crypto alternative.  Zvbb is
+listed as a separate option, though is included with the Zvkng or
+Zvksg options.  Zvbb will likely become mandatory in a following
+profile.  Zvbc is listed as a separate option for use in other
+algorithms, and maybe eventually become mandatory.  Scalar Zbc is also
+listed as an option, but will probably not become mandatory.
 
 ==== RVA23U64 Recommendations
 
@@ -257,9 +267,9 @@ NOTE: Sstc was optional in RVA22.
 
 ==== RVA23S64 Optional Extensions
 
-RVA23S64 has eight unprivileged options (Zfh, Zvkn, Zvkg, Zvks, Zvfh,
-Zfbfmin, Zvfbfmin, Zvfbfwma) from RVA23U64, and six privileged options
-(Sv48, Sv57, Svadu, Sscofpmf, Zkr, H).
+RVA23S64 has ten unprivileged options (Zbc, Zfh, Zvfh, Zfbfmin,
+Zvfbfmin, Zvfbfwma, Zvkng, Zvksg, Zvbb, Zvbc) from RVA23U64, and six
+privileged options (Sv48, Sv57, Svadu, Sscofpmf, Zkr, H).
 
 The privileged optional extensions are:
 
