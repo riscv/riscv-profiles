@@ -146,7 +146,7 @@ NOTE: Unclear if other Zve* extensions should also be supported in RVB.
 - *Zvfhmin* Vector FP16 conversion instructions.
 - *Zjpm* Pointer masking (ignore high bits of addresses)
 
-The following extensions are also optional in RVA23U64.
+The following extensions are optional in both RVB23U64 and RVA23U64:
 
 - *Zfh* Scalar Half-Precision Floating-Point (FP16).
 - *Zbc* Scalar carryless multiply.
@@ -160,7 +160,8 @@ The following extensions are also optional in RVA23U64.
 - *Zvkng* Vector Crypto NIST Algorithms including GHASH.
 - *Zvksg* Vector Crypto ShangMi Algorithms including GHASH.
 
-The following options are not present in RVA23U64:
+The following options are optional in RVB23U64 but are not present in
+RVA23U64:
 
 - *Zvkg* Vector GHASH instructions
 - *Zvkn* Vector Crypto NIST Algorithms
