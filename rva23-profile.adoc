@@ -177,7 +177,7 @@ standardize on a higher performance crypto alternative.  Zvbb is
 listed as a separate option, though is included with the Zvkng or
 Zvksg options.  Zvbb will likely become mandatory in a following
 profile.  Zvbc is listed as a separate option for use in other
-algorithms, and maybe eventually become mandatory.  Scalar Zbc is also
+algorithms, and may eventually become mandatory.  Scalar Zbc is also
 listed as an option, but will probably not become mandatory.
 
 ==== RVA23U64 Recommendations
