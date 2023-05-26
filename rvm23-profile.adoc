@@ -131,7 +131,8 @@ NOTE: Zce includes Zicsr. Whether and what support is mandated for
 
 NOTE: These are hints, so implementations are allowed to treat as NOPs.
 
-- *Zicmop* Maybe-Operations
+- *Zimop* Maybe-Operations
+- *Zcmop* Compressed Maybe-Operations
 
 NOTE: Implementations can treat as NOPS.
 
