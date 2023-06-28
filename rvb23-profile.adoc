@@ -163,7 +163,7 @@ RVA23U64:
 
 - *Zvkg* Vector GHASH instructions
 - *Zvknc* Vector Crypto NIST Algorithms with carryless multiply
-- *Zvksc* Vector Crypto ShangMi Algorithms  with carryless multiply
+- *Zvksc* Vector Crypto ShangMi Algorithms with carryless multiply
 
 
 NOTE: RVB mandates at least some support to implement GCM efficiently through either Zvbc or Zvkg if either of Zvkn or Zvks is implemented, 
