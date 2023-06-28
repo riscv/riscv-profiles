@@ -129,8 +129,6 @@ address space.
 - *Zfa* Additional scalar FP instructions.
 - *Zawrs* Wait on reservation set.
 
-The following mandatory extensions are new in RVB23U64:
-
 ==== RVB23U64 Optional Extensions
 
 RVB23U64 has 18 profile options listed below.
@@ -164,14 +162,12 @@ The following options are optional in RVB23U64 but are not present in
 RVA23U64:
 
 - *Zvkg* Vector GHASH instructions
-- *Zvkn* Vector Crypto NIST Algorithms
-- *Zvks* Vector Crypto ShangMi Algorithms
+- *Zvknc* Vector Crypto NIST Algorithms with carryless multiply
+- *Zvksc* Vector Crypto ShangMi Algorithms with carryless multiply
 
-but where either of Zvkn or Zvks is implemented, either Zvbc or Zvkg
-must also be implemented.
 
-NOTE: Should probably define new Zvknc and Zvksc extensions to
-represent Zvknn + Zvbc and Zvsn + Zvbc respectively.
+NOTE: If either of Zvkn or Zvks is implemented, RVB mandates at least some support to implement GCM efficiently through either Zvbc or Zvkg.
+
 
 ==== RVB23U64 Recommendations
 
