@@ -112,7 +112,7 @@ The following mandatory extensions are also present in RVA22U64.
 - *Zicclsm* Misaligned loads and stores to main memory regions with both the
   cacheability and coherence PMAs must be supported.
 - *Za64rs* Reservation sets are contiguous, naturally aligned, and a
-   maximum of 64 bytes.
+   maximum of 64 bytes.  This extension implies the Za128rs extension.
 - *Zihintpause* Pause instruction.
 - *Zba* Address computation.
 - *Zbb* Basic bit manipulation.
@@ -282,23 +282,30 @@ When the hypervisor extension is implemented, the following are also mandatory:
 - *Ssstateen* Supervisor-mode view of the state-enable extension.  The
    supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
    state-enable registers must be provided.
+   This extension is implied by the Smstateen extension.
 
 - *Shcounterenw* For any `hpmcounter` that is not read-only zero, the corresponding bit in `hcounteren` must be writable.
+  This extension requires the H extension.
 
 - *Shvstvala* `vstval` must be written in all cases described above for `stval`.
+  This extension requires the H extension.
 
 - *Shtvala* `htval` must be written with the faulting guest physical
    address in all circumstances permitted by the ISA.
+   This extension requires the H extension.
 
 - *Shvstvecd* `vstvec.MODE` must be capable of holding the value 0 (Direct).
   When `vstvec.MODE`=Direct, `vstvec.BASE` must be capable of holding
   any valid four-byte-aligned address.
+  This extension requires the H extension.
 
 - *Shvsatpa* All translation modes supported in `satp` must be supported in `vsatp`.
+  This extension requires the H extension.
 
 - *Shgatpa* For each supported virtual memory scheme SvNN supported in
   `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
   `hgatp` mode Bare must also be supported.
+  This extension requires the H extension.
 
 ==== RVB23S64 Recommendations
 
