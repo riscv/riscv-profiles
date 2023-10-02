@@ -1,8 +1,8 @@
 [[riscv-doc-template]]
 :description: Short, text description of spect…
 :company: RISC-V
-:revdate: May 10, 2023
-:revnumber: 0.2-draft
+:revdate: October 2, 2023
+:revnumber: 0.3-draft
 :revremark: This document is in Development stage.  Everything could change before ratification.
 :url-riscv: http://riscv.org
 :doctype: book
@@ -57,21 +57,18 @@ Do not use for implementations.  Assume everything can change.
 This document captures the current proposal for the RVA23 profile
 family.
 
-RVA23 is intended to be a major release of the RISC-V Application
+RVA23 is not intended to be a major release of the RISC-V Application
 Processor Profiles.
 
 == RVA23 Profiles
 
-The RVA23 profiles are intended to be used for 64-bit application
-processors that will run rich OS stacks from standard binary OS
-distributions and with a substantial number of third-party binary user
-applications that will be supported over a considerable length of time
-in the field.  The approach is to provide a large guaranteed set of
-features that can safely be exploited by third-party developers to
-ship binaries that will provide a better experience across a large
-number of alternative implementations over time.  It is explicitly a
-non-goal of RVA23 to allow more hardware implementation flexibility by
-supporting only a minimal set of features.
+The RVA23 profiles are intended to align implementations of RISC-V
+64-bit application processors to allow binary software ecosystems to
+rely on a a large set of guaranteed extensions and a small number of
+discoverable coarse-grain options.  It is explicitly a non-goal of
+RVA23 to allow more hardware implementation flexibility by supporting
+only a minimal set of features and a large number of fine-grain
+extensions.
 
 Only user-mode (RVA23U64) and supervisor-mode (RVA23S64) profiles are
 specified in this family.
@@ -131,9 +128,13 @@ NOTE: V was optional in RVA22U64.
 
 - *Zvfhmin* Vector FP16 conversion instructions.
 
+- *Zvbb* Vector bit-manipulation instructions.
+
 - *Zihintntl* Non-temporal locality hints.
 
 - *Zicond* Conditional Zeroing instructions.
+
+- *Zimop* Maybe Operations.
 
 - *Zcb* Additional 16b compressed instructions.
 
@@ -145,26 +146,15 @@ NOTE: V was optional in RVA22U64.
 
 ==== RVA23U64 Optional Extensions
 
-RVA23U64 has ten profile options (Zbc, Zfh, Zvfh,
-Zfbfmin, Zvfbfmin, Zvfbfwma, Zvkng, Zvksg, Zvbb, Zvbc).
+RVA23U64 has ten profile options (Zvkng, Zvksg, Zacas, Zvbc, Zfh, Zbc,
+Zvfh, Zfbfmin, Zvfbfmin, Zvfbfwma).
 
-The following profile option was also present in RVA22U64:
+===== Localized Options
 
-- *Zfh* Scalar Half-Precision Floating-Point (FP16).
-
-RVA23U64 has nine new profile options (Zbc, Zvfh, Zfbfmin, Zvfbfmin,
-Zvfbfwma, Zvkng, Zvksg, Zvbb, Zvbc):
-
-- *Zbc* Scalar carryless multiply.
-- *Zvfh* Vector half-precision floating-point (FP16).
-- *Zfbfmin* Scalar BF16 FP conversions.
-- *Zvfbfmin* Vector BF16 FP conversions.
-- *Zvfbfwma* Vector BF16 widening mul-add.
+The following localized options are new in RVA23U64:
 
 - *Zvkng* Vector Crypto NIST Algorithms including GHASH.
 - *Zvksg* Vector Crypto ShangMi Algorithms including GHASH.
-- *Zvbb* Vector bitmanip extension.
-- *Zvbc* Vector carryless multiply.
 
 NOTE: The scalar crypto extensions Zkn and Zks that were options in
 RVA22 are not options in RVA23.  The goal is for both hardware and
@@ -173,12 +163,38 @@ mandatory and vector crypto is substantially faster than scalar
 crypto.
 
 NOTE: We have included only the Zvkng/Zvksg options with GHASH to
-standardize on a higher performance crypto alternative.  Zvbb is
-listed as a separate option, though is included with the Zvkng or
-Zvksg options.  Zvbb will likely become mandatory in a following
-profile.  Zvbc is listed as a separate option for use in other
-algorithms, and may eventually become mandatory.  Scalar Zbc is also
-listed as an option, but will probably not become mandatory.
+standardize on a higher performance crypto alternative. Zvbc is listed
+as a development option for use in other algorithms, and will become
+mandatory.  Scalar Zbc is now listed as an expansion option, i.e., it
+will probably not become mandatory.
+
+===== Development Options
+
+The following are new development options intended to become mandatory in RVA24U64:
+
+- *Zacas* Compare-and-swap
+- *Zvbc* Vector carryless multiply.
+
+===== Expansion Options
+
+The following expansion options were also present in RVA22U64:
+
+- *Zfh* Scalar Half-Precision Floating-Point (FP16).
+
+The following are new expansion options in RVA23U64:
+
+- *Zbc* Scalar carryless multiply.
+- *Zvfh* Vector half-precision floating-point (FP16).
+- *Zfbfmin* Scalar BF16 FP conversions.
+- *Zvfbfmin* Vector BF16 FP conversions.
+- *Zvfbfwma* Vector BF16 widening mul-add.
+
+===== Transitory Options
+
+There are no transitory options in RVA23U64.
+
+NOTE: Scalar crypto is no longer an option in RVA23U64, though the Zbc
+extension has now been exposed as an expansion option.
 
 ==== RVA23U64 Recommendations
 
@@ -265,29 +281,15 @@ NOTE: Svnapot was optional in RVA22.
 
 NOTE: Sstc was optional in RVA22.
 
-==== RVA23S64 Optional Extensions
-
-RVA23S64 has ten unprivileged options (Zbc, Zfh, Zvfh, Zfbfmin,
-Zvfbfmin, Zvfbfwma, Zvkng, Zvksg, Zvbb, Zvbc) from RVA23U64, and six
-privileged options (Sv48, Sv57, Svadu, Sscofpmf, Zkr, H).
-
-The privileged optional extensions are:
-
-- *Sv48* Page-Based 48-bit Virtual-Memory System.
-
-- *Sv57* Page-Based 57-bit Virtual-Memory System.
-
-- *Svadu* Hardware A/D bit updates.
-
 - *Sscofpmf* Count Overflow and Mode-Based Filtering.
 
-- *Zkr*  Entropy CSR.
-
-The following hypervisor extension and mandates were also in RVA22S64:
+- *Sdtrig* Debug triggers
 
 - *H* The hypervisor extension.
 
-When the hypervisor extension is implemented, the following are also mandatory:
+NOTE: The hypervisor was optional in RVA22.
+
+NOTE: The following extensions were required when the hypervisor was implemented in RVA23.
 
 - *Ssstateen* Supervisor-mode view of the state-enable extension.  The
    supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
@@ -309,6 +311,40 @@ When the hypervisor extension is implemented, the following are also mandatory:
 - *Shgatpa* For each supported virtual memory scheme SvNN supported in
   `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
   `hgatp` mode Bare must also be supported.
+
+==== RVA23S64 Optional Extensions
+
+RVA23S64 has ten unprivileged options (Zvkng, Zvksg, Zacas, Zvbc, Zfh,
+Zbc, Zvfh, Zfbfmin, Zvfbfmin, Zvfbfwma) from RVA23U64, and five
+privileged options (Sv48, Sv57, Svadu, Zkr, Sdext).
+
+===== Localized Options
+
+There are no privileged localized options in RVA23S64
+
+===== Development Options
+
+There are no privileged development options in RVA23S64.
+
+===== Expansion Options
+
+The following privileged expansion options were present in RVA22S64:
+
+- *Sv48* Page-Based 48-bit Virtual-Memory System.
+
+- *Sv57* Page-Based 57-bit Virtual-Memory System.
+
+- *Zkr*  Entropy CSR.
+
+The following are new privileged expansion options in RVA23S64
+
+- *Svadu* Hardware A/D bit updates.
+
+- *Sdext* Debug triggers
+
+===== Transitory Options
+
+There are no privileged transitory options in RVA23S64.
 
 ==== RVA23S64 Recommendations
 
