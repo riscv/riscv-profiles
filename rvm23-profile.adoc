@@ -60,7 +60,7 @@ Do not use for implementations.  Assume everything can change.
 
 == RVM23 Profiles
 
-The RMV23 profile is intended for microcontrollers, with the goal of
+The RVM23 profile is intended for microcontrollers, with the goal of
 simplifying the demands on the software ecosystem particularly
 toolchains and library suppliers.
 
