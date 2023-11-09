@@ -383,8 +383,8 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Ziccrse*: Main memory supports forward progress on LR/SC sequences
 - *Ziccamoa*: Main memory supports all atomics in A
 - *Zicclsm*: Main memory supports misaligned loads/stores
-- *Za64rs*: Reservation set size of 64 bytes
-- *Za128rs*: Reservation set size of 128 bytes
+- *Za64rs*: Reservation set size of at most 64 bytes
+- *Za128rs*: Reservation set size of at most 128 bytes
 - *Zic64b*: Cache block size isf 64 bytes
 - *Svbare*: Bare mode virtual-memory translation supported
 - *Svade*: Raise exceptions on improper A/D bits
