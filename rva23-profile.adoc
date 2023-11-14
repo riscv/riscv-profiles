@@ -136,6 +136,8 @@ NOTE: V was optional in RVA22U64.
 
 - *Zimop* Maybe Operations.
 
+- *Zcmop* Compressed Maybe Operations.
+
 - *Zcb* Additional 16b compressed instructions.
 
 - *Zfa* Additional scalar FP instructions.
