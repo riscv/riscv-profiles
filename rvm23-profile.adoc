@@ -184,8 +184,6 @@ microcontrollers.
 
 - *Zicfisslp* Shadow-stack and landing pads.
 
-- *Zjpm* Pointer masking.
-
 - *Zkt* Data-independent execution time.
 
 - *Zfa* Additional scalar FP instructions.

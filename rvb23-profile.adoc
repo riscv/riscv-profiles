@@ -142,7 +142,6 @@ NOTE: Unclear if other Zve* extensions should also be supported in RVB.
 
 - *Zfhmin* Half-Precision Floating-point transfer and convert.
 - *Zvfhmin* Vector FP16 conversion instructions.
-- *Zjpm* Pointer masking (ignore high bits of addresses)
 
 The following extensions are optional in both RVB23U64 and RVA23U64:
 
@@ -299,6 +298,8 @@ When the hypervisor extension is implemented, the following are also mandatory:
 - *Shgatpa* For each supported virtual memory scheme SvNN supported in
   `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
   `hgatp` mode Bare must also be supported.
+
+- *Ssnpm* Pointer masking.
 
 ==== RVB23S64 Recommendations
 
