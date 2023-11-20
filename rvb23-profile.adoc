@@ -143,6 +143,8 @@ NOTE: Unclear if other Zve* extensions should also be supported in RVB.
 - *Zfhmin* Half-Precision Floating-point transfer and convert.
 - *Zvfhmin* Vector FP16 conversion instructions.
 
+- *Zvbb* Vector bitmanip extension.
+
 The following extensions are optional in both RVB23U64 and RVA23U64:
 
 - *Zfh* Scalar Half-Precision Floating-Point (FP16).
@@ -152,7 +154,6 @@ The following extensions are optional in both RVB23U64 and RVA23U64:
 - *Zvfbfmin* Vector BF16 FP conversions.
 - *Zvfbfwma* Vector BF16 widening mul-add.
 
-- *Zvbb* Vector bitmanip extension.
 - *Zvbc* Vector carryless multiply.
 - *Zvkng* Vector Crypto NIST Algorithms including GHASH.
 - *Zvksg* Vector Crypto ShangMi Algorithms including GHASH.
