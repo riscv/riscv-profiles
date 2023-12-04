@@ -289,7 +289,7 @@ NOTE: Sstc was optional in RVA22.
 
 NOTE: The hypervisor was optional in RVA22.
 
-NOTE: The following extensions were required when the hypervisor was implemented in RVA23.
+NOTE: The following extensions were required when the hypervisor was implemented in RVA22.
 
 - *Ssstateen* Supervisor-mode view of the state-enable extension.  The
    supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
