@@ -283,6 +283,9 @@ NOTE: Sstc was optional in RVA22.
 
 - *Sscofpmf* Count Overflow and Mode-Based Filtering.
 
+- *Ssnpm* Pointer masking, with `senvcfg.PME` and `henvcfg.PME` supporting,
+at minimum, settings PMLEN=0 and PMLEN=7.
+
 - *Sdtrig* Debug triggers
 
 - *H* The hypervisor extension.
@@ -311,12 +314,6 @@ NOTE: The following extensions were required when the hypervisor was implemented
 - *Shgatpa* For each supported virtual memory scheme SvNN supported in
   `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
   `hgatp` mode Bare must also be supported.
-
-- *Ssnpm* Pointer masking, with `senvcfg.PME` and `henvcfg.PME` supporting,
-at minimum, settings PMLEN=0 and PMLEN=7.
-
-
-(ignore high bits of addresses)
 
 ==== RVA23S64 Optional Extensions
 
