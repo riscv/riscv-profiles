@@ -286,8 +286,6 @@ NOTE: Sstc was optional in RVA22.
 - *Ssnpm* Pointer masking, with `senvcfg.PME` and `henvcfg.PME` supporting,
 at minimum, settings PMLEN=0 and PMLEN=7.
 
-- *Sdtrig* Debug triggers
-
 - *H* The hypervisor extension.
 
 NOTE: The hypervisor was optional in RVA22.
