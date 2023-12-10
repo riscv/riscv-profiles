@@ -130,6 +130,8 @@ NOTE: V was optional in RVA22U64.
 
 - *Zvbb* Vector bit-manipulation instructions.
 
+- *Zvkt* Vector data-independent execution time.
+
 - *Zihintntl* Non-temporal locality hints.
 
 - *Zicond* Conditional Zeroing instructions.
