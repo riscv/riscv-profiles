@@ -122,10 +122,13 @@ address space.
 - *Zicbom* Cache-Block Management Operations.
 - *Zicbop* Cache-Block Prefetch Operations.
 - *Zicboz* Cache-Block Zero Operations.
+- *Zkt* Data-independent execution time.
+
+The following mandatory extensions are also present in RVA23U64:
+
 - *Zihintntl* Non-temporal locality hints.
 - *Zicond* Conditional Zeroing instructions.
 - *Zcb* Additional 16b compressed instructions.
-- *Zkt* Data-independent execution time.
 - *Zfa* Additional scalar FP instructions.
 - *Zawrs* Wait on reservation set.
 
