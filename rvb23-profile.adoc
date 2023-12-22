@@ -128,6 +128,8 @@ The following mandatory extensions are also present in RVA23U64:
 
 - *Zihintntl* Non-temporal locality hints.
 - *Zicond* Conditional Zeroing instructions.
+- *Zimop* Maybe Operations.
+- *Zcmop* Compressed Maybe Operations.
 - *Zcb* Additional 16b compressed instructions.
 - *Zfa* Additional scalar FP instructions.
 - *Zawrs* Wait on reservation set.
