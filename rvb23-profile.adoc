@@ -277,6 +277,8 @@ The privileged optional extensions are:
 
 - *Sscofpmf* Count Overflow and Mode-Based Filtering.
 
+- *Ssnpm* Pointer masking.
+
 - *Zkr*  Entropy CSR.
 
 The following hypervisor extension and mandates were also in RVA22S64:
@@ -305,8 +307,6 @@ When the hypervisor extension is implemented, the following are also mandatory:
 - *Shgatpa* For each supported virtual memory scheme SvNN supported in
   `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
   `hgatp` mode Bare must also be supported.
-
-- *Ssnpm* Pointer masking.
 
 ==== RVB23S64 Recommendations
 
