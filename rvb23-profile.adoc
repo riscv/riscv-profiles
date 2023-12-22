@@ -220,6 +220,9 @@ NOTE: Ss1p13 supersedes Ss1p12 but is not yet ratified.
 
 - *Svnapot* NAPOT Translation Contiguity
 
+NOTE: Svnapot is very low cost to provide, so is made mandatory even
+in RVB.
+
 The following privileged extensions were also mandatory in RVA22S64:
 
 - *Svbare* The `satp` mode Bare must be supported.
@@ -253,11 +256,9 @@ The following privileged extensions were also mandatory in RVA22S64:
 - *Ssu64xl* `sstatus.UXL` must be capable of holding the value 2
 (i.e., UXLEN=64 must be supported).
 
-
-NOTE: Svnapot is very low cost to provide, so is made mandatory even
-in RVB.
-
 - *Sstc* supervisor-mode timer interrupts.
+
+NOTE: Sstc was optional in RVA22.
 
 ==== RVB23S64 Optional Extensions
 
