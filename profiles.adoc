@@ -900,10 +900,16 @@ NOTE: This is new extension name capturing this feature.
 
 - *Svinval* Fine-Grained Address-Translation Cache Invalidation
 
+- *Ssu64xl* `sstatus.UXL` must be capable of holding the value 2
+(i.e., UXLEN=64 must be supported).
+
+NOTE: This is a new extension name for this feature.
+
+
 ==== RVA22S64 Optional Extensions
 
 RVA22S64 has four unprivileged options (Zfh, V, Zkn, Zks) from
-RVA22U64, and eight privileged options (Sv48, Sv57, Svnapot, Ssu64xl,
+RVA22U64, and eight privileged options (Sv48, Sv57, Svnapot,
 Sstc, Sscofpmf, Zkr, H).
 
 The privileged optional extensions are:
@@ -916,11 +922,6 @@ The privileged optional extensions are:
 
 NOTE: It is expected that Svnapot will be mandatory in the next
 profile release.
-
-- *Ssu64xl* `sstatus.UXL` must be capable of holding the value 2
-(i.e., UXLEN=64 must be supported).
-
-NOTE: This is a new extension name for this feature.
 
 - *Sstc* supervisor-mode timer interrupts.
 
