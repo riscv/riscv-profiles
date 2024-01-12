@@ -122,10 +122,15 @@ address space.
 - *Zicbom* Cache-Block Management Operations.
 - *Zicbop* Cache-Block Prefetch Operations.
 - *Zicboz* Cache-Block Zero Operations.
+- *Zkt* Data-independent execution time.
+
+The following mandatory extensions are also present in RVA23U64:
+
 - *Zihintntl* Non-temporal locality hints.
 - *Zicond* Conditional Zeroing instructions.
+- *Zimop* Maybe Operations.
+- *Zcmop* Compressed Maybe Operations.
 - *Zcb* Additional 16b compressed instructions.
-- *Zkt* Data-independent execution time.
 - *Zfa* Additional scalar FP instructions.
 - *Zawrs* Wait on reservation set.
 
@@ -215,6 +220,9 @@ NOTE: Ss1p13 supersedes Ss1p12 but is not yet ratified.
 
 - *Svnapot* NAPOT Translation Contiguity
 
+NOTE: Svnapot is very low cost to provide, so is made mandatory even
+in RVB.
+
 The following privileged extensions were also mandatory in RVA22S64:
 
 - *Svbare* The `satp` mode Bare must be supported.
@@ -248,11 +256,9 @@ The following privileged extensions were also mandatory in RVA22S64:
 - *Ssu64xl* `sstatus.UXL` must be capable of holding the value 2
 (i.e., UXLEN=64 must be supported).
 
-
-NOTE: Svnapot is very low cost to provide, so is made mandatory even
-in RVB.
-
 - *Sstc* supervisor-mode timer interrupts.
+
+NOTE: Sstc was optional in RVA22.
 
 ==== RVB23S64 Optional Extensions
 
@@ -270,6 +276,8 @@ The privileged optional extensions are:
 - *Svadu* Hardware A/D bit updates.
 
 - *Sscofpmf* Count Overflow and Mode-Based Filtering.
+
+- *Ssnpm* Pointer masking.
 
 - *Zkr*  Entropy CSR.
 
@@ -299,8 +307,6 @@ When the hypervisor extension is implemented, the following are also mandatory:
 - *Shgatpa* For each supported virtual memory scheme SvNN supported in
   `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
   `hgatp` mode Bare must also be supported.
-
-- *Ssnpm* Pointer masking.
 
 ==== RVB23S64 Recommendations
 
