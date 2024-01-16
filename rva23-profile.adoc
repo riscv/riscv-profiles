@@ -270,9 +270,6 @@ The following privileged extensions were also mandatory in RVA22S64:
 
 - *Svinval* Fine-Grained Address-Translation Cache Invalidation
 
-- *Ssu64xl* `sstatus.UXL` must be capable of holding the value 2
-(i.e., UXLEN=64 must be supported).
-
 The following are new mandatory extensions:
 
 - *Svnapot* NAPOT Translation Contiguity
@@ -287,6 +284,11 @@ NOTE: Sstc was optional in RVA22.
 
 - *Ssnpm* Pointer masking, with `senvcfg.PME` and `henvcfg.PME` supporting,
 at minimum, settings PMLEN=0 and PMLEN=7.
+
+- *Ssu64xl* `sstatus.UXL` must be capable of holding the value 2
+(i.e., UXLEN=64 must be supported).
+
+NOTE: Ssu64xl was optional in RVA22.
 
 - *H* The hypervisor extension.
 
