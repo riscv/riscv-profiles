@@ -148,8 +148,8 @@ NOTE: V was optional in RVA22U64.
 
 ==== RVA23U64 Optional Extensions
 
-RVA23U64 has ten profile options (Zvkng, Zvksg, Zacas, Zvbc, Zfh, Zbc,
-Zvfh, Zfbfmin, Zvfbfmin, Zvfbfwma).
+RVA23U64 has eleven profile options (Zvkng, Zvksg, Zacas, Zvbc, Zfh, Zbc,
+Zvfh, Zfbfmin, Zvfbfmin, Zvfbfwma, Zama16b).
 
 ===== Localized Options
 
@@ -190,6 +190,7 @@ The following are new expansion options in RVA23U64:
 - *Zfbfmin* Scalar BF16 FP conversions.
 - *Zvfbfmin* Vector BF16 FP conversions.
 - *Zvfbfwma* Vector BF16 widening mul-add.
+- *Zama16b* Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
 
 ===== Transitory Options
 
@@ -432,6 +433,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Ziccrse*: Main memory supports forward progress on LR/SC sequences
 - *Ziccamoa*: Main memory supports all atomics in A
 - *Zicclsm*: Main memory supports misaligned loads/stores
+- *Zama16b* Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
 - *Za64rs*: Reservation set size of at most 64 bytes
 - *Za128rs*: Reservation set size of at most 128 bytes
 - *Zic64b*: Cache block size isf 64 bytes
