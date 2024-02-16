@@ -214,7 +214,7 @@ future.
 The following privileged extensions are mandatory, and are also
 mandatory in RVA23S64.
 
-- *Ss1p13*  Privileged Architecture version 1.13.
+- *Ss1p13*  Supervisor Architecture version 1.13.
 
 NOTE: Ss1p13 supersedes Ss1p12 but is not yet ratified.
 
