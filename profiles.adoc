@@ -696,6 +696,8 @@ The following mandatory extensions were present in RVA20U64.
 - *Zicntr* Base counters and timers.
 - *Zihpm* Hardware performance counters.
 
+NOTE: Zihpm was optional in RVA20U64.
+
 - *Ziccif* Main memory regions with both the cacheability and
   coherence PMAs must support instruction fetch, and any instruction
   fetches of naturally aligned power-of-2 sizes up to min(ILEN,XLEN)
