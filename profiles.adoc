@@ -54,6 +54,10 @@ No changes are allowed. Any desired or needed changes can be the subject of a fo
 
 :sectnums!:
 
+== Changes made since ratification
+
+- Clarified that Zihpm was optional in RVA20U64 and became mandatory in RVA22U64
+
 == Changes since Public Review version 0.8
 
 - Clarified that profile name can be used as ISA base string
@@ -694,9 +698,6 @@ The following mandatory extensions were present in RVA20U64.
 - *C* Compressed Instructions.
 - *Zicsr*  CSR instructions.  These are implied by presence of F.
 - *Zicntr* Base counters and timers.
-- *Zihpm* Hardware performance counters.
-
-NOTE: Zihpm was optional in RVA20U64.
 
 - *Ziccif* Main memory regions with both the cacheability and
   coherence PMAs must support instruction fetch, and any instruction
@@ -730,6 +731,10 @@ block size.  The minimum reservation size is effectively set by the
 instructions in the mandatory A extension.
 
 The following mandatory extensions are new for RVA22U64.
+
+- *Zihpm* Hardware performance counters.
+
+NOTE: Zihpm was optional in RVA20U64.
 
 - *Zihintpause* Pause instruction.
 
