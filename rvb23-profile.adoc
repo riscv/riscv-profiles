@@ -55,25 +55,23 @@ Do not use for implementations.  Assume everything can change.
 == Introduction
 
 This document captures the current proposal for the RVB23 profile
-family.
+family. RVB23 is intended to be the first major release of the RVB
+series of RISC-V Application Processor Profile.
 
-RVB23 is intended to be the first major release of the RVB series of
-RISC-V Application Processor Profile.
+RVB profiles are intended to be used for customized 64-bit application
+processors that will run rich OS stacks, but usually as a custom build
+of standard OS source-code distributions.  The approach is to provide
+a large guaranteed set of relatively inexpensive and/or widely
+beneficial features but allow optionality for more expensive and/or
+more targeted extensions.
+
+Unlike the RVA profiles, it is explicitly a non-goal of RVB profiles
+to provide a single standard ISA interface supporting a wide variety
+of binary kernel and binary application software distributions.
+However, individual software ecosystems may build upon RVB profiles to
+produce a more targeted standard interface for a certain market.
 
 == RVB23 Profiles
-
-The RVB23 profiles are intended to be used for customized 64-bit
-application processors that will run rich OS stacks, but usually as a
-custom build of standard OS source-code distributions.  The approach
-is to provide a large guaranteed set of relatively inexpensive and/or
-widely beneficial features but allow optionality for more expensive
-and/or more targeted extensions.
-
-It is explicitly a non-goal of RVB23 to provide a single standard ISA
-interface supporting a wide variety of binary kernel and binary
-application software distributions (RVA profiles support this goal).
-However, individual software ecosystems may build upon RVB23 to
-produce a more targeted standard interface for a certain market.
 
 Only user-mode (RVB23U64) and supervisor-mode (RVB23S64) profiles are
 specified in this family.
