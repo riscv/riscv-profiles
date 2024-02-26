@@ -444,6 +444,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - https://github.com/riscv/riscv-time-compare[Sstc Extension for Supervisor-mode Timer Interrupts]
 - https://github.com/riscv/riscv-count-overflow[Sscofpmf Extension for Count Overflow and Mode-Based Filtering]
 - https://github.com/riscv/riscv-state-enable[Smstateen Extension for State-enable]
+- https://github.com/riscv/riscv-svvptc[Svvptc Eliding Memory-management Fences on setting PTE valid]
 
 - *Ziccif*: Main memory supports instruction fetch with atomicity requirement
 - *Ziccrse*: Main memory supports forward progress on LR/SC sequences
