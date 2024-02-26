@@ -326,7 +326,7 @@ privileged options (Sv48, Sv57, Svadu, Zkr, Sdext, Ssstrict).
 
 ===== Localized Options
 
-There are no privileged localized options in RVA23S64
+There are no privileged localized options in RVA23S64.
 
 ===== Development Options
 
