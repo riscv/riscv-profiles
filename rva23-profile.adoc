@@ -321,8 +321,8 @@ NOTE: The following extensions were required when the hypervisor was implemented
 ==== RVA23S64 Optional Extensions
 
 RVA23S64 has ten unprivileged options (Zvkng, Zvksg, Zacas, Zvbc, Zfh,
-Zbc, Zvfh, Zfbfmin, Zvfbfmin, Zvfbfwma) from RVA23U64, and six
-privileged options (Sv48, Sv57, Svadu, Zkr, Sdext, Ssstrict).
+Zbc, Zvfh, Zfbfmin, Zvfbfmin, Zvfbfwma) from RVA23U64, and seven
+privileged options (Sv48, Sv57, Svadu, Zkr, Sdext, Ssstrict, Svvptc).
 
 ===== Localized Options
 
@@ -356,6 +356,9 @@ The following are new privileged expansion options in RVA23S64
 
 NOTE: Ssstrict does not prescribe behavior for the custom encoding
 spaces or CSRs.
+
+- *Svvptc* Transitions from invalid to valid PTEs will be visible in
+   bounded time without an explicit SFENCE.
 
 ===== Transitory Options
 

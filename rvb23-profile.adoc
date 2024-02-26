@@ -363,6 +363,9 @@ The following privileged expansion options are also present in RVA23S64:
 NOTE: Ssstrict does not prescribe behavior for the custom encoding
 spaces or CSRs.
 
+- *Svvptc* Transitions from invalid to valid PTEs will be visible in
+   bounded time without an explicit SFENCE.
+
 ==== RVB23S64 Recommendations
 
 - Implementations are strongly recommended to raise illegal-instruction
