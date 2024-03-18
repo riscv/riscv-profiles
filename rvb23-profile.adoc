@@ -168,6 +168,7 @@ support scalar crypto, as the vector extension is optional in RVB23.
 
 The following are new development options intended to become mandatory in RVB24U64:
 
+- *Zabha* Byte and Halfword Atomic Memory Operations 
 - *Zacas* Compare-and-swap
 - *Ziccamoc* Main memory regions with both the cacheability and coherence PMAs
   must provide AMOCASQ level PMA support.
@@ -452,6 +453,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - https://github.com/riscv/riscv-state-enable[Smstateen Extension for State-enable]
 - https://github.com/riscv/riscv-svvptc[Svvptc Eliding Memory-management Fences on setting PTE valid]
 - https://github.com/riscv/riscv-zacas[Zacas Extension for Atomic Compare-and-Swap (CAS) instructions]
+- https://github.com/riscv/riscv-zabha[Zabha Extension for Byte and Halfword Atomic Memory Operations]
 
 - *Ziccif*: Main memory supports instruction fetch with atomicity requirement
 - *Ziccrse*: Main memory supports forward progress on LR/SC sequences
