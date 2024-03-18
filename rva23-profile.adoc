@@ -451,6 +451,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Ziccif*: Main memory supports instruction fetch with atomicity requirement
 - *Ziccrse*: Main memory supports forward progress on LR/SC sequences
 - *Ziccamoa*: Main memory supports all atomics in A
+- *Ziccamoc* Main memory supports atomics in Zacas
 - *Zicclsm*: Main memory supports misaligned loads/stores
 - *Zama16b* Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
 - *Za64rs*: Reservation set size of at most 64 bytes
@@ -470,5 +471,4 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Shvstvecd*: `vstvec` supports Direct mode
 - *Shvsatpa*: `vsatp` supports all modes supported by `satp`
 - *Shgatpa*: SvNNx4 mode supported for all modes supported by `satp`, as well as Bare
-- *Ziccamoc* Main memory supports atomics in Zacas
 
