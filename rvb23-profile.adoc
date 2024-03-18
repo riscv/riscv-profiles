@@ -152,10 +152,17 @@ are not present in RVA23U64:
 - *Zvksc* Vector Crypto ShangMi Algorithms with carryless multiply
 
 NOTE: RVA profiles mandate the higher-performing but more expensive
-GHASH options when adding vector crypto.  To reduce implementation
-cost, RVB profiles also allow these carryless multiply options (Zvknc
-and Zvksc) to implement GCM efficiently, with GHASH available as a
-separate option.
+GHASH options when adding vector crypto.  To reduce implementation cost, RVB
+profiles also allow these carryless multiply options (Zvknc and Zvksc)
+to implement GCM efficiently, with GHASH available as a separate
+option.
+
+- *Zkn* Scalar Crypto NIST Algorithms.
+- *Zks* Scalar Crypto ShangMi Algorithms.
+
+NOTE: RVA23 profiles drop support for scalar crypto as an option, as
+the vector extension is now mandatory in RVA23.  RVB23 profiles
+support scalar crypto, as the vector extension is optional in RVB23.
 
 ===== Development Options
 
@@ -197,10 +204,7 @@ RVB profiles:
 
 ===== Transitory Options
 
-There are no transitory options in RVA23U64.
-
-NOTE: Scalar crypto is no longer an option in RVA23U64, though the Zbc
-extension has now been exposed as an expansion option.
+There are no transitory options in RVB23U64.
 
 ==== RVB23U64 Recommendations
 
