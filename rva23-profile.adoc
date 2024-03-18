@@ -176,6 +176,7 @@ The following are new development options intended to become mandatory in RVA24U
 
 - *Zacas* Compare-and-swap
 - *Zvbc* Vector carryless multiply.
+- *Zama16b* Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
 
 ===== Expansion Options
 
@@ -190,7 +191,6 @@ The following are new expansion options in RVA23U64:
 - *Zfbfmin* Scalar BF16 FP conversions.
 - *Zvfbfmin* Vector BF16 FP conversions.
 - *Zvfbfwma* Vector BF16 widening mul-add.
-- *Zama16b* Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
 
 ===== Transitory Options
 
