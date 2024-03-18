@@ -175,6 +175,8 @@ will probably not become mandatory.
 The following are new development options intended to become mandatory in RVA24U64:
 
 - *Zacas* Compare-and-swap
+- *Ziccamoc* Main memory regions with both the cacheability and coherence PMAs
+  must provide AMOCASQ level PMA support.
 - *Zvbc* Vector carryless multiply.
 - *Zama16b* Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
 
@@ -468,4 +470,5 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Shvstvecd*: `vstvec` supports Direct mode
 - *Shvsatpa*: `vsatp` supports all modes supported by `satp`
 - *Shgatpa*: SvNNx4 mode supported for all modes supported by `satp`, as well as Bare
+- *Ziccamoc* Main memory supports atomics in Zacas
 
