@@ -188,6 +188,8 @@ NOTE: Unclear if other Zve* extensions should also be supported in RVB.
 - *Zvfhmin* Vector FP16 conversion instructions.
 - *Zvbb* Vector bitmanip extension.
 - *Zvkt* Vector data-independent execution time.
+- *Supm* Pointer masking, with the execution environment providing a means to
+   select PMLEN=0 and PMLEN=7 at minimum.
 
 The following extensions are expansion options in both RVA23U64 and RVB23U64:
 
@@ -314,6 +316,9 @@ The following privileged expansion options are mandatory in RVA22S64 but options
 
 - *Ssnpm* Pointer masking, with `senvcfg.PME` supporting at minimum,
    settings PMLEN=0 and PMLEN=7.
+
+- *Sspm* Supervisor-mode pointer masking, with the supervisor execution
+   environment providing a means to select PMLEN=0 and PMLEN=7 at minimum.
 
 The following hypervisor extension and mandates were also in RVA22S64
 and are available as an expansion option in RVB23S64:
