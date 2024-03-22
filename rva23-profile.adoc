@@ -52,13 +52,7 @@ endif::[]
 Do not use for implementations.  Assume everything can change.
 ====
 
-== Introduction
-
-This document captures the current proposal for the RVA23 profile
-family.
-
-RVA23 is not intended to be a major release of the RISC-V Application
-Processor Profiles.
+include::rva-profile-overview-body.adoc[]
 
 == RVA23 Profiles
 
