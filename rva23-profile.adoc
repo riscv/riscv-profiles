@@ -42,7 +42,7 @@ endif::[]
 
 :sectnums!:
 
-= RVA23 Profile
+= RVA23 Profiles
 
 //: This is the Preamble
 
