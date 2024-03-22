@@ -146,6 +146,9 @@ NOTE: V was optional in RVA22U64.
 
 - *Zawrs* Wait on reservation set.
 
+- *Supm* Pointer masking, with the execution environment providing a means to
+   select PMLEN=0 and PMLEN=7 at minimum.
+
 ==== RVA23U64 Optional Extensions
 
 RVA23U64 has eleven profile options (Zvkng, Zvksg, Zacas, Zvbc, Zfh, Zbc,
@@ -362,6 +365,9 @@ spaces or CSRs.
 
 - *Svvptc* Transitions from invalid to valid PTEs will be visible in
    bounded time without an explicit SFENCE.
+
+- *Sspm* Supervisor-mode pointer masking, with the supervisor execution
+   environment providing a means to select PMLEN=0 and PMLEN=7 at minimum.
 
 ===== Transitory Options
 
