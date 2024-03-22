@@ -1,9 +1,9 @@
 [[riscv-doc-template]]
 :description: Short, text description of spect…
 :company: RISC-V
-:revdate: October 2, 2023
-:revnumber: 0.3-draft
-:revremark: This document is in Development stage.  Everything could change before ratification.
+:revdate: March 21, 2024
+:revnumber: 0.4
+:revremark: This document has been prepared for internal review by RISC-V International.  Changes prior to ratification remain likely.
 :url-riscv: http://riscv.org
 :doctype: book
 :preface-title: Preamble
