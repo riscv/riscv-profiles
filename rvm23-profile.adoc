@@ -306,7 +306,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Zicclsm*: Main memory supports misaligned loads/stores
 - *Za64rs*: Reservation set size of at most 64 bytes
 - *Za128rs*: Reservation set size of at most 128 bytes
-- *Zic64b*: Cache block size isf 64 bytes
+- *Zic64b*: Cache block size is 64 bytes
 - *Svbare*: Bare mode virtual-memory translation supported
 - *Svade*: Raise exceptions on improper A/D bits
 - *Ssccptr*: Main memory supports page table reads
