@@ -140,7 +140,6 @@ RVB23U64 has 18 profile options listed below.
 
 The following extensions are localized options in both RVA23U64 and RVB23U64:
 
-- *Zvbc* Vector carryless multiply.
 - *Zvkng* Vector Crypto NIST Algorithms including GHASH.
 - *Zvksg* Vector Crypto ShangMi Algorithms including GHASH.
 
@@ -172,6 +171,7 @@ The following are new development options intended to become mandatory in RVB24U
 - *Zacas* Compare-and-swap
 - *Ziccamoc* Main memory regions with both the cacheability and coherence PMAs
   must provide AMOCASQ level PMA support.
+- *Zvbc* Vector carryless multiply.
 - *Zama16b* Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
 
 ===== Expansion Options
