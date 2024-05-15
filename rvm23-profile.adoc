@@ -141,7 +141,7 @@ NOTE: Implementations can treat as NOPS.
 - *Zaamo* Atomic instructions.
 
 NOTE: Many microcontroller systems will not have caches and so will
-naturally be able to support `Zalrsc`.
+not naturally be able to support `Zalrsc`.
 
 - *A* Atomic instructions.
 
