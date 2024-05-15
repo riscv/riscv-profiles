@@ -145,9 +145,9 @@ not naturally be able to support `Zalrsc`.
 
 - *A* Atomic instructions.
 
-NOTE: The assumption is that Zalrsc will not generally be implemented
-with Zaamo on a microcontroller, so is not made available as a
-separate option.
+NOTE: The assumption is that if Zalrsc is implemented on a
+microcontroller, then Zaamo will also be implemented, so we do not
+make Zalrsc available as a separate option.
 
 - *F* Single-precision floating-point instructions.
 
