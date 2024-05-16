@@ -135,8 +135,8 @@ NOTE: These are hints, so implementations are allowed to treat as NOPs.
 - *Zcmop* Compressed Maybe-Operations
 
 NOTE: Implementations can simply write zero to the destination register (for
-Zimop) or treat as a NOP (for Zcmop), unless their behavior is overridden by
-another extension.
+Zimop) or treat as a NOP (for Zcmop), unless these instructions' behavior is
+overridden by another extension.
 
 ==== RVM23U32 Optional Extensions
 
