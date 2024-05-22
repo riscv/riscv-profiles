@@ -1,16 +1,16 @@
-[[riscv-doc-template]]
+= RISC-V Profiles
 :description: Short, text description of spect…
-:company: RISC-V
+:company: RISC-V.org
 :revdate: April 2, 2023
-:revnumber: 1.1-draft
+:revnumber: 1.1
 :revremark: This document is in Ratified state.
 :url-riscv: http://riscv.org
 :doctype: book
 :preface-title: Preamble
 :colophon:
 :appendix-caption: Appendix
-:imagesdir: images
-:title-logo-image: image:riscv-images/risc-v_logo.png[pdfwidth=3.25in,align=center]
+:imagesdir: ../docs-resources/images
+:title-logo-image: image:risc-v_logo.png["RISC-V International Logo",pdfwidth=3.25in,align=center]
 // Settings:
 :experimental:
 :reproducible:
@@ -33,18 +33,11 @@ endif::[]
 :footnote:
 :xrefstyle: short
 :numbered:
-:stem: latexmath
 :le: &#8804;
 :ge: &#8805;
 :ne: &#8800;
 :approx: &#8776;
 :inf: &#8734;
-
-:sectnums!:
-
-= RISC-V Profiles
-
-//: This is the Preamble
 
 [WARNING]
 .This document is in the link:http://riscv.org/spec-state[Ratified state]
@@ -52,12 +45,12 @@ endif::[]
 No changes are allowed. Any desired or needed changes can be the subject of a follow-on new extension. Ratified extensions are never revised
 ====
 
-:sectnums!:
-
+[preface]
 == Changes made since ratification
 
 - Clarified that Zihpm was optional in RVA20U64 and became mandatory in RVA22U64
 
+[preface]
 == Changes since Public Review version 0.8
 
 - Clarified that profile name can be used as ISA base string
@@ -66,8 +59,6 @@ No changes are allowed. Any desired or needed changes can be the subject of a fo
 - Added section listing new extension names in profiles document
 - Added new extension name Sscounterenw
 - Removed outdated text on Zicntr/Zihpm ratification plan
-
-:sectnums:
 
 == Introduction
 
@@ -368,7 +359,7 @@ There are no mandatory extensions for RVI20U32.
 - *A* Atomic instructions.
 
 - *F* Single-precision floating-point instructions.
-  
+
 - *D* Double-precision floating-point instructions.
 
 NOTE: The rationale to not include Q as an optional extension is that
@@ -426,7 +417,7 @@ There are no mandatory extensions for RVI20U64.
 - *A* Atomic instructions.
 
 - *F* Single-precision floating-point instructions.
-  
+
 - *D* Double-precision floating-point instructions.
 
 NOTE: The rationale to not include Q as a profile option is that

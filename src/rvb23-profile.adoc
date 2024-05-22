@@ -168,7 +168,7 @@ support scalar crypto, as the vector extension is optional in RVB23.
 
 The following are new development options intended to become mandatory in RVB24U64:
 
-- *Zabha* Byte and Halfword Atomic Memory Operations 
+- *Zabha* Byte and Halfword Atomic Memory Operations
 - *Zacas* Compare-and-swap
 - *Ziccamoc* Main memory regions with both the cacheability and coherence PMAs
   must provide AMOCASQ level PMA support.
@@ -482,4 +482,3 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Shvstvecd*: `vstvec` supports Direct mode
 - *Shvsatpa*: `vsatp` supports all modes supported by `satp`
 - *Shgatpa*: SvNNx4 mode supported for all modes supported by `satp`, as well as Bare
-
