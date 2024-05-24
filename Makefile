@@ -8,67 +8,87 @@
 # SPDX-License-Identifier: CC-BY-SA-4.0
 #
 # Description:
-# 
-# This Makefile is designed to automate the process of building and packaging 
+#
+# This Makefile is designed to automate the process of building and packaging
 # the Doc Template for RISC-V Extensions.
 
-DOCKER_RUN := docker run --rm -v ${PWD}:/build -w /build \
-riscvintl/riscv-docs-base-container-image:latest
+DOCS := \
+	profiles.adoc
 
-HEADER_SOURCE := profiles.adoc
-PDF_RESULT := $(HEADER_SOURCE:%.adoc=%.pdf)
-HTML_RESULT := $(HEADER_SOURCE:%.adoc=%.html)
+DATE ?= $(shell date +%Y-%m-%d)
+VERSION ?= 1.1
+REVMARK ?= Ratified
+DOCKER_IMG := riscvintl/riscv-docs-base-container-image:latest
+ifneq ($(SKIP_DOCKER),true)
+	DOCKER_CMD := docker run --rm -v ${PWD}:/build -w /build \
+	${DOCKER_IMG} \
+	/bin/sh -c
+	DOCKER_QUOTE := "
+endif
 
+SRC_DIR := src
+BUILD_DIR := build
+
+DOCS_PDF := $(DOCS:%.adoc=%.pdf)
+DOCS_HTML := $(DOCS:%.adoc=%.html)
+
+XTRA_ADOC_OPTS :=
 ASCIIDOCTOR_PDF := asciidoctor-pdf
 ASCIIDOCTOR_HTML := asciidoctor
-
 OPTIONS := --trace \
            -a compress \
            -a mathematical-format=svg \
+           -a revnumber=${VERSION} \
+           -a revremark=${REVMARK} \
+           -a revdate=${DATE} \
            -a pdf-fontsdir=docs-resources/fonts \
-           -a pdf-style=docs-resources/themes/riscv-pdf.yml \
+           -a pdf-theme=docs-resources/themes/riscv-pdf.yml \
+           $(XTRA_ADOC_OPTS) \
+		   -D build \
            --failure-level=ERROR
-
 REQUIRES := --require=asciidoctor-diagram \
+			--require=asciidoctor-lists \
             --require=asciidoctor-mathematical
 
-.PHONY: all build clean build-container-pdf build-no-container-pdf build-container-html build-no-container-html
+.PHONY: all build clean build-container build-no-container build-docs
 
 all: build
 
-build: 
+build-docs: $(DOCS_PDF) $(DOCS_HTML)
+
+vpath %.adoc $(SRC_DIR)
+
+%.pdf: %.adoc
+	$(DOCKER_CMD) $(DOCKER_QUOTE) $(ASCIIDOCTOR_PDF) $(OPTIONS) $(REQUIRES) $< $(DOCKER_QUOTE)
+
+%.html: %.adoc
+	$(DOCKER_CMD) $(DOCKER_QUOTE) $(ASCIIDOCTOR_HTML) $(OPTIONS) $(REQUIRES) $< $(DOCKER_QUOTE)
+
+build:
 	@echo "Checking if Docker is available..."
 	@if command -v docker >/dev/null 2>&1 ; then \
 		echo "Docker is available, building inside Docker container..."; \
-		$(MAKE) build-container-pdf; \
-		$(MAKE) build-container-html; \
+		$(MAKE) build-container; \
 	else \
 		echo "Docker is not available, building without Docker..."; \
-		$(MAKE) build-no-container-pdf; \
-		$(MAKE) build-no-container-html; \
+		$(MAKE) build-no-container; \
 	fi
 
-build-container-pdf:
+build-container:
 	@echo "Starting build inside Docker container..."
-	$(DOCKER_RUN) /bin/sh -c "$(ASCIIDOCTOR_PDF) $(OPTIONS) $(REQUIRES) --out-file=$(PDF_RESULT) $(HEADER_SOURCE)"
+	$(MAKE) build-docs
 	@echo "Build completed successfully inside Docker container."
 
-build-no-container-pdf:
+build-no-container:
 	@echo "Starting build..."
-	$(ASCIIDOCTOR_PDF) $(OPTIONS) $(REQUIRES) --out-file=$(PDF_RESULT) $(HEADER_SOURCE)
+	$(MAKE) SKIP_DOCKER=true build-docs
 	@echo "Build completed successfully."
 
-build-container-html:
-	@echo "Starting build inside Docker container..."
-	$(DOCKER_RUN) /bin/sh -c "$(ASCIIDOCTOR_HTML) $(OPTIONS) $(REQUIRES) --out-file=$(HTML_RESULT) $(HEADER_SOURCE)"
-	@echo "Build completed successfully inside Docker container."
-
-build-no-container-html:
-	@echo "Starting build..."
-	$(ASCIIDOCTOR_HTML) $(OPTIONS) $(REQUIRES) --out-file=$(HTML_RESULT) $(HEADER_SOURCE)
-	@echo "Build completed successfully."
+# Update docker image to latest
+docker-pull-latest:
+	docker pull ${DOCKER_IMG}
 
 clean:
 	@echo "Cleaning up generated files..."
-	rm -f $(PDF_RESULT) $(HTML_RESULT)
+	rm -rf $(BUILD_DIR)
 	@echo "Cleanup completed."

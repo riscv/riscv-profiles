@@ -1,7 +1,7 @@
 ////
 This file contains text on M-mode profiles that was deleted from the proposal.
 
-=== RVA20M64 Profile 
+=== RVA20M64 Profile
 
 The RVA20M64 profile is defined to help provide compatibilty for
 application-processor platforms that specify an M-mode execution

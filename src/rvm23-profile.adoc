@@ -156,7 +156,7 @@ make Zalrsc available as a separate option.
 NOTE: This profile does not support Zfinx and related options.  A
 similar set of profiles, tenatively named RVN, would define Zfinx
 systems.
-  
+
 - *D* Double-precision floating-point instructions.
 
 - *V* Vector Extension.
@@ -323,4 +323,3 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Shvstvecd*: `vstvec` supports Direct mode
 - *Shvsatpa*: `vsatp` supports all modes supported by `satp`
 - *Shgatpa*: SvNNx4 mode supported for all modes supported by `satp`, as well as Bare
-
