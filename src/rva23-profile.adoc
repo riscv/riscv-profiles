@@ -58,7 +58,7 @@ include::rva-profile-overview-body.adoc[]
 
 The RVA23 profiles are intended to align implementations of RISC-V
 64-bit application processors to allow binary software ecosystems to
-rely on a a large set of guaranteed extensions and a small number of
+rely on a large set of guaranteed extensions and a small number of
 discoverable coarse-grain options.  It is explicitly a non-goal of
 RVA23 to allow more hardware implementation flexibility by supporting
 only a minimal set of features and a large number of fine-grain
