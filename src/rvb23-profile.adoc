@@ -278,7 +278,7 @@ in RVB.
   for load, store, and instruction page-fault, access-fault, and
   misaligned exceptions, and for breakpoint exceptions other than
   those caused by execution of the EBREAK or C.EBREAK instructions.
-  For illegal-instruction exceptions, stval must be written with the
+  For virtual-instruction and illegal-instruction exceptions, stval must be written with the
   faulting instruction.
 
 - *Sscounterenw* For any hpmcounter that is not read-only zero, the
