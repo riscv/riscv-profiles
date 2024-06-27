@@ -423,10 +423,10 @@ of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 - Zbkc Extension for Carryless Multiplication for Cryptography
 - Zbkx Crossbar Permutation Extension
 - Zvbb - Vector Basic Bit-manipulation
-- Zvbc - Vector Carryless Multiplication 396
-- Zvkng - NIST Algorithm Suite with GCM 405
-- Zvksg - ShangMi Algorithm Suite with GCM 408
-- Zvkt - Vector Data-Independent Execution Latenc
+- Zvbc - Vector Carryless Multiplication
+- Zvkng - NIST Algorithm Suite with GCM
+- Zvksg - ShangMi Algorithm Suite with GCM
+- Zvkt - Vector Data-Independent Execution Latency
 
 The following privileged ISA extensions are defined in Volume II
 of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
@@ -452,7 +452,6 @@ of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 
 The following extensions have not yet been incorporated into the RISC-V
 Instruction Set Manual; the hyperlinks lead to their separate specifications.
-(Many of these have been)
 
 - https://github.com/riscv/riscv-v-spec[Zve32x Extension for Embedded Vector Computation (32-bit integer)]
 - https://github.com/riscv/riscv-v-spec[Zve32f Extension for Embedded Vector Computation (32-bit integer, 32-bit FP)]
