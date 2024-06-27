@@ -205,8 +205,8 @@ microcontrollers.
 - *Zve64x*
 - *Zve64f*
 - *Zve64d*
-- *Zvfhmin* Vector FP16 conversion instructions.
-- *Zvfh* Vector FP16 instructions.
+- *Zvfhmin* Vector half-precision floating-point conversion instructions
+- *Zvfh* Vector half-precision floating-point instructions.
 
 - *Zkn* Scalar Crypto NIST Algorithms.
 - *Zks* Scalar Crypto ShangMi Algorithms.

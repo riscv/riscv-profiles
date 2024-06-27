@@ -185,7 +185,7 @@ options in RVB23U64:
 
 NOTE: Unclear if other Zve* extensions should also be supported in RVB.
 
-- *Zvfhmin* Vector FP16 conversion instructions.
+- *Zvfhmin* Vector half-precision floating-point conversion instructions.
 - *Zvbb* Vector bitmanip extension.
 - *Zvkt* Vector data-independent execution time.
 - *Supm* Pointer masking, with the execution environment providing a means to
@@ -193,9 +193,9 @@ NOTE: Unclear if other Zve* extensions should also be supported in RVB.
 
 The following extensions are expansion options in both RVA23U64 and RVB23U64:
 
-- *Zfh* Scalar Half-Precision Floating-Point (FP16).
+- *Zfh* Scalar Half-Precision Floating-Point.
 - *Zbc* Scalar carryless multiply.
-- *Zvfh* Vector half-precision floating-point (FP16).
+- *Zvfh* Vector half-precision floating-point.
 - *Zfbfmin* Scalar BF16 FP conversions.
 - *Zvfbfmin* Vector BF16 FP conversions.
 - *Zvfbfwma* Vector BF16 widening mul-add.
