@@ -169,7 +169,7 @@ will probably not become mandatory.
 
 ===== Development Options
 
-The following are new development options intended to become mandatory in RVA24U64:
+The following are new development options intended to become mandatory in a future RVA profile.
 
 - *Zabha* Byte and halfword atomic memory operations.
 - *Zacas* Compare-and-Swap instructions.

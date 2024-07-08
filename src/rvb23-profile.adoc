@@ -166,7 +166,7 @@ support scalar crypto, as the vector extension is optional in RVB23.
 
 ===== Development Options
 
-The following are new development options intended to become mandatory in RVB24U64:
+The following are new development options intended to become mandatory in a later RVB profile:
 
 - *Zabha* Byte and halfword atomic memory operations.
 - *Zacas* Compare-and-Swap instructions.
