@@ -145,9 +145,6 @@ NOTE: V was optional in RVA22U64.
 
 ==== RVA23U64 Optional Extensions
 
-RVA23U64 has thirteen profile options (Zvkng, Zvksg, Zabha, Zacas, Ziccamoc, Zvbc, Zfh, Zbc,
-Zvfh, Zfbfmin, Zvfbfmin, Zvfbfwma, Zama16b).
-
 ===== Localized Options
 
 The following localized options are new in RVA23U64:
@@ -320,11 +317,6 @@ NOTE: The following extensions were required when the hypervisor was implemented
   `hgatp` mode Bare must also be supported.
 
 ==== RVA23S64 Optional Extensions
-
-RVA23U64 has thirteen profile options (Zvkng, Zvksg, Zabha, Zacas,
-Ziccamoc, Zvbc, Zfh, Zbc, Zvfh, Zfbfmin, Zvfbfmin, Zvfbfwma, Zama16b)
-from RVA23U64, and seven privileged options (Sv48, Sv57, Svadu, Zkr,
-Sdtrig, Ssstrict, Svvptc).
 
 ===== Localized Options
 
