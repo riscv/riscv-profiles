@@ -139,7 +139,6 @@ RVB23U64 has 18 profile options listed below.
 
 The following extensions are localized options in both RVA23U64 and RVB23U64:
 
-- *Zvbc* Vector carryless multiply.
 - *Zvkng* Vector crypto NIST Algorithms with GCM.
 - *Zvksg* Vector crypto ShangMi Algorithms with GCM.
 
@@ -175,8 +174,8 @@ The following are new development options intended to become mandatory in a late
 
 ===== Expansion Options
 
-The following extensions are mandatory in RVA23U64 but are expansion
-options in RVB23U64:
+The following are expansion options in RVB23U64, but are mandatory in
+RVA23U64.
 
 - *Zfhmin* Half-precision floating-point.
 
@@ -199,10 +198,10 @@ The following extensions are expansion options in both RVA23U64 and RVB23U64:
 - *Zvfbfmin* Vector BF16 converts.
 - *Zvfbfwma* Vector BF16 widening mul-add.
 
-The following are RVA23U64 development options as they are intended to
-become mandatory in RVA24U64 profile, but are considered expansion
-options for RVB23U64 as they are not intended to be made mandatory in
-RVB profiles:
+The following are expansion options for RVB23U64 as they are not
+intended to be made mandatory in future RVB profiles, but are listed
+as RVA23U64 development options as they are intended to become
+mandatory in future RVA profiles.
 
 - *Zvbc* Vector carryless multiplication.
 
