@@ -1,7 +1,7 @@
 [[riscv-doc-template]]
 :description: Short, text description of spect…
 :company: RISC-V
-:revdate: March 22, 2024
+:revdate: July 13, 2024
 :revnumber: 0.2-draft
 :revremark: This document is in Development stage.  Everything could change before ratification.
 :url-riscv: http://riscv.org
@@ -79,9 +79,7 @@ specified in this family.
 === RVB23U64 Profile
 
 The RVB23U64 profile specifies the ISA features available to user-mode
-execution environments in 64-bit RVB applications processors.  This is
-the most important profile within the application processor family in
-terms of the amount of software that targets this profile.
+execution environments in 64-bit RVB applications processors.
 
 ==== RVB23U64 Mandatory Base
 
@@ -91,7 +89,8 @@ instruction causes a requested trap to the execution environment.
 
 ==== RVB23U64 Mandatory Extensions
 
-The following mandatory extensions are also in RVA22U64.
+The following mandatory extensions in RVB23U64 were also mandatory in
+RVA22U64.
 
 - *M* Integer multiplication and division.
 - *A* Atomic instructions.
@@ -299,8 +298,8 @@ in RVB.
 
 RVB23S64 has the same unprivileged options as RVB23U64,
 
-RVB23S64 has the same seven privileged options (Sv48, Sv57, Svadu,
-Sscofpmf, Zkr, H, Svvptc) as RVA23S64.
+The privileged options in RVB23S64 are listed in the following
+sections.
 
 ===== Localized Options
 
@@ -312,16 +311,14 @@ There are no privileged development options in RVB23S64.
 
 ===== Expansion Options
 
-The following privileged expansion options are mandatory in RVA22S64 but options in RVB23S64:
+The following are privileged expansion options in RVB23S64, but are
+mandatory in RVA23S64:
 
 - *Ssnpm* Pointer masking, with `senvcfg.PME` supporting at minimum,
    settings PMLEN=0 and PMLEN=7.
 
 - *Sspm* Supervisor-mode pointer masking, with the supervisor execution
    environment providing a means to select PMLEN=0 and PMLEN=7 at minimum.
-
-The following hypervisor extension and mandates were also in RVA22S64
-and are available as an expansion option in RVB23S64:
 
 - *H* The hypervisor extension.
 
@@ -352,7 +349,8 @@ When the hypervisor extension is implemented, the following are also mandatory:
   (Ssnpm) is supported then `henvcfg.PME` must support at minimum,
   settings PMLEN=0 and PMLEN=7.
 
-The following privileged expansion options are also present in RVA23S64:
+The following are privileged expansion options in RVB23S64 that are
+also privileged expansion options in RVA23S64:
 
 - *Sv48* Page-based 48-bit virtual-memory system.
 
