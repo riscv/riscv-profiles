@@ -1,7 +1,7 @@
 [[riscv-doc-template]]
 :description: Short, text description of spect…
 :company: RISC-V
-:revdate: March 22, 2024
+:revdate: July 23, 2024
 :revnumber: 0.5-draft
 :revremark: This document is in Development stage.  Everything could change before ratification.
 :url-riscv: http://riscv.org
@@ -184,6 +184,8 @@ The following expansion options were also present in RVA22U64:
 The following are new expansion options in RVA23U64:
 
 - *Zbc* Scalar carryless multiply.
+- *Zicfilp* Landing Pads.
+- *Zicfiss* Shadow Stack.
 - *Zvfh* Vector half-precision floating-point.
 - *Zfbfmin* Scalar BF16 converts.
 - *Zvfbfmin* Vector BF16 converts.

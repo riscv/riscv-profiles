@@ -1,7 +1,7 @@
 [[riscv-doc-template]]
 :description: Short, text description of spect…
 :company: RISC-V
-:revdate: July 13, 2024
+:revdate: July 23, 2024
 :revnumber: 0.2-draft
 :revremark: This document is in Development stage.  Everything could change before ratification.
 :url-riscv: http://riscv.org
@@ -193,6 +193,8 @@ The following extensions are expansion options in both RVA23U64 and RVB23U64:
 
 - *Zfh* Scalar half-precision floating-point.
 - *Zbc* Scalar carryless multiplication.
+- *Zicfilp* Landing Pads.
+- *Zicfiss* Shadow Stack.
 - *Zvfh* Vector half-precision floating-point.
 - *Zfbfmin* Scalar BF16 converts.
 - *Zvfbfmin* Vector BF16 converts.
