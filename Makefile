@@ -13,11 +13,12 @@
 # the Doc Template for RISC-V Extensions.
 
 DOCS := \
-	profiles.adoc
+	rva23-profile.adoc \
+	rvb23-profile.adoc \
 
 DATE ?= $(shell date +%Y-%m-%d)
-VERSION ?= 1.1
-REVMARK ?= Ratified
+VERSION ?= 0.5
+REVMARK ?= Candidate for Freeze Milestone Vote
 DOCKER_IMG := riscvintl/riscv-docs-base-container-image:latest
 ifneq ($(SKIP_DOCKER),true)
 	DOCKER_CMD := docker run --rm -v ${PWD}:/build -w /build \
@@ -39,7 +40,7 @@ OPTIONS := --trace \
            -a compress \
            -a mathematical-format=svg \
            -a revnumber=${VERSION} \
-           -a revremark=${REVMARK} \
+           -a revremark=\"${REVMARK}\" \
            -a revdate=${DATE} \
            -a pdf-fontsdir=docs-resources/fonts \
            -a pdf-theme=docs-resources/themes/riscv-pdf.yml \

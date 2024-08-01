@@ -9,8 +9,8 @@
 :preface-title: Preamble
 :colophon:
 :appendix-caption: Appendix
-:imagesdir: images
-:title-logo-image: image:riscv-images/risc-v_logo.png[pdfwidth=3.25in,align=center]
+:imagesdir: ../docs-resources/images
+:title-logo-image: image:risc-v_logo.png["RISC-V International Logo",pdfwidth=3.25in,align=center]
 // Settings:
 :experimental:
 :reproducible:
@@ -47,9 +47,9 @@ endif::[]
 //: This is the Preamble
 
 [WARNING]
-.This document is in the development state.
+.This document has been prepared for the Freeze Milestone vote.
 ====
-Do not use for implementations.  Assume everything can change.
+Incompatible changes are unlikely but remain possible.
 ====
 
 include::rva-profile-overview-body.adoc[]
