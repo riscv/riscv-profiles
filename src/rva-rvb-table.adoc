@@ -1,0 +1,91 @@
+[cols="^2,^10,^10,^10,^10,^10", options="header"]
+|===
+| # | Extension | RVA23U64 | RVA23S64 | RVB23U64 | RVB23S64
+
+| 1 | RV64I | mandatory base, little endian | mandatory base, little endian  | mandatory base, little endian  | mandatory base, little endian
+| 2 | A | mandatory | mandatory | mandatory | mandatory
+| 3 | C | mandatory | mandatory | mandatory | mandatory
+| 4 | D | mandatory | mandatory | mandatory | mandatory
+| 5 | F | mandatory | mandatory | mandatory | mandatory
+| 6 | H |  |mandatory |  |expansion
+| 7 | M | mandatory | mandatory | mandatory | mandatory
+| 8 | Sdtrig | | expansion | | expansion
+| 9 | Shcounterenw | | mandatory, H | | expansion, H
+| 10 | Shgatpa | | mandatory, H | | expansion, H
+| 11 | Shvstvala | | mandatory, H | | expansion, H
+| 12 | Shvstvecd | | mandatory, H | | expansion, H
+| 13 | Shvsatpa | | mandatory, H | | expansion, H
+| 14 | Shtvala | | mandatory, H | | expansion, H
+| 15 | Ss1p13 | | mandatory | | mandatory
+| 16 | Ssccptr | | mandatory | | mandatory
+| 17 | Sscofpmf | | mandatory | | mandatory
+| 18 | Sscounterenw | | mandatory | | mandatory
+| 19 | Ssstateen | | mandatory, H | | expansion, H
+| 20 | Ssstrict | | expansion | | expansion
+| 21 | Sspm | | expansion | | expansion
+| 22 | Ssnpm | | mandatory | | expansion
+| 23 | Sstc | | mandatory | | mandatory
+| 24 | Sstvala | | mandatory | | mandatory
+| 25 | Sstvecd | | mandatory | | mandatory
+| 26 | Ssu64xl | | mandatory | | mandatory
+| 27 | Supm |mandatory |mandatory |expansion | expansion
+| 28 | Sv39 | | mandatory | | mandatory
+| 29 | Sv48 | | expansion | | expansion
+| 30 | Sv57 | | expansion | | expansion
+| 31 | Svade | | mandatory | | mandatory
+| 32 | Svadu | | expansion | | expansion
+| 33 | Svbare | | mandatory | | mandatory
+| 34 | Svinval | | mandatory | | mandatory
+| 35 | Svnapot | | mandatory | | mandatory
+| 36 | Svpbmt | | mandatory | | mandatory
+| 37 | Svvptc | | expansion | | expansion
+| 38 | V |mandatory |mandatory |expansion |expansion
+| 39 | Za64rs | mandatory | mandatory | mandatory | mandatory
+| 40 | Zabha | development | | development |
+| 41 | Zacas | development | | development |
+| 42 | Zama16b | development | | development |
+| 43 | Zawrs | mandatory | mandatory | mandatory | mandatory
+| 44 | Zba | mandatory | mandatory | mandatory | mandatory
+| 45 | Zbb | mandatory | mandatory | mandatory | mandatory
+| 46 | Zbc | expansion | | expansion |
+| 47 | Zbs | mandatory | mandatory | mandatory | mandatory
+| 48 | Zcb | mandatory | mandatory | mandatory | mandatory
+| 49 | Zfa | mandatory | mandatory | mandatory | mandatory
+| 50 | Zfbfmin | expansion | | expansion |
+| 51 | Zfh | expansion | | expansion |
+| 52 | Zfhmin | mandatory | mandatory | expansion |
+| 53 | Zic64b | mandatory | mandatory | mandatory | mandatory
+| 54 | Zicbop | mandatory | mandatory | mandatory | mandatory
+| 55 | Zicbom | mandatory | mandatory | mandatory | mandatory
+| 56 | Zicboz | mandatory | mandatory | mandatory | mandatory
+| 57 | Ziccamoc | development | | development |
+| 58 | Zicclsm | mandatory | mandatory | mandatory | mandatory
+| 59 | Ziccamoa | mandatory | mandatory | mandatory | mandatory
+| 60 | Ziccrse | mandatory | mandatory | mandatory | mandatory
+| 61 | Zicfilp | expansion | | expansion |
+| 62 | Zicfiss | expansion | | expansion |
+| 63 | Zicif | mandatory | mandatory | mandatory | mandatory
+| 64 | Zcmop | mandatory | mandatory | mandatory | mandatory
+| 65 | Zicond | mandatory | mandatory | mandatory | mandatory
+| 66 | Zicsr | mandatory | mandatory | mandatory | mandatory
+| 67 | Zifencei | | mandatory | | mandatory
+| 68 | Zihintntl | mandatory | mandatory | mandatory | mandatory
+| 69 | Zihintpause | mandatory | mandatory | mandatory | mandatory
+| 70 | Zihpm | mandatory | mandatory | mandatory | mandatory
+| 71 | Zimop | mandatory | mandatory | mandatory | mandatory
+| 72 | Zkr | | expansion | | expansion
+| 73 | Zkt | mandatory | mandatory | mandatory | mandatory
+| 74 | Zvbb | mandatory | mandatory | expansion |
+| 75 | Zvbc | development | | expansion |
+| 76 | Zvfh | expansion | | expansion |
+| 77 | Zvfhmin | mandatory | mandatory | expansion |
+| 78 | Zvfbfmin | expansion | | expansion |
+| 79 | Zvfbfwma | expansion | | expansion |
+| 80 | Zvkg | | | localized optional |
+| 81 | Zvknc | | | localized optional |
+| 82 | Zvksc | | | localized optional |
+| 83 | Zvksg | localized optional | | localized optional |
+| 84 | Zvkt | mandatory | mandatory | expansion |
+| 85 | Zkn | | | localized optional |
+| 86 | Zks | | | localized optional |
+|===
