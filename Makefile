@@ -17,8 +17,8 @@ DOCS := \
 	rvb23-profile.adoc \
 
 DATE ?= $(shell date +%Y-%m-%d)
-VERSION ?= 0.5
-REVMARK ?= Candidate for Freeze Milestone Vote
+VERSION ?= 0.6
+REVMARK ?= Frozen.  Public review draft.  Changes are unlikely but remain possible.
 DOCKER_IMG := riscvintl/riscv-docs-base-container-image:latest
 ifneq ($(SKIP_DOCKER),true)
 	DOCKER_CMD := docker run --rm -v ${PWD}:/build -w /build \

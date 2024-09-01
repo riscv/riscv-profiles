@@ -1,9 +1,6 @@
 [[riscv-doc-template]]
 :description: Short, text description of spect…
 :company: RISC-V
-:revdate: July 23, 2024
-:revnumber: 0.5
-:revremark: This document is in Development stage.  Everything could change before ratification.
 :url-riscv: http://riscv.org
 :doctype: book
 :preface-title: Preamble
@@ -47,7 +44,7 @@ endif::[]
 //: This is the Preamble
 
 [WARNING]
-.This document has been prepared for the Freeze Milestone vote.
+.This specification is frozen.  This document has been prepared for public review.
 ====
 Incompatible changes are unlikely but remain possible.
 ====
