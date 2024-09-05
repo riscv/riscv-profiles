@@ -461,7 +461,7 @@ of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 - Ss1p13, Supervisor Architecture v1.13
 - Sstc Extension for Supervisor-mode Timer Interrupts
 - Sscofpmf Extension for Count Overflow and Mode-Based Filtering
-- Smstateen Extension for State-enable
+- Smstateen/Ssstateen Extension for State-enable
 - Svvptc Obviating Memory-management Instructions after Marking PTEs valid
 - Svadu Hardware Updating of A/D Bits
 
@@ -490,7 +490,6 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Sstvecd*: `stvec` supports Direct mode
 - *Sstvala*: `stval` provides all needed values
 - *Ssu64xl*: UXLEN=64 must be supported
-- *Ssstateen*: Supervisor-mode view of the state-enable extension
 - *Shcounterenw*: Support writeable enables for any supported counter
 - *Shvstvala*:  `vstval` provides all needed values
 - *Shtvala*:  `htval` provides all needed values
