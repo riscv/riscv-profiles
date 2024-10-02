@@ -937,13 +937,36 @@ NOTE: Technically, Zk is also a privileged-mode option capturing that
 Zkr, Zkn, and Zkt are all implemented.  However, the Zk rollup is less
 descriptive than specifying the individual extensions explicitly.
 
-- *H* The hypervisor extension.
+- *Sha* The augmented hypervisor extension.
+  Sha comprises the following extensions:
 
-When the hypervisor extension is implemented, the following are also mandatory:
+** *H* The hypervisor extension.
 
-- *Ssstateen* Supervisor-mode view of the state-enable extension.  The
+** *Ssstateen* Supervisor-mode view of the state-enable extension.  The
    supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
    state-enable registers must be provided.
+
+** *Shcounterenw* For any `hpmcounter` that is not read-only zero, the corresponding bit in `hcounteren` must be writable.
+
+** *Shvstvala* `vstval` must be written in all cases described above for `stval`.
+
+** *Shtvala* `htval` must be written with the faulting guest physical
+   address in all circumstances permitted by the ISA.
+
+** *Shvstvecd* `vstvec.MODE` must be capable of holding the value 0 (Direct).
+  When `vstvec.MODE`=Direct, `vstvec.BASE` must be capable of holding
+  any valid four-byte-aligned address.
+
+** *Shvsatpa* All translation modes supported in `satp` must be supported in `vsatp`.
+
+** *Shgatpa* For each supported virtual memory scheme SvNN supported in
+  `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
+  `hgatp` mode Bare must also be supported.
+
+NOTE: Sha, Shcounterenw, Shvstvala, Shtvala, Shvstvecd, Shvsatpa, and Shgatpa
+are new extension names.  Sha was introduced after RVA22S64 was ratified, but
+the ratified text required all of Sha's constituent extensions if the optional
+H extension was included.  Hence, offering the Sha option is equivalent.
 
 NOTE: The Smstateen extension specification is an M-mode extension as
 it includes M-mode features, but the supervisor-mode visible
@@ -953,35 +976,6 @@ extension is implemented.  These registers are not mandated or
 supported options without the hypervisor extension, as there are no
 RVA22S64 supported options with relevant state to control in the
 absence of the hypervisor extension.
-
-- *Shcounterenw* For any `hpmcounter` that is not read-only zero, the corresponding bit in `hcounteren` must be writable.
-
-NOTE: This is a new extension name for this feature.
-
-- *Shvstvala* `vstval` must be written in all cases described above for `stval`.
-
-NOTE: This is a new extension name for this feature.
-
-- *Shtvala* `htval` must be written with the faulting guest physical
-   address in all circumstances permitted by the ISA.
-
-NOTE: This is a new extension name for this feature.
-
-- *Shvstvecd* `vstvec.MODE` must be capable of holding the value 0 (Direct).
-  When `vstvec.MODE`=Direct, `vstvec.BASE` must be capable of holding
-  any valid four-byte-aligned address.
-
-NOTE: This is a new extension name for this feature.
-
-- *Shvsatpa* All translation modes supported in `satp` must be supported in `vsatp`.
-
-NOTE: This is a new extension name for this feature.
-
-- *Shgatpa* For each supported virtual memory scheme SvNN supported in
-  `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
-  `hgatp` mode Bare must also be supported.
-
-NOTE: This is a new extension name for this feature.
 
 ==== RVA22S64 Recommendations
 
