@@ -179,7 +179,7 @@ privileged architecture manual.
 - *Zvbc* Vector carryless multiplication.
 - *Zama16b* Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
 
-NOTE: *Ziama16b* This is a new profile-defined extension to represent
+NOTE: *Zama16b* This is a new profile-defined extension to represent
 the presence of the new Misaligned Atomicity Granule feature added in
 Priv-1.13.  The extension name will be added to the PMA section of the
 privileged architecture manual.
