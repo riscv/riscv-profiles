@@ -51,19 +51,7 @@ Incompatible changes are unlikely but remain possible.
 
 include::rva-profile-overview-body.adoc[]
 
-== Profile-Defined Extensions
-
-The RVA23 profile, as with earlier profiles, includes several new
-extensions defined directly in the profile text.  These
-profile-defined extensions name optional features or combinations of
-features that are already present in ratified specifications, but that
-were not previously explicitly named.  Once the profile is ratified,
-these extension definitions will move into the appropriate sections of
-the combined ISA manual. The combined ISA manual was not available at
-the start of this profile definition.  Future profile proposals will
-be presented as an update to the combined ISA manual, with new
-profile-defined extensions provided as edits to the appropriate
-sections of the combined SA manual.
+include::rv-profile-defined-extensions.adoc[]
 
 
 == RVA23 Profiles
@@ -231,8 +219,6 @@ supervisor-mode execution environment in 64-bit applications
 processors.  RVA23S64 is based on privileged architecture version
 1.13.
 
-NOTE: Priv 1.13 is still being defined.
-
 ==== RVA23S64 Mandatory Base
 
 RV64I is the mandatory base ISA for RVA23S64 and is little-endian.
@@ -260,7 +246,7 @@ The following privileged extensions are mandatory:
 
 - *Ss1p13*  Supervisor architecture version 1.13.
 
-NOTE: Ss1p13 supersedes Ss1p12 but is not yet ratified.
+NOTE: Ss1p13 supersedes Ss1p12.
 
 The following privileged extensions were also mandatory in RVA22S64:
 
@@ -312,9 +298,44 @@ at minimum, settings PMLEN=0 and PMLEN=7.
 
 NOTE: Ssu64xl was optional in RVA22.
 
+
 - *Sha* The augmented hypervisor extension.
 
-NOTE: The hypervisor was optional in RVA22.
+NOTE: *Sha* is a new profile-defined extension name to capture the
+full set of features that are mandated to be supported along with the
+*H* extension.  There is no change to the features added by including
+the hypervisor extension in a profile --- the new name is solely to
+simplify the text of the profiles.  The definition has been added to
+the RVA22 profile text, where the hypervisor extension was first
+added, but will be added to the hypervisor section of the combined ISA
+manual.
+
+*Sha* comprises the following extensions:
+
+** *H* The hypervisor extension.
+
+** *Ssstateen* Supervisor-mode view of the state-enable extension.  The
+   supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
+   state-enable registers must be provided.
+
+** *Shcounterenw* For any `hpmcounter` that is not read-only zero, the corresponding bit in `hcounteren` must be writable.
+
+** *Shvstvala* `vstval` must be written in all cases described above for `stval`.
+
+** *Shtvala* `htval` must be written with the faulting guest physical
+   address in all circumstances permitted by the ISA.
+
+** *Shvstvecd* `vstvec.MODE` must be capable of holding the value 0 (Direct).
+  When `vstvec.MODE`=Direct, `vstvec.BASE` must be capable of holding
+  any valid four-byte-aligned address.
+
+** *Shvsatpa* All translation modes supported in `satp` must be supported in `vsatp`.
+
+** *Shgatpa* For each supported virtual memory scheme SvNN supported in
+  `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
+  `hgatp` mode Bare must also be supported.
+
+NOTE: The augmented hypervisor extension (exactly equivalet to *Sha*) was optional in RVA22.
 
 ==== RVA23S64 Optional Extensions
 
@@ -486,6 +507,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Sstvecd*: `stvec` supports Direct mode
 - *Sstvala*: `stval` provides all needed values
 - *Ssu64xl*: UXLEN=64 must be supported
+- *Sha*: Augmented hypervisor extension
 - *Shcounterenw*: Support writeable enables for any supported counter
 - *Shvstvala*:  `vstval` provides all needed values
 - *Shtvala*:  `htval` provides all needed values
