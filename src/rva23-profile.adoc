@@ -348,6 +348,10 @@ The following are new privileged expansion options in RVA23S64
    exception that results in a contained trap to the supervisor-mode
    trap handler.
 
+NOTE: Ssstrict is a new profile-defined extension that restricts the
+behavior of reserved encoding spaces.  The extension will be added to
+the supervisor chapter of the privileged architecture.
+
 NOTE: Ssstrict does not prescribe behavior for the custom encoding
 spaces or CSRs.
 
