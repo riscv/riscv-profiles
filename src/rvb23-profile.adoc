@@ -94,6 +94,7 @@ RVA22U64.
 - *F* Single-precision floating-point instructions.
 - *D* Double-precision floating-point instructions.
 - *C* Compressed instructions.
+- *B* Bit-manipulation instructions.
 - *Zicsr*  CSR instructions.  These are implied by presence of F.
 - *Zicntr* Base counters and timers.
 - *Zihpm* Hardware performance counters.
@@ -108,9 +109,6 @@ RVA22U64.
 - *Za64rs* Reservation sets are contiguous, naturally aligned, and a
    maximum of 64 bytes.
 - *Zihintpause* Pause hint.
-- *Zba* Address generation.
-- *Zbb* Basic bit-manipulation.
-- *Zbs* Single-bit instructions.
 - *Zic64b* Cache blocks must be 64 bytes in size, naturally aligned in the
 address space.
 - *Zicbom* Cache-block management instructions.
@@ -380,6 +378,7 @@ of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 - H Hypervisor Extension
 - Q Extension for Quad-Precision Floating-Point
 - C Extension for Compressed Instructions
+- B Extension for Bit Manipulation
 - V Extension for Vector Computation
 - Zifencei Instruction-Fetch Fence Extension
 - Zicsr Extension for Control and Status Register Access
