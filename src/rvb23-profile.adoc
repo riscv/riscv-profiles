@@ -68,6 +68,16 @@ of binary kernel and binary application software distributions.
 However, individual software ecosystems may build upon RVB profiles to
 produce a more targeted standard interface for a certain market.
 
+== Profile-Defined Extensions
+
+RVB23 is being ratified alongside RVA23, and the same set of new
+profile-defined extensions defined in RVA23 are present in RVB23.
+These profile-defined extensions will move to the combined ISA manual
+after ratification.  Future releases of RVA and RVB profiles might not
+proceed through ratification at the same time, and future
+profile-defined extensions will be presented as an edit to the
+combined ISA manual.
+
 == RVB23 Profiles
 
 Only user-mode (RVB23U64) and supervisor-mode (RVB23S64) profiles are
@@ -458,6 +468,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Ziccamoa*: Main memory supports all atomics in A
 - *Ziccamoc* Main memory supports atomics in Zacas
 - *Zicclsm*: Main memory supports misaligned loads/stores
+- *Zama16b*: Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
 - *Za64rs*: Reservation set size of at most 64 bytes
 - *Za128rs*: Reservation set size of at most 128 bytes
 - *Zic64b*: Cache block size is 64 bytes
@@ -468,9 +479,11 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 - *Sstvecd*: `stvec` supports Direct mode
 - *Sstvala*: `stval` provides all needed values
 - *Ssu64xl*: UXLEN=64 must be supported
+- *Sha*: Augmented hypervisor extension
 - *Shcounterenw*: Support writeable enables for any supported counter
 - *Shvstvala*:  `vstval` provides all needed values
 - *Shtvala*:  `htval` provides all needed values
 - *Shvstvecd*: `vstvec` supports Direct mode
 - *Shvsatpa*: `vsatp` supports all modes supported by `satp`
 - *Shgatpa*: SvNNx4 mode supported for all modes supported by `satp`, as well as Bare
+- *Sstrict*: Unimplemented reserved encodings raise illegal instruction exceptions and no non-conforming extension are present
