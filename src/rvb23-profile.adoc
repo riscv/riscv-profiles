@@ -315,30 +315,9 @@ mandatory in RVA23S64:
 - *Ssnpm* Pointer masking, with `senvcfg.PME` supporting at minimum,
    settings PMLEN=0 and PMLEN=7.
 
-- *H* The hypervisor extension.
+- *Sha* The augmented hypervisor extension.
 
 When the hypervisor extension is implemented, the following are also mandatory:
-
-- *Ssstateen* Supervisor-mode view of the state-enable extension.  The
-   supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
-   state-enable registers must be provided.
-
-- *Shcounterenw* For any `hpmcounter` that is not read-only zero, the corresponding bit in `hcounteren` must be writable.
-
-- *Shvstvala* `vstval` must be written in all cases described above for `stval`.
-
-- *Shtvala* `htval` must be written with the faulting guest physical
-   address in all circumstances permitted by the ISA.
-
-- *Shvstvecd* `vstvec.MODE` must be capable of holding the value 0 (Direct).
-  When `vstvec.MODE`=Direct, `vstvec.BASE` must be capable of holding
-  any valid four-byte-aligned address.
-
-- *Shvsatpa* All translation modes supported in `satp` must be supported in `vsatp`.
-
-- *Shgatpa* For each supported virtual memory scheme SvNN supported in
-  `satp`, the corresponding `hgatp` SvNNx4 mode must be supported.  The
-  `hgatp` mode Bare must also be supported.
 
 - If the hypervisor extension is implemented and pointer masking
   (Ssnpm) is supported then `henvcfg.PME` must support at minimum,
