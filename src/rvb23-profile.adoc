@@ -44,7 +44,7 @@ endif::[]
 //: This is the Preamble
 
 [WARNING]
-.This specification is frozen.  This document has been prepared for public review.
+.This specification is frozen.  This document has been prepared for a ratification vote.
 ====
 Incompatible changes are unlikely but remain possible.
 ====
