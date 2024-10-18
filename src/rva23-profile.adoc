@@ -3,7 +3,6 @@
 :company: RISC-V
 :url-riscv: http://riscv.org
 :doctype: book
-:preface-title: Preamble
 :colophon:
 :appendix-caption: Appendix
 :imagesdir: ../docs-resources/images
@@ -42,12 +41,6 @@ endif::[]
 = RVA23 Profiles
 
 //: This is the Preamble
-
-[WARNING]
-.This specification is frozen.  This document has been prepared for a ratification vote.
-====
-Incompatible changes are unlikely but remain possible.
-====
 
 include::rva-profile-overview-body.adoc[]
 

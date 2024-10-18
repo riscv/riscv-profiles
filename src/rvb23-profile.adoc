@@ -3,7 +3,6 @@
 :company: RISC-V
 :url-riscv: http://riscv.org
 :doctype: book
-:preface-title: Preamble
 :colophon:
 :appendix-caption: Appendix
 :imagesdir: ../docs-resources/images
@@ -41,18 +40,10 @@ endif::[]
 
 = RVB23 Profiles
 
-//: This is the Preamble
-
-[WARNING]
-.This specification is frozen.  This document has been prepared for a ratification vote.
-====
-Incompatible changes are unlikely but remain possible.
-====
-
 == Introduction
 
-This document captures the current proposal for the RVB23 profile
-family. RVB23 is intended to be the first major release of the RVB
+This document specifies the RVB23 profile
+family. RVB23 is the first major release of the RVB
 series of RISC-V Application Processor Profile.
 
 RVB profiles are intended to be used for customized 64-bit application
@@ -70,10 +61,10 @@ produce a more targeted standard interface for a certain market.
 
 == Profile-Defined Extensions
 
-RVB23 is being ratified alongside RVA23, and the same set of new
+RVB23 has been ratified alongside RVA23, and the same set of new
 profile-defined extensions defined in RVA23 are present in RVB23.
-These profile-defined extensions will move to the combined ISA manual
-after ratification.  Future releases of RVA and RVB profiles might not
+These profile-defined extensions will soon move to the combined ISA manual.
+Future releases of RVA and RVB profiles might not
 proceed through ratification at the same time, and future
 profile-defined extensions will be presented as an edit to the
 combined ISA manual.
