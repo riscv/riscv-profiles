@@ -71,7 +71,7 @@ platform-specific.  The separate RVM-CSI effort is tackling
 source-code level portability for certain platform-level features.
 
 A non-goal of RVM23 is to provide maximum flexibility for
-microcontroller developers.  Maximim flexibility can already be
+microcontroller developers.  Maximum flexibility can already be
 achieved using individual RISC-V extensions.  The goal of RVM23 is
 mandate a common set of standard extensions to simplify software
 support.
@@ -154,7 +154,7 @@ make Zalrsc available as a separate option.
 - *F* Single-precision floating-point instructions.
 
 NOTE: This profile does not support Zfinx and related options.  A
-similar set of profiles, tenatively named RVN, would define Zfinx
+similar set of profiles, tentatively named RVN, would define Zfinx
 systems.
 
 - *D* Double-precision floating-point instructions.
