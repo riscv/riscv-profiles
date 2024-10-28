@@ -107,9 +107,7 @@ controversial, but RVM is not intended for the smallest possible
 microcontrollers, and including divide instructions reduces
 optionality.
 
-- *Zba* Address computation.
-- *Zbb* Basic bit manipulation.
-- *Zbs* Single-bit instructions.
+- *B* Bit-manipulation instructions.
 
 - *Zicond* Conditional Zeroing instructions.
 
