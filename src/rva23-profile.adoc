@@ -328,7 +328,7 @@ manual.
   `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
   `hgatp` mode Bare must also be supported.
 
-NOTE: The augmented hypervisor extension (exactly equivalet to Sha) was optional in RVA22.
+NOTE: The augmented hypervisor extension (exactly equivalent to Sha) was optional in RVA22.
 
 ==== RVA23S64 Optional Extensions
 
