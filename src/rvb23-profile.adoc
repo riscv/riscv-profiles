@@ -311,7 +311,7 @@ There are no privileged development options in RVB23S64.
 The following are privileged expansion options in RVB23S64, but are
 mandatory in RVA23S64:
 
-- *Ssnpm* Pointer masking, with `senvcfg.PME` supporting at minimum,
+- *Ssnpm* Pointer masking, with `senvcfg.PMM` supporting at minimum,
    settings PMLEN=0 and PMLEN=7.
 
 - *Sha* The augmented hypervisor extension.
@@ -319,7 +319,7 @@ mandatory in RVA23S64:
 When the hypervisor extension is implemented, the following are also mandatory:
 
 - If the hypervisor extension is implemented and pointer masking
-  (Ssnpm) is supported then `henvcfg.PME` must support at minimum,
+  (Ssnpm) is supported then `henvcfg.PMM` must support at minimum,
   settings PMLEN=0 and PMLEN=7.
 
 The following are privileged expansion options in RVB23S64 that are
