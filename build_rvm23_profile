@@ -1,0 +1,8 @@
+#!/bin/sh
+# The Makefile by default will not build the RVM23 profile, which is still in draft status.
+# This script will set up several useful variables and then invoke the
+# Makefile to build the .pdf and .html for RVM23.
+source=rvm23-profile.adoc
+doc_version=$(grep :revnumber: src/${source} | awk '{print $2}')
+sha_version=$(git rev-parse --short HEAD)
+make VERSION="${doc_version} (SHA ${sha_version})" REVMARK="Draft" DOCS=${source}

@@ -39,7 +39,7 @@ ASCIIDOCTOR_HTML := asciidoctor
 OPTIONS := --trace \
            -a compress \
            -a mathematical-format=svg \
-           -a revnumber=${VERSION} \
+           -a revnumber=\"${VERSION}\" \
            -a revremark=\"${REVMARK}\" \
            -a revdate=${DATE} \
            -a pdf-fontsdir=docs-resources/fonts \
