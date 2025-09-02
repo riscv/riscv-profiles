@@ -14,11 +14,12 @@
 
 DOCS := \
 	rva23-profile.adoc \
+	rvya25-profile.adoc \
 	rvb23-profile.adoc \
 
 DATE ?= $(shell date +%Y-%m-%d)
-VERSION ?= 1.0
-REVMARK ?= This document is in Ratified state.
+VERSION ?= 0.1
+REVMARK ?= This document is in the Preliminary state.
 DOCKER_IMG := riscvintl/riscv-docs-base-container-image:latest
 ifneq ($(SKIP_DOCKER),true)
 	DOCKER_CMD := docker run --rm -v ${PWD}:/build -w /build \
