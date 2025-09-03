@@ -119,78 +119,72 @@ address space.
 - *Zfa* Additional floating-Point instructions.
 - *Zawrs* Wait-on-reservation-set instructions.
 
-NOTE: the combination of "C" and "D" is incompatible with RVY as Zcd is an incompatible extension.
+NOTE: The combination of "C" and "D" is incompatible with RVY as Zcd is an incompatible extension.
 
 Therefore the following mandatory extension is included instead:
 
 - *Zca* Compressed encodings excluding floating point loads and stores, including capability loads and stores for RVY
 
-The following mandatory extension is RVY (CHERI) specific:
+The following mandatory extension is RVY specific:
 
 - *Zys* Sentry definition
-- *Zabhlrsc* Byte and half-word load-reserved and store conditional
 
-The following extension is incompatible with RVY:
+The following mandatory extension is in addition to RVA23U64:
+
+- *Zabhlrsc* Byte and halfword load-reserved and store conditional
+
+The following development option from RVA23U645 is mandatory in RVYA25U64:
+
+- *Zabha* Byte and halfword atomic memory operations.
+
+The following extension is mandatory in RVA23 but is _incompatible_ with RVY:
 
 - *Supm* Pointer masking, with the execution environment providing a means to
    select PMLEN=0 and PMLEN=7 at minimum.
 
-
-   #need to continue from here#
+NOTE: How to benefit from the combination of pointer masking and CHERI is a research topic.
 
 ==== RVYA25U64 Optional Extensions
 
 ===== Localized Options
 
-The following localized options are taken from RVA23:
+The following localized options are taken from RVA23U64:
 
 - *Zvkng* Vector crypto NIST algorithms with GCM.
 - *Zvksg* Vector crypto ShangMi algorithms with GCM.
 
 ===== Development Options
 
-The following are new development options intended to become mandatory in a future RVYA profile.
+The following are new development options intended to become mandatory in a future RVA/RVYA profile.
 
-- *Zabha* Byte and halfword atomic memory operations.
 - *Zacas* Compare-and-Swap instructions.
 - *Ziccamoc* Main memory regions with both the cacheability and coherence PMAs
   must provide `AMOCASQ` level PMA support.
-
-NOTE: Ziccamoc is a new profile-defined extension that ensures
-Compare and Swap instructions are properly supported in main memory
-regions.  The extension will be added to the PMA section of the
-privileged architecture manual.
-
 - *Zvbc* Vector carryless multiplication.
 - *Zama16b* Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
-
-NOTE: Zama16b is a new profile-defined extension that represents
-the presence of the new Misaligned Atomicity Granule feature added in
-Sm1p13.  The extension will be added to the PMA section of the
-privileged architecture manual.
 
 ===== Expansion Options
 
 The following expansion options were also present in RVA22U64:
 
 - *Zfh* Scalar half-precision floating-point.
-
-The following are new expansion options in RVYA25U64:
-
 - *Zbc* Scalar carryless multiply.
-- *Zicfilp* Landing Pads.
-- *Zicfiss* Shadow Stack.
 - *Zvfh* Vector half-precision floating-point.
 - *Zfbfmin* Scalar BF16 converts.
 - *Zvfbfmin* Vector BF16 converts.
 - *Zvfbfwma* Vector BF16 widening mul-add.
 
+NOTE: *Zicfilp* Landing Pads, and *Zicfiss* Shadow Stack are redundant for CHERI, and so are currently listed as incompatible.
+ Developing versions of these extensions which will strengthen security in an RVY system is a research topic.
+
 ===== Transitory Options
 
-There are no transitory options in RVYA25U64.
+The RYA25U64 hybrid options are transitory as over time it is expected that the compatibility requirement will disappear.
 
-NOTE: Scalar crypto is no longer an option in RVYA25U64, though the Zbc
-extension has now been exposed as an expansion option.
+- *Zyhybrid* Support for RV64I base architecture
+
+NOTE: Implementing *Zyhybrid* requires that the implementation supports the full RVA23U64 profile.
+
 
 ==== RVYA25U64 Recommendations
 
@@ -231,10 +225,6 @@ The following privileged extensions are mandatory:
 
 - *Ss1p13*  Supervisor architecture version 1.13.
 
-NOTE: Ss1p13 supersedes Ss1p12.
-
-The following privileged extensions were also mandatory in RVA22S64:
-
 - *Svbare* The `satp` mode Bare must be supported.
 
 - *Sv39* Page-based 39-bit virtual-Memory system.
@@ -263,64 +253,29 @@ The following privileged extensions were also mandatory in RVA22S64:
 
 - *Svinval* Fine-grained address-translation cache invalidation.
 
-The following are new mandatory extensions:
-
 - *Svnapot* NAPOT translation contiguity.
-
-NOTE: Svnapot was optional in RVA22.
 
 - *Sstc* supervisor-mode timer interrupts.
 
-NOTE: Sstc was optional in RVA22.
-
 - *Sscofpmf* count overflow and mode-based filtering.
-
-- *Ssnpm* Pointer masking, with `senvcfg.PMM` and `henvcfg.PMM` supporting,
-at minimum, settings PMLEN=0 and PMLEN=7.
 
 - *Ssu64xl* `sstatus.UXL` must be capable of holding the value 2
 (i.e., UXLEN=64 must be supported).
 
-NOTE: Ssu64xl was optional in RVA22.
-
-
 - *Sha* The augmented hypervisor extension.
 
-NOTE: Sha is a new profile-defined extension that captures the
-full set of features that are mandated to be supported along with the
-H extension.  There is no change to the features added by including
-the hypervisor extension in a profile--the new name is solely to
-simplify the text of the profiles.  The definition has been added to
-the RVA22 profile text, where the hypervisor extension was first
-added, but will be added to the hypervisor section of the combined ISA
-manual.
+NOTE: Sha is defined in the RVA23 profile document.
 
-*Sha* comprises the following extensions:
+The following mandatory extension is RVY25S64 specific:
 
-** *H* The hypervisor extension.
+- *Svy* Read/write access control for capability tags in the page table entries.
 
-** *Ssstateen* Supervisor-mode view of the state-enable extension.  The
-   supervisor-mode (`sstateen0-3`) and hypervisor-mode (`hstateen0-3`)
-   state-enable registers must be provided.
+The following extension is mandatory in RVA23 but is _incompatible_ with RVY:
 
-** *Shcounterenw* For any `hpmcounter` that is not read-only zero, the corresponding bit in `hcounteren` must be writable.
+- *Ssnpm* Pointer masking, with `senvcfg.PMM` and `henvcfg.PMM` supporting,
+at minimum, settings PMLEN=0 and PMLEN=7.
 
-** *Shvstvala* `vstval` must be written in all cases described above for `stval`.
-
-** *Shtvala* `htval` must be written with the faulting guest physical
-   address in all circumstances permitted by the ISA.
-
-** *Shvstvecd* `vstvec.MODE` must be capable of holding the value 0 (Direct).
-  When `vstvec.MODE`=Direct, `vstvec.BASE` must be capable of holding
-  any valid four-byte-aligned address.
-
-** *Shvsatpa* All translation modes supported in `satp` must be supported in `vsatp`.
-
-** *Shgatpa* For each supported virtual memory scheme SvNN supported in
-  `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
-  `hgatp` mode Bare must also be supported.
-
-NOTE: The augmented hypervisor extension (exactly equivalent to Sha) was optional in RVA22.
+NOTE: How to benefit from the combination of pointer masking and CHERI is a research topic.
 
 ==== RVYA25S64 Optional Extensions
 
@@ -330,11 +285,13 @@ There are no privileged localized options in RVYA25S64.
 
 ===== Development Options
 
-There are no privileged development options in RVYA25S64.
+There privileged development options in RVYA25S64.
+
+- *Svucrg* Page-based revocation (preventing use-after-free in virtual memory systems).
+
+- *Svucrglct* (implies *Svucrg*) checking loaded capability tags before taking exceptions to optimize revocation.
 
 ===== Expansion Options
-
-The following privileged expansion options were present in RVA22S64:
 
 - *Sv48* Page-based 48-bit virtual-memory system.
 
@@ -342,9 +299,7 @@ The following privileged expansion options were present in RVA22S64:
 
 - *Zkr*  Entropy CSR.
 
-The following are new privileged expansion options in RVYA25S64
-
-- *Svadu* Hardware A/D bit updates.
+- *Svadu* Hardware A/D bit updates, and RVY revocation updates if Svucrg is implemented.
 
 - *Sdtrig* Debug triggers.
 
@@ -354,35 +309,25 @@ The following are new privileged expansion options in RVYA25S64
    exception that results in a contained trap to the supervisor-mode
    trap handler.
 
-NOTE: Ssstrict is a new profile-defined extension that restricts the
-behavior of reserved encoding spaces.  The extension will be added to
-the supervisor chapter of the privileged architecture.
-
-NOTE: Ssstrict does not prescribe behavior for the custom encoding
-spaces or CSRs.
-
-NOTE: Ssstrict definition applies to the execution environment
-claiming to be RVYA25-compatible, which must have the hypervisor
-extension. That execution environment will take a contained trap to
-supervisor-mode (however that trap is implemented, including, but not
-limited to, emulation/delegation in the outer execution
-environment). Ssstrict (and all the other RVYA25 mandates and options)
-do not apply to any guest VMs run by a hypervisor. An RVYA25 hypervisor
-can provide guest VMs that are also RVYA25-compatible but with an
-expanded set of emulated standard instructions. An RVYA25 hypervisor
-can also choose to implement guest VMs that are not RVYA25 compatible
-(e.g., lacking H, or only RVA20).
-
+NOTE: The RVA23 profile contains more details of Ssstrict.
 
 - *Svvptc* Transitions from invalid to valid PTEs will be visible in
    bounded time without an explicit memory-management fence.
 
+The following extension is an expansion option in RVA23 but is _incompatible_ with RVY:
+
 - *Sspm* Supervisor-mode pointer masking, with the supervisor execution
    environment providing a means to select PMLEN=0 and PMLEN=7 at minimum.
 
+NOTE: How to benefit from the combination of pointer masking and RVY is a research topic.
+
 ===== Transitory Options
 
-There are no privileged transitory options in RVYA25S64.
+The RYA25S64 hybrid options are transitory as over time it is expected that the compatibility requirement will disappear.
+
+- *Smyre* Support for enabling CHERI at different privilege levels (implies Zyhbrid)
+
+NOTE: Implementing *Smyre* requires that the implementation supports the full RVA23S64 profile.
 
 ==== RVYA25S64 Recommendations
 
@@ -390,7 +335,19 @@ There are no privileged transitory options in RVYA25S64.
   illegal-instruction exceptions when attempting to execute
   unimplemented opcodes or access unimplemented CSRs.
 
+- Implementions which support Zyhbrid are strongly recommended
+ to support Smyre.
+
 == Glossary of ISA Extensions
+
+The following unprivileged (and unratified) ISA extension is RVY specific:
+
+- *Zys* Sentry definition
+- *Zyhybrid* Support for RV64I base architecture
+
+The following unprivileged (and unratified) ISA extension is generalpurpose but added for CHERI software:
+
+- *Zabhlrsc* Byte and halfword load-reserved and store conditional
 
 The following unprivileged ISA extensions are defined in Volume I
 of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
@@ -443,6 +400,13 @@ of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 - Zvkng - NIST Algorithm Suite with GCM
 - Zvksg - ShangMi Algorithm Suite with GCM
 - Zvkt - Vector Data-Independent Execution Latency
+
+The following privileged (and unratified) ISA extensions are RVY specific:
+
+- *Smyre* Support for enabling CHERI at different privilege levels (implies Zyhbrid)
+- *Svy* Read/write access control for capability tags in the page table entries.
+- *Svucrg* Page-based revocation (preventing use-after-free in virtual memory systems).
+- *Svucrglct* (implies *Svucrg*) checking loaded capability tags before taking exceptions to optimize revocation.
 
 The following privileged ISA extensions are defined in Volume II
 of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
