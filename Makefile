@@ -14,7 +14,6 @@
 
 DOCS := \
 	rva23-profile.adoc \
-	rvya25-profile.adoc \
 	rvb23-profile.adoc \
 
 DATE ?= $(shell date +%Y-%m-%d)
