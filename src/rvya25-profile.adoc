@@ -169,8 +169,9 @@ The following expansion options were also present in RVA22U64:
 - *Zfbfmin* Scalar BF16 converts.
 - *Zvfbfmin* Vector BF16 converts.
 - *Zvfbfwma* Vector BF16 widening mul-add.
+- *Zicfilp* Landing Pads
 
-NOTE: *Zicfilp* Landing Pads, and *Zicfiss* Shadow Stack are redundant for CHERI, and so are currently listed as incompatible.
+ NOTE: *Zicfiss* Shadow Stack is incompatible with RVY.
  Developing versions of these extensions which will strengthen security in an RVY system is a research topic.
 
 ===== Transitory Options
