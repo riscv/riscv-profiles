@@ -120,8 +120,7 @@ address space.
 - *Zfa* Additional floating-Point instructions.
 - *Zawrs* Wait-on-reservation-set instructions.
 
-
-The following mandatory extension is RVY specific:
+The following mandatory extension is RVY specific, but may be replaced over time if a better scheme is developed:
 
 - *Zys* Sentry definition
 
@@ -182,7 +181,6 @@ The RYA25U64 hybrid options are transitory as over time it is expected that the 
 - *Zyhybrid* Support for RV64I base architecture
 
 NOTE: Implementing *Zyhybrid* requires that the implementation supports the full RVA23U64 profile.
-
 
 ==== RVYA25U64 Recommendations
 
@@ -264,13 +262,16 @@ The following privileged extensions are mandatory:
 
 NOTE: Sha is defined in the RVA23 profile document.
 
-
 The following extension is mandatory in RVA23 but is _incompatible_ with RVY:
 
 - *Ssnpm* Pointer masking, with `senvcfg.PMM` and `henvcfg.PMM` supporting,
 at minimum, settings PMLEN=0 and PMLEN=7.
 
 NOTE: How to benefit from the combination of pointer masking and CHERI is a research topic.
+
+The following extension RVY specific, is mandatory in RVYA25S64, but may be replaced over time if a better scheme is developed:
+
+- *Svucrg* Page-based revocation (preventing use-after-free in virtual memory systems).
 
 ==== RVYA25S64 Optional Extensions
 
@@ -280,9 +281,7 @@ There are no privileged localized options in RVYA25S64.
 
 ===== Development Options
 
-There privileged development options in RVYA25S64.
-
-- *Svucrg* Page-based revocation (preventing use-after-free in virtual memory systems).
+There is one privileged development options in RVYA25S64.
 
 - *Svucrglct* (implies *Svucrg*) checking loaded capability tags before taking exceptions to optimize revocation.
 
