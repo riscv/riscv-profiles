@@ -262,9 +262,6 @@ The following privileged extensions are mandatory:
 
 NOTE: Sha is defined in the RVA23 profile document.
 
-The following mandatory extension is RVY25S64 specific:
-
-- *Svy* Read/write access control for capability tags in the page table entries.
 
 The following extension is mandatory in RVA23 but is _incompatible_ with RVY:
 
