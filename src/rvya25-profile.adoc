@@ -85,6 +85,7 @@ The following mandatory extensions are also mandatory in RVA23U64.
 - *A* Atomic instructions.
 - *F* Single-precision floating-point instructions.
 - *D* Double-precision floating-point instructions.
+- *C* Compressed instructions.
 - *B* Bit-manipulation instructions.
 - *Zicsr*  CSR instructions.  These are implied by presence of F.
 - *Zicntr* Base counters and timers.
@@ -119,11 +120,6 @@ address space.
 - *Zfa* Additional floating-Point instructions.
 - *Zawrs* Wait-on-reservation-set instructions.
 
-NOTE: The combination of "C" and "D" is incompatible with RVY as Zcd is an incompatible extension.
-
-Therefore the following mandatory extension is included instead:
-
-- *Zca* Compressed encodings excluding floating point loads and stores, including capability loads and stores for RVY
 
 The following mandatory extension is RVY specific:
 
