@@ -318,9 +318,7 @@ NOTE: How to benefit from the combination of pointer masking and RVY is a resear
 
 The RYA25S64 hybrid options are transitory as over time it is expected that the compatibility requirement will disappear.
 
-- *Smyre* Support for enabling CHERI at different privilege levels (implies Zyhybrid)
-
-NOTE: Implementing *Smyre* requires that the implementation supports the full RVA23S64 profile.
+- *Zyhybrid for privileged architectures* Support for enabling CHERI at different privilege levels (implies, and implied by Zyhybrid)
 
 ==== RVYA25S64 Recommendations
 
