@@ -327,9 +327,6 @@ The RYA25S64 hybrid options are transitory as over time it is expected that the 
   illegal-instruction exceptions when attempting to execute
   unimplemented opcodes or access unimplemented CSRs.
 
-- Implementions which support Zyhbrid are strongly recommended
- to support Smyre.
-
 == Glossary of ISA Extensions
 
 The following unprivileged (and unratified) ISA extension is RVY specific:
