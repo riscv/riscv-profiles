@@ -139,6 +139,7 @@ The following extension is mandatory in RVA23 but is _incompatible_ with RVY:
    select PMLEN=0 and PMLEN=7 at minimum.
 
 NOTE: How to benefit from the combination of pointer masking and CHERI is a research topic.
+ RVY harts which also implement Zyhybrid can make use of pointer masking.
 
 ==== RVYA25U64 Optional Extensions
 
