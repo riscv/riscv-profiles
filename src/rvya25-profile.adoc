@@ -173,7 +173,6 @@ The following expansion options were also present in RVA22U64:
 - *Zicfilp* Landing Pads
 
  NOTE: *Zicfiss* Shadow Stack is incompatible with RVY.
- Developing versions of these extensions which will strengthen security in an RVY system is a research topic.
 
 ===== Transitory Options
 
@@ -320,6 +319,7 @@ The RYA25S64 hybrid options are transitory as over time it is expected that the 
 
 - *Zyhybrid for privileged architectures* Support for enabling CHERI at different privilege levels (implies, and implied by Zyhybrid)
 
+NOTE: Implementing *Zyhybrid for privileged architectures* requires that the implementation supports the full RVA23S64 profile.
 ==== RVYA25S64 Recommendations
 
 - Implementations are strongly recommended to raise
