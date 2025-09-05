@@ -120,15 +120,16 @@ address space.
 - *Zfa* Additional floating-Point instructions.
 - *Zawrs* Wait-on-reservation-set instructions.
 
-The following mandatory extension is RVY specific, but may be replaced over time if a better scheme is developed:
+The following mandatory extensions are RVY specific, but may be replaced over time with binary compatible alternatives if better schemes are developed:
 
 - *Zys* Sentry definition
+- *Zylevels* Capability flow control
 
 The following mandatory extension is in addition to RVA23U64:
 
 - *Zabhlrsc* Byte and halfword load-reserved and store conditional
 
-The following development option from RVA23U645 is mandatory in RVYA25U64:
+The following development option from RVA23U645 is mandatory in RVYA25U64, as it is naturally paired with Zabhlrsc:
 
 - *Zabha* Byte and halfword atomic memory operations.
 
@@ -267,7 +268,7 @@ The following extension is mandatory in RVA23 but is _incompatible_ with RVY:
 - *Ssnpm* Pointer masking, with `senvcfg.PMM` and `henvcfg.PMM` supporting,
 at minimum, settings PMLEN=0 and PMLEN=7.
 
-The following extension RVY specific, is mandatory in RVYA25S64, but may be replaced over time if a better scheme is developed:
+The following extension RVY specific, is mandatory in RVYA25S64, but may be replaced over time by a binary compatible alternative if a better scheme is developed:
 
 - *Svucrg* Page-based revocation (preventing use-after-free in virtual memory systems).
 
