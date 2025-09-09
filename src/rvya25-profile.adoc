@@ -120,12 +120,18 @@ address space.
 - *Zfa* Additional floating-Point instructions.
 - *Zawrs* Wait-on-reservation-set instructions.
 
+
+The following mandatory extension is RVY specific and specifies the capability encoding format:
+
+-* Zydefaultcap* Default capability encoding (visible to software as uycfg.base=0).
+
 The following mandatory extensions are RVY specific, but may be replaced over time with binary compatible alternatives if better schemes are developed:
 
 - *Zys* Sentry definition
-- *Zylevels* Capability flow control
+- *Zylevels1* 2-level Capability Information Flow Control (visible to software as uycfg.features=1).
 
 The following mandatory extension is in addition to RVA23U64:
+
 
 - *Zabhlrsc* Byte and halfword load-reserved and store conditional
 
