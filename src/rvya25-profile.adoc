@@ -124,7 +124,7 @@ address space.
 
 The following mandatory extension is RVY specific and specifies the capability encoding format:
 
--* Zydefaultcap* Default capability encoding (visible to software as uycfg.base=0).
+- *Zydefaultcap* Default capability encoding (visible to software as uycfg.base=0).
 
 The following mandatory extensions are RVY specific, but may be replaced over time with binary compatible alternatives if better schemes are developed:
 
@@ -165,13 +165,14 @@ The following expansion options were also present in RVA22U64:
 
 - *Zfh* Scalar half-precision floating-point.
 - *Zbc* Scalar carryless multiply.
+- *Zicfilp* Landing Pads
+
+ NOTE: Zicfiss Shadow Stack is currently incompatible with RVY, an RVY version may be available in the future.
+
 - *Zvfh* Vector half-precision floating-point.
 - *Zfbfmin* Scalar BF16 converts.
 - *Zvfbfmin* Vector BF16 converts.
 - *Zvfbfwma* Vector BF16 widening mul-add.
-- *Zicfilp* Landing Pads
-
- NOTE: *Zicfiss* Shadow Stack is incompatible with RVY.
 
 ===== Transitory Options
 
@@ -209,12 +210,6 @@ The following unprivileged extensions are mandatory:
 mandatory unprivileged extensions in RVYA25U64.
 
 - *Zifencei*  Instruction-Fetch Fence.
-
-NOTE: Zifencei is mandated as it is the only standard way to support
-instruction-cache coherence in RVYA25 application processors.  A new
-instruction-cache coherence mechanism is under development
-(tentatively named Zjid) which might be added as an option in the
-future.
 
 The following privileged extensions are mandatory:
 
@@ -313,6 +308,7 @@ The RYA25S64 hybrid options are transitory as over time it is expected that the 
 - *Zyhybrid for privileged architectures* Support for enabling CHERI at different privilege levels (implies, and implied by Zyhybrid)
 
 NOTE: Implementing *Zyhybrid for privileged architectures* requires that the implementation supports the full RVA23S64 profile.
+
 ==== RVYA25S64 Recommendations
 
 - Implementations are strongly recommended to raise
@@ -321,12 +317,12 @@ NOTE: Implementing *Zyhybrid for privileged architectures* requires that the imp
 
 == Glossary of ISA Extensions
 
-The following unprivileged (and unratified) ISA extension is RVY specific:
+The following unprivileged A extensions are RVY specific:
 
 - *Zys* Sentry definition
 - *Zyhybrid* Support for RV64I base architecture
 
-The following unprivileged (and unratified) ISA extension is general-purpose but added for CHERI software:
+The following unprivileged ISA extension is general-purpose but added for CHERI software:
 
 - *Zabhlrsc* Byte and halfword load-reserved and store conditional
 
@@ -382,7 +378,7 @@ of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 - Zvksg - ShangMi Algorithm Suite with GCM
 - Zvkt - Vector Data-Independent Execution Latency
 
-The following privileged (and unratified) ISA extensions are RVY specific:
+The following privileged ISA extensions are RVY specific:
 
 - *Smyre* Support for enabling CHERI at different privilege levels (implies Zyhbrid)
 - *Svy* Read/write access control for capability tags in the page table entries.
