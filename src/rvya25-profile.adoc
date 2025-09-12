@@ -119,7 +119,8 @@ address space.
 - *Zcb* Additional compressed instructions.
 - *Zfa* Additional floating-Point instructions.
 - *Zawrs* Wait-on-reservation-set instructions.
-
+- *Supm* Pointer masking, with the execution environment providing a means to
+   select PMLEN=0 and PMLEN=7 at minimum.
 
 The following mandatory extension is RVY specific and specifies the capability encoding format:
 
@@ -138,14 +139,6 @@ The following mandatory extension is in addition to RVA23U64:
 The following development option from RVA23U645 is mandatory in RVYA25U64, as it is naturally paired with Zabhlrsc:
 
 - *Zabha* Byte and halfword atomic memory operations.
-
-The following extension is mandatory in RVA23 but is _incompatible_ with RVY:
-
-- *Supm* Pointer masking, with the execution environment providing a means to
-   select PMLEN=0 and PMLEN=7 at minimum.
-
-NOTE: How to benefit from the combination of pointer masking and CHERI is a research topic.
- RVY harts which also implement Zyhybrid can make use of pointer masking.
 
 ==== RVYA25U64 Optional Extensions
 
@@ -261,17 +254,15 @@ The following privileged extensions are mandatory:
 
 - *Sscofpmf* count overflow and mode-based filtering.
 
+- *Ssnpm* Pointer masking, with `senvcfg.PMM` and `henvcfg.PMM` supporting,
+at minimum, settings PMLEN=0 and PMLEN=7.
+
 - *Ssu64xl* `sstatus.UXL` must be capable of holding the value 2
 (i.e., UXLEN=64 must be supported).
 
 - *Sha* The augmented hypervisor extension.
 
 NOTE: Sha is defined in the RVA23 profile document.
-
-The following extension is mandatory in RVA23 but is _incompatible_ with RVY:
-
-- *Ssnpm* Pointer masking, with `senvcfg.PMM` and `henvcfg.PMM` supporting,
-at minimum, settings PMLEN=0 and PMLEN=7.
 
 The following extension RVY specific, is mandatory in RVYA25S64, but may be replaced over time by a binary compatible alternative if a better scheme is developed:
 
@@ -312,12 +303,8 @@ NOTE: The RVA23 profile contains more details of Ssstrict.
 - *Svvptc* Transitions from invalid to valid PTEs will be visible in
    bounded time without an explicit memory-management fence.
 
-The following extension is an expansion option in RVA23 but is _incompatible_ with RVY:
-
 - *Sspm* Supervisor-mode pointer masking, with the supervisor execution
    environment providing a means to select PMLEN=0 and PMLEN=7 at minimum.
-
-NOTE: How to benefit from the combination of pointer masking and RVY is a research topic.
 
 ===== Transitory Options
 
