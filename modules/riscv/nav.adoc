@@ -1,0 +1,3 @@
+.RISC-V Profiles
+* xref:riscv-index.adoc[RISC-V Profiles Overview]
+* xref:profiles.adoc[RISC-V Profiles]

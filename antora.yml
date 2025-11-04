@@ -1,0 +1,33 @@
+name: profiles
+title: RISC-V Profiles
+version: latest
+display-version: 'Latest'
+#start_page: ROOT::index.adoc
+nav:
+- modules/rva23/nav.adoc
+- modules/rvb23/nav.adoc
+- modules/riscv/nav.adoc
+
+asciidoc:
+  attributes:
+    doctype: book
+#    chapter-signifier: Section
+#    sectnums: all
+#    sectnumlevels: 5
+    partnums: all
+    part-signifier: Chapter
+    toc:
+    toclevels: 5
+    page-multiple_pdfs: true
+    page-pdf_list:
+      - text: RVA23 Profile  
+        url: ../profiles/_attachments/rva23-profile.pdf
+      - text: RVB23 Profile  
+        url: ../_attachments/rvb23-profile.pdf
+      - text: RISC-V Profile  
+        url: ../_attachments/RISC-V_Profiles.pdf
+
+antora:
+  attributes:
+    partnums:
+    part-signifier: Chapter

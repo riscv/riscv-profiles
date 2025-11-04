@@ -1,0 +1,8 @@
+= RISC-V RVA23 Profile
+:page-layout: default
+
+[.text-center]
+image::risc-v_logo.svg[id="riscvlogo"xs,alt="RISCV"]
+
+[.text-center]
+Version 1.0, 2024-10-17: This document is in Ratified state.

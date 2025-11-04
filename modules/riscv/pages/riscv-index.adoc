@@ -1,0 +1,8 @@
+= RISC-V Profile
+:page-layout: default
+
+[.text-center]
+image::risc-v_logo.svg[id="riscvlogo"xs,alt="RISCV"]
+
+[.text-center]
+Version 1.0, April 2, 2023: This document is in Ratified state.

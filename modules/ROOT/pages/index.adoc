@@ -1,0 +1,14 @@
+= RISC-V Profiles
+:page-layout: default
+:hardbreaks:
+
+[.text-center]
+image::risc-v_logo.svg[id="riscvlogo"xs,alt="RISCV"]
+
+[sidebar]
+.RISC-V Profiles
+--
+* xref:rva23:rva23-index.adoc[RVA23 Profile]
+* xref:rvb23:rvb23-index.adoc[RVB23 Profile]
+* xref:riscv:riscv-index.adoc[RISC-V Profiles]
+--
