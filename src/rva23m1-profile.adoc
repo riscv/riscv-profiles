@@ -1,0 +1,123 @@
+[[riscv-doc-template]]
+:description: RVA23.1 Profiles
+:company: RISC-V
+:url-riscv: http://riscv.org
+:doctype: book
+:colophon:
+:appendix-caption: Appendix
+:imagesdir: ../docs-resources/images
+:title-logo-image: image:risc-v_logo.png["RISC-V International Logo",pdfwidth=3.25in,align=center]
+// Settings:
+:experimental:
+:reproducible:
+:WaveDromEditorApp: wavedrom-cli
+:imagesoutdir: images
+:icons: font
+:lang: en
+:listing-caption: Listing
+:sectnums:
+:sectnumlevels: 5
+:toclevels: 5
+:toc: left
+:source-highlighter: pygments
+ifdef::backend-pdf[]
+:source-highlighter: coderay
+endif::[]
+:data-uri:
+:hide-uri-scheme:
+:stem: latexmath
+:footnote:
+:xrefstyle: short
+:numbered:
+:stem: latexmath
+:le: &#8804;
+:ge: &#8805;
+:ne: &#8800;
+:approx: &#8776;
+:inf: &#8734;
+
+:sectnums!:
+
+= RVA23.1 Profiles
+
+//: This is the Preamble
+
+include::rva-profile-overview-body.adoc[]
+
+include::rv-profile-defined-extensions.adoc[]
+
+
+== RVA23.1 Profiles
+
+The RVA23.1 profiles are intended to align implementations of RISC-V
+64-bit application processors to allow binary software ecosystems to
+plan for future major releases by adding a small number of 
+discoverable coarse-grain options to the existing major release.
+It is not implied that these extensions will be required in the
+next future release, only that these are candidates for that.
+
+This is a minor release of the RVA23 Profile series. As such, they
+do not contain any mandatory extensions and are expected to be
+built on top of the extensions lised in the RVA23 profiles.
+
+Only supervisor-mode (RVA23.1S64) profiles are specified in this family.
+
+=== RVA23.1S64 Profile
+
+The RVA23.1S64 profile specifies the ISA features available to a
+supervisor-mode execution environment in 64-bit applications
+processors.  RVA23.1S64 is designed to be added on to and requires 
+and implementation of RVA23S64 for Mandatory Base and Mandatory 
+Extensions. RVA23.1S64 only provides new Development Options and
+Expansion Options on top of the RVA23S64.
+
+==== RVA23.1S64 Optional Extensions
+
+===== Localized Options
+
+There are no privileged localized options in RVA23S64.
+
+===== Development Options
+
+The following are new privileged development options in RVA23.1S64:
+
+- *Svrsw60t59b* PTE reserved-for-software bits.
+
+- *Ssdbltrap* Double Trap.
+
+- *Sscfg* Supervisor Counter Delegation.
+
+===== Expansion Options
+
+The following are new privileged expansion options in RVA23.1S64:
+
+- *Ssctr* Control Transfer Records, CTR.
+
+NOTE: *Ssctr* also implies inclusion of *Sscsrind* (indirect CSR access)
+
+- *Ssqosid* QoS identifiers.
+
+===== Transitory Options
+
+There are no privileged transitory options in RVA23S64.
+
+==== RVA23.164 Recommendations
+
+- Implementations are strongly recommended to raise
+  illegal-instruction exceptions when attempting to execute
+  unimplemented opcodes or access unimplemented CSRs.
+
+== Glossary of ISA Extensions
+
+The following extensions have not yet been incorporated into the RISC-V
+Instruction Set Manual; the hyperlinks lead to their separate specifications.
+
+- https://riscv.atlassian.net/browse/RVS-3647[Svrsw60t59b]
+- https://riscv.atlassian.net/browse/RVS-1005[Sscfg]
+- https://riscv.atlassian.net/browse/RVS-973[Ssctr]
+
+The following privileged ISA extensions are defined in Volume II
+of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+- https://docs.riscv.org/reference/isa/priv/ssdbltrp.html[Ssdbltrap]
+- https://docs.riscv.org/reference/isa/priv/supervisor.html#ssqosid[Ssqosid]
+- https://docs.riscv.org/reference/isa/priv/indirect-csr.html[Sscsrind]
