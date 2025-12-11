@@ -118,6 +118,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 
 The following privileged ISA extensions are defined in Volume II
 of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+
 - https://docs.riscv.org/reference/isa/priv/ssdbltrp.html[Ssdbltrap]
 - https://docs.riscv.org/reference/isa/priv/supervisor.html#ssqosid[Ssqosid]
 - https://docs.riscv.org/reference/isa/priv/indirect-csr.html[Sscsrind]
