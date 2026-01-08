@@ -58,7 +58,7 @@ in the the next major release.
 
 This is a minor release of the RVA23 Profile series. As such, they
 do not contain any new mandatory extensions and are expected to be
-built on top of the extensions lised in the RVA23 profiles. For
+built on top of the extensions listed in the RVA23 profiles. For
 the sake of simplicity when referring to this profile in code or
 use in a command line argument, all instances of the period will
 be replaced with the lower case letter 'p', as in `rva23p1s64`.
