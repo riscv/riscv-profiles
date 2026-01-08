@@ -123,10 +123,9 @@ NOTE: *Ssctr* also implies inclusion of *Sscsrind* (indirect CSR access)
 
 - *Ssqosid* QoS identifiers.
 
-==== `rvb23p1s64` Recommendations
+===== Transitory Options
 
-- Implementations are strongly recommended to raise illegal-instruction
-  exceptions when attempting to execute unimplemented opcodes.
+There are no privileged transitory options in `rvb23p1s64`.
 
 == Glossary of ISA Extensions
 

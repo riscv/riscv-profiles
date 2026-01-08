@@ -53,8 +53,8 @@ The RVA23.1 profiles are intended to align implementations of RISC-V
 64-bit application processors to allow binary software ecosystems to
 plan for future major releases by adding a small number of 
 discoverable coarse-grain options to the existing major release.
-It is not implied that these extensions will be required in the
-next future release, only that these are candidates for that.
+It is the intetion that these optional extensions will be included
+in the the next major release.
 
 This is a minor release of the RVA23 Profile series. As such, they
 do not contain any new mandatory extensions and are expected to be
@@ -104,12 +104,6 @@ NOTE: *Ssctr* also implies inclusion of *Sscsrind* (indirect CSR access)
 ===== Transitory Options
 
 There are no privileged transitory options in `rva23p1s64`.
-
-==== rva23p1s64 Recommendations
-
-- Implementations are strongly recommended to raise
-  illegal-instruction exceptions when attempting to execute
-  unimplemented opcodes or access unimplemented CSRs.
 
 == Glossary of ISA Extensions
 
