@@ -48,15 +48,8 @@ include::rva-profile-overview-body.adoc[]
 
 This document specifies the RVA23.1 profile
 family. RVA23.1 is the first minor release intended to expand upon
-the RVA23 major release of the RVB series of RISC-V Application 
+the RVA23 major release of the RVA series of RISC-V Application 
 Processor Profile.
-
-RVB profiles are intended to be used for customized 64-bit application
-processors that will run rich OS stacks, but usually as a custom build
-of standard OS source-code distributions.  The approach is to provide
-a large guaranteed set of relatively inexpensive and/or widely
-beneficial features but allow optionality for more expensive and/or
-more targeted extensions.
 
 == RVA23.1 Profiles
 
