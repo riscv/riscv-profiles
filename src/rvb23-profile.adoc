@@ -449,7 +449,6 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 
 - https://github.com/riscv/riscv-v-spec[Zve32x Extension for Embedded Vector Computation (32-bit integer)]
 - https://github.com/riscv/riscv-v-spec[Zve32f Extension for Embedded Vector Computation (32-bit integer, 32-bit FP)]
-- https://github.com/riscv/riscv-v-spec[Zve32d Extension for Embedded Vector Computation (32-bit integer, 64-bit FP)]
 - https://github.com/riscv/riscv-v-spec[Zve64x Extension for Embedded Vector Computation (64-bit integer)]
 - https://github.com/riscv/riscv-v-spec[Zve64f Extension for Embedded Vector Computation (64-bit integer, 32-bit FP)]
 - https://github.com/riscv/riscv-v-spec[Zve64d Extension for Embedded Vector Computation (64-bit integer, 64-bit FP)]
