@@ -38,13 +38,13 @@ endif::[]
 
 :sectnums!:
 
-= RVB23.1 Profiles
+= RVB23.1 Profiles Specification
 
 //: This is the Preamble
 
-include::rva-profile-overview-body.adoc[]
+include::profiles-overview.adoc[]
 
-== Introduction
+== RVB23.1 Profiles Family
 
 This document specifies the RVB23.1 profile
 family. RVB23.1 is the first minor release intended to expand upon
@@ -64,7 +64,7 @@ of binary kernel and binary application software distributions.
 However, individual software ecosystems may build upon RVB profiles to
 produce a more targeted standard interface for a certain market.
 
-== RVB23.1 Profiles
+=== RVB23.1 Profiles
 
 This is a minor release of the RVB23 Profile series. As such, they
 do not contain any new mandatory extensions and are expected to be
@@ -76,25 +76,25 @@ be replaced with the lower case letter 'p', as in `rvb23p1s64`
 Only supervisor-mode (`rvb23p1s64`) profiles are
 specified in this family.
 
-=== `rvb23p1s64` Profile
+==== `rvb23p1s64` Profile
 
 The `rvb23p1s64` profile specifies the ISA features available to a
 supervisor-mode execution environment in 64-bit applications
 processors.  `rvb23p1s64` is based on and requires an rvb23s64
 implementation.
 
-==== `rvb23p1s64` Optional Extensions
+===== `rvb23p1s64` Optional Extensions
 
 `rvb23p1s64` has the same unprivileged options as `rvb23u64`,
 
 The privileged options in `rvb23p1s64` are listed in the following
 sections and are additional options to the `rvb23s64` Profile.
 
-===== Localized Options
+====== Localized Options
 
 There are no privileged localized options in `rvb23p1s64`.
 
-===== Development Options
+====== Development Options
 
 The following are new privileged development options in `rvb23p1s64`:
 
@@ -104,7 +104,7 @@ NOTE: *Svrsw60t59b* is used to avoid optionality in Linux kernel page tables
 
 - *Ssdbltrap* Double Trap, which is included to make trap handling more robust
 
-===== Expansion Options
+====== Expansion Options
 
 The following are new privileged expansion options in `rvb23p1s64`:
 
@@ -116,11 +116,11 @@ NOTE: *Ssctr* also implies inclusion of *Sscsrind* (indirect CSR access)
 
 - *Ssqosid* QoS identifiers.
 
-===== Transitory Options
+====== Transitory Options
 
 There are no privileged transitory options in `rvb23p1s64`.
 
-== Glossary of ISA Extensions
+=== Glossary of ISA Extensions
 
 The following extensions have not yet been incorporated into the RISC-V
 Instruction Set Manual; the hyperlinks lead to their separate specifications.

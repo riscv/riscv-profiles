@@ -1,0 +1,120 @@
+== RISC-V Profiles Overview
+
+Profiles provide named and versioned groupings of a RISC-V base ISA plus RISC-V extensions. Profiles provide guidance to RISC-V processor designers as to which RISC-V features to support, foster a competitive market for RISC-V processor IP cores and devices, and reduce fragmentation to ease ecosystem (i.e., compilers, libraries, debuggers, applications, operating systems, etc.) support. Profiles include RISC-V features that have at least some ISA component or are part of what is typically included in a processor. Non-ISA components of the RISC-V architecture should be addressed through suitable subsystem or platform specifications.
+
+Individual Profiles are grouped into *Profile Releases* which are ratified as one unit. A RISC-V processor implementation can be compliant with a Profile without necessarily being compliant with *all* Profiles defined within a Profile Release, as long as dependencies between Profiles are met. For example, the RVA20 Profile Release includes a U-mode Profile and an S-mode Profile; a RISC-V processor must comply with all Profiles in the Release (RVA20U and RVA20S) to claim to be “RVA20 compliant” but can claim to be “RVA20U-compliant” if it only complies with the RVA20U (but not RVA20S).
+
+Historical note: Profiles were called “collections” for a short period of time (approx 2021) and the name was changed to “Profiles” to align with known industry terminology.
+
+=== Terminology
+
+[cols="1,1"]
+|===
+| Term
+| Meaning
+
+
+| Application Profile Family (RV**A**)
+| A Profile that is intended to be used by a software/hardware ecosystem that supports portable binary application software targeting application processors
+
+| Bespoke Profile Family (RV**B**)
+| A Profile that is intended to be used in bespoke environments, such as those running a Yocto Project variant of Linux, which run captive application software (as opposed to portable binary application software)
+
+| Extension
+| An addition to the base RISC-V ISA, which contains instructions, processor state such as CSRs (Control and Status Registers), and/or architectural behaviors
+
+| Mandatory Extension
+| An extension that **must** be implemented in a processor compliant with the given Profile.
+
+| Optional Extension
+| An extension that is explicitly listed within a given Profile as “Optional”. If implemented, an Optional extension is compliant with the Profile, but its implementation is **not required** to be in compliance with the Profile. It is intended that the software environment provide the support necessary for all extensions identified as Optional in a Profile to function, if implemented.
+
+| Profile Family
+| A set of Profile Releases that target particular markets. For example, the “RVA” Profile Family targets Application processor markets characterized by requiring a high degree of binary-compatibility.
+
+| Profile Release
+| A set of one or more Profiles that belong to the same Profile Family and are ratified as one entity. For example, the RVA20 Profile Release belongs to the RVA Profile Family and RVA20 includes the individual Profiles RVA20U64 and RVA20S64.
+
+| Profile
+| Refers to either the entire RISC-V Profile concept (e.g., title of this document) or as an individual Profile included in a Profile Release such as RVA20U64. The applicable meaning of “Profile” should be evident by the context. An individual “Profile” consists of a RISC-V base ISA (e.g., RV32I, RV64I) and a group of Mandatory and Optional extensions.
+
+| Profile Release Name
+| The name used to reference a given Profile Release (e.g. “RVB23”). (the full Profile naming methodology is described in the Profile Naming section of this Policy document)
+
+| RVI
+| RISC-V International
+
+| TSC
+| RVI’s Technical Steering Committee (the governing committee for this Policy)
+|===
+
+=== Extension Categories
+
+Each extension included in a Profile must be identified as either Mandatory or Optional.
+
+==== Mandatory Extensions
+
+Software intended to be portable across implementations compliant to a given Profile can safely rely on all Mandatory extensions being implemented.
+
+An implementation is provided the flexibility to comply with only a subset of Profiles in a Profile Release. Software should test, as needed, for presence of *each* Profile of a Profile Release and not assume the presence of one Profile of a Profile release implies the presence of other Profiles in that Release.
+
+==== Optional Extensions
+
+Extensions are declared “Optional” in a Profile to explicitly encourage the software ecosystem to support those extensions.
+
+Starting in Oct 2024 (RVA23 and RVB23), “Optional” is further subcategorized as follows:
+
+- Localized:  the presence or use of the extension necessarily differs along geo-political and/or jurisdictional boundaries
+- Development:  a new ISA extension in an early part of its lifecycle, but which is intended to become mandatory in a later generation of the same Profile Family (e.g. RVA)
+- Expansion:  an extension that may have a large implementation cost but is not always needed in a particular platform and the presence/absence of which can be readily handled by a software “discovery” process
+- Transitory:  an extension that needs to be included, but the future of which is not clear – in a later Profile release it may later be dropped entirely or might be upgraded to a Localized, Expansion, or Mandatory extension
+
+Note: Optional extension category(ies) may be added in the future, to support a Deprecation policy
+
+Software is expected to support an Optional extension to the extent necessary to enable the extension to be used by other (potentially less privileged) software.
+
+Specifically, an OS supporting a given Profile is expected to be able to:
+
+- handle any traps generated by an Optional extension
+- properly save and restore any additional architected state included in an Optional extension
+
+Application software claiming to be compliant with a given Profile:
+
+- if intended to be portable across implementations, cannot rely on any Optional extension being implemented; it must determine (“discover”) that an Optional extension is *actually* implemented prior to using it
+- does not need to support Optional extensions that it does not use
+
+Note that two Optional extensions may be mutually incompatible; if so, their incompatibility must be clearly documented in one or both Extension specifications.
+
+Profiles are encouraged to:
+
+- minimize the number of Optional extensions in the Profile
+- provide an appropriate explanation of the motivation for including each Optional extension (the choice of one of the four categories of Optional extension alone may be sufficient, in some cases)
+
+=== “Major” vs. “Minor” Profile Releases
+
+A Major Profile Release adds one or more new Mandatory extensions and may also add new Optional extensions.  A future Deprecation Policy might provide a path for removing previously-Mandatory extensions in a new Major Profile Release.  The contents of a Major Profile release are defined by a Task Group that is chartered specifically to develop and deliver that Major Profile release.
+
+A Minor Profile Release shall only add Optional extensions, change the subcategories of Optional extensions, and make changes allowed by a Deprecation Policy (once one is available). The contents of a Minor Profile release are typically defined using the RVI Fast Track process.
+
+=== “Patch” Profile Releases
+
+A Patch Profile Release makes no substantive changes to a Profile. It typically includes correction of typographical errors, adds clarifying text, or adds non-normative notes.
+
+=== Binary Compatibility between Profile Releases
+
+Each Profile Family has an implicit or explicit policy regarding binary compatibility.  This policy applies consistently across all Profiles created within the same Profile Family.
+
+If the Profile Family does not define an explicit policy regarding binary compatibility the following default (implicit) policies apply to the Family:
+
+- Major releases:
+
+  - For Application (RVA) and Bespoke (RVB) Profile Families:
+
+    - New software (written for a new Major release) may not necessarily run on old hardware (compliant with a previous Major release).  This is because new software may rely on one or more new Mandatory extensions which are not present on old hardware.
+    - A Major release of an Application Profile shall provide forward binary compatibility for software that ran on the previous Major release of the same Profile Family.  This means that Mandatory extensions must continue to be supported in subsequent releases of Application Profiles.  Note that a future Deprecation Policy may create exceptions to the binary compatibility guarantee for Mandatory extensions.
+  - For non-Application Profile Families:
+
+    - A Major release of a non-Application Profile should, whenever possible, provide forward binary compatibility for software that ran on the previous Major release of the same Profile.
+- Minor releases within all Profile Families:
+
+  - New software (written for a new Minor release) should run on any hardware compliant with the same Major release.  This is because new software has to test for the presence of any Optional extension before using it.

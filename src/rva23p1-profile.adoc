@@ -38,20 +38,20 @@ endif::[]
 
 :sectnums!:
 
-= RVA23.1 Profiles
+= RVA23.1 Profiles Specification
 
 //: This is the Preamble
 
-include::rva-profile-overview-body.adoc[]
+include::profiles-overview.adoc[]
 
-== Introduction
+== RVA23.1 Profiles Family
 
 This document specifies the RVA23.1 profile
 family. RVA23.1 is the first minor release intended to expand upon
 the RVA23 major release of the RVA series of RISC-V Application 
 Processor Profile.
 
-== RVA23.1 Profiles
+=== RVA23.1 Profiles
 
 The RVA23.1 profiles are intended to align implementations of RISC-V
 64-bit application processors to allow binary software ecosystems to
@@ -70,7 +70,7 @@ be replaced with the lower case letter 'p', as in `rva23p1s64`.
 Only supervisor-mode (`rva23p1s64`) profiles are specified in this
 family.
 
-=== `rva23p1s64` Profile
+==== `rva23p1s64` Profile
 
 The `rva23p1s64` profile specifies the ISA features available to a
 supervisor-mode execution environment in 64-bit applications
@@ -79,13 +79,13 @@ and implementation of `rva23s64` for Mandatory Base and Mandatory
 Extensions. `rva23p1s64` only provides new Development Options and
 Expansion Options on top of the `rva23s64`.
 
-==== `rva23p1s64` Optional Extensions
+===== `rva23p1s64` Optional Extensions
 
-===== Localized Options
+====== Localized Options
 
 There are no privileged localized options in RVA23S64.
 
-===== Development Options
+====== Development Options
 
 The following are new privileged development options in RVA23.1S64:
 
@@ -95,7 +95,7 @@ The following are new privileged development options in RVA23.1S64:
 
 - *Sscfg* Supervisor Counter Delegation.
 
-===== Expansion Options
+====== Expansion Options
 
 The following are new privileged expansion options in RVA23.1S64:
 
@@ -105,11 +105,11 @@ NOTE: *Ssctr* also implies inclusion of *Sscsrind* (indirect CSR access)
 
 - *Ssqosid* QoS identifiers.
 
-===== Transitory Options
+====== Transitory Options
 
 There are no privileged transitory options in `rva23p1s64`.
 
-== Glossary of ISA Extensions
+=== Glossary of ISA Extensions
 
 The following extensions have not yet been incorporated into the RISC-V
 Instruction Set Manual; the hyperlinks lead to their separate specifications.
