@@ -1,0 +1,12 @@
+RVB profiles are intended to be used for customized 64-bit application
+processors that will run rich OS stacks, but usually as a custom build
+of standard OS source-code distributions.  The approach is to provide
+a large guaranteed set of relatively inexpensive and/or widely
+beneficial features but allow optionality for more expensive and/or
+more targeted extensions.
+
+Unlike the RVA profiles, it is explicitly a non-goal of RVB profiles
+to provide a single standard ISA interface supporting a wide variety
+of binary kernel and binary application software distributions.
+However, individual software ecosystems may build upon RVB profiles to
+produce a more targeted standard interface for a certain market.

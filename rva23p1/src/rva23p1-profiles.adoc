@@ -1,0 +1,75 @@
+== RVA23.1 Profiles Release
+
+This document specifies the RVA23.1 profile
+family. RVA23.1 is the first minor release intended to expand upon
+the RVA23 major release of the RVA Family of RISC-V Application 
+Processor Profile.
+
+include::rva-profile-overview-body.adoc[]
+
+=== RVA23.1 Profiles
+
+This is a minor release of the RVA23 Profile Family. As such, Minor 
+Profiles do not contain any new mandatory extensions and are expected to be
+built on top of the extensions listed in the RVA23 profiles. For
+the sake of simplicity when referring to this profile in code or
+use in a command line argument, all instances of the period will
+be replaced with the lower case letter 'p', as in `rva23p1s64`.
+
+Only supervisor-mode (`rva23p1s64`) profiles are specified in this
+family.
+
+==== `rva23p1s64` Profile
+
+The `rva23p1s64` profile specifies the ISA features available to a
+supervisor-mode execution environment in 64-bit applications
+processors.  `rva23p1s64` is designed to be added on to and requires 
+and implementation of `rva23s64` for Mandatory Base and Mandatory 
+Extensions. `rva23p1s64` only provides new Development Options and
+Expansion Options on top of the `rva23s64`.
+
+===== `rva23p1s64` Optional Extensions
+
+====== Localized Options
+
+There are no privileged localized options in RVA23S64.
+
+====== Development Options
+
+The following are new privileged development options in RVA23.1S64:
+
+- *Svrsw60t59b* PTE reserved-for-software bits.
+
+- *Ssdbltrap* Double Trap.
+
+- *Sscfg* Supervisor Counter Delegation.
+
+====== Expansion Options
+
+The following are new privileged expansion options in RVA23.1S64:
+
+- *Ssctr* Control Transfer Records, CTR.
+
+NOTE: *Ssctr* also implies inclusion of *Sscsrind* (indirect CSR access)
+
+- *Ssqosid* QoS identifiers.
+
+====== Transitory Options
+
+There are no privileged transitory options in `rva23p1s64`.
+
+=== Glossary of ISA Extensions
+
+The following extensions have not yet been incorporated into the RISC-V
+Instruction Set Manual; the hyperlinks lead to their separate specifications.
+
+- https://riscv.atlassian.net/browse/RVS-3647[Svrsw60t59b]
+- https://riscv.atlassian.net/browse/RVS-1005[Sscfg]
+- https://riscv.atlassian.net/browse/RVS-973[Ssctr]
+
+The following privileged ISA extensions are defined in Volume II
+of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+
+- https://docs.riscv.org/reference/isa/priv/ssdbltrp.html[Ssdbltrap]
+- https://docs.riscv.org/reference/isa/priv/supervisor.html#ssqosid[Ssqosid]
+- https://docs.riscv.org/reference/isa/priv/indirect-csr.html[Sscsrind]

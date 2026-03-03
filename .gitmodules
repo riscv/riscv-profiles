@@ -1,3 +1,9 @@
 [submodule "docs-resources"]
 	path = docs-resources
 	url = https://github.com/riscv/docs-resources.git
+[submodule "rva23p1_rvb23p1/docs-resources"]
+	path = rva23p1/docs-resources
+	url = https://github.com/riscv/docs-resources
+[submodule "rvb23p1/docs-resources"]
+	path = rvb23p1/docs-resources
+	url = https://github.com/riscv/docs-resources

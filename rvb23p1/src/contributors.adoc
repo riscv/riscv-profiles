@@ -1,0 +1,7 @@
+== Contributors
+
+This RISC-V specification has been contributed to directly or indirectly by:
+
+[%hardbreaks]
+* David Weaver <david.weaver@akeana.com>
+* James Ball <jameball@qti.qualcomm.com>
