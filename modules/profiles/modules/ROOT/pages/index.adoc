@@ -1,0 +1,14 @@
+image::risc-v_logo.svg[]
+
+== RISC-V Profiles
+
+Version 1.0, April 2, 2023: This document is in Ratified state.
+
+// Preamble
+[WARNING]
+.This document is in the link:http://riscv.org/spec-state[Ratified state]
+====
+No changes are allowed. Any desired or needed changes can be the subject of a
+follow-on new extension. Ratified extensions are never revised.
+====
+

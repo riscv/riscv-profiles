@@ -1,0 +1,11 @@
+name: rvb23
+title: RISC-V RVB23 Profile
+version: v1.0
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/nav.adoc
+
+asciidoc:
+  attributes:
+    page-group: isa
+    more_details_url: https://riscv.atlassian.net/wiki/spaces/HOME/pages/805568757/RVB23+Profile
