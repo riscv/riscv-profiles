@@ -301,7 +301,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 
 - *Ziccif*: Main memory supports instruction fetch with atomicity requirement
 - *Ziccrse*: Main memory supports forward progress on LR/SC sequences
-- *Ziccamoa*: Main memory supports all atomics in A
+- *Ziccamoa*: Main memory supports all atomics in Zaamo
 - *Zicclsm*: Main memory supports misaligned loads/stores
 - *Za64rs*: Reservation set size of at most 64 bytes
 - *Za128rs*: Reservation set size of at most 128 bytes

@@ -104,7 +104,7 @@ RVA22U64.
   fetches of naturally aligned power-of-2 sizes up to min(ILEN,XLEN)
   (i.e., 32 bits for RVB23) are atomic.
 - *Ziccrse* Main memory regions with both the cacheability and coherence PMAs must support RsrvEventual.
-- *Ziccamoa*  Main memory regions with both the cacheability and coherence PMAs must support all atomics in A.
+- *Ziccamoa*  Main memory regions with both the cacheability and coherence PMAs must support all atomics in the Zaamo extension.
 - *Zicclsm* Misaligned loads and stores to main memory regions with both the
   cacheability and coherence PMAs must be supported.
 - *Za64rs* Reservation sets are contiguous, naturally aligned, and a
@@ -455,7 +455,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 
 - *Ziccif*: Main memory supports instruction fetch with atomicity requirement
 - *Ziccrse*: Main memory supports forward progress on LR/SC sequences
-- *Ziccamoa*: Main memory supports all atomics in A
+- *Ziccamoa*: Main memory supports all atomics in Zaamo
 - *Ziccamoc* Main memory supports atomics in Zacas
 - *Zicclsm*: Main memory supports misaligned loads/stores
 - *Zama16b*: Misaligned loads, stores, and AMOs to main memory regions that do not cross a naturally aligned 16-byte boundary are atomic.
