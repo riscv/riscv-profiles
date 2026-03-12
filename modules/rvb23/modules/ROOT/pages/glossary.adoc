@@ -1,7 +1,7 @@
 == Glossary of ISA Extensions
 
 The following unprivileged ISA extensions are defined in Volume I
-of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+of the xref:isa:unpriv:unpriv-index.adoc[RISC-V Instruction Set Manual].
 
 - M Extension for Integer Multiplication and Division
 - A Extension for Atomic Memory Instructions
@@ -54,7 +54,7 @@ of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
 - Zvkt - Vector Data-Independent Execution Latency
 
 The following privileged ISA extensions are defined in Volume II
-of the https://github.com/riscv/riscv-isa-manual[RISC-V Instruction Set Manual].
+of the xref:isa:priv:priv-index.adoc[RISC-V Instruction Set Manual].
 
 - Sv32 Page-based Virtual Memory Extension, 32-bit
 - Sv39 Page-based Virtual Memory Extension, 39-bit
