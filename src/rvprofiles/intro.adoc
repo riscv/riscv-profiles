@@ -1,0 +1,49 @@
+== Introduction
+
+RISC-V was designed to provide a highly modular and extensible
+instruction set, and includes a large and growing set of standard
+extensions.  In addition, users may add their own custom
+extensions. This flexibility can be used to highly optimize a
+specialized design by including only the exact set of ISA features
+required for an application, but the same flexibility also leads to a
+combinatorial explosion in possible ISA choices.  Profiles specify a
+much smaller common set of ISA choices that capture the most value for
+most users, and which thereby enable the software community to focus
+resources on building a rich software ecosystem with application and
+operating system portability across different implementations.
+
+NOTE: Another pragmatic concern is the long and unwieldy ISA strings
+required to encode common sets of extensions, which will continue to
+grow as new extensions are defined.
+
+Each profile is built on a standard base ISA plus a set of mandatory
+ISA extensions, and provides a small set of standard ISA options to
+extend the mandatory components.  Profiles provide a convenient
+shorthand for describing the ISA portions of hardware and software
+platforms, and also guide the development of common software
+toolchains shared by different platforms that use the same profile.
+The intent is that the software ecosystem focus on supporting the
+profiles' mandatory base and standard options, instead of attempting
+to support every possible combination of individual extensions.
+Similarly, hardware vendors should aim to structure their offerings
+around standard profiles to increase the likelihood their designs will
+have mainstream software support.
+
+NOTE: Profiles are not intended to prohibit the use of combinations of
+individual ISA extensions or the addition of custom extensions, which
+can continue to be used for more specialized applications albeit
+without the expectation of widespread software support or portability
+between hardware platforms.
+
+NOTE: As RISC-V evolves over time, the set of ISA features will grow,
+and new platforms will be added that may need different profiles.  To
+manage this evolution, RISC-V is adopting a model of regular annual
+releases of new ISA profiles, following an ISA roadmap managed by the
+RISC-V Technical Steering Committee.  The architecture profiles will
+also be used for branding and to advertise compatibility with the
+RISC-V standard.
+
+This document describes the general structure of RISC-V architecture
+profiles and also the specifics of the first few profiles: RVI20 is a
+generic RISC-V unprivileged software profile, and RVA20 and RVA22 are
+architecture profiles for application processors.

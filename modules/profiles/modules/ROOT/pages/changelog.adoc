@@ -1,15 +1,1 @@
-[preface]
-== Changelog
-
-== Changes made since ratification
-
-- Clarified that Zihpm was optional in RVA20U64 and became mandatory in RVA22U64
-
-== Changes since Public Review version 0.8
-
-- Clarified that profile name can be used as ISA base string
-- Renamed Ssptead to Svade
-- Fixed Ssu64xl to make supporting UXL=64 mandatory
-- Added section listing new extension names in profiles document
-- Added new extension name Sscounterenw
-- Removed outdated text on Zicntr/Zihpm ratification plan
+../../../../../src/rvprofiles/changelog.adoc
