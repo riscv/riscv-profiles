@@ -1,5 +1,7 @@
-image::common::risc-v_logo.svg[]
+[.space-below]
+image::common::risc-v_logo.svg[id="riscvlogo"xs,alt="RISCV"]
 
+[.space-below]
 == RVB23 Profiles
 
 Version 1.0, 2024-10-17:: This document is in Ratified state.

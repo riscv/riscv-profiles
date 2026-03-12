@@ -1,5 +1,5 @@
 name: rva23
-title: RISC-V RVA23 Profile
+title: RVA23 Profile
 version: v1.0
 start_page: ROOT:index.adoc
 nav:
@@ -7,5 +7,6 @@ nav:
 
 asciidoc:
   attributes:
-    page-group: isa
+    page-pdf_url: _attachments/rva23-profile.pdf
     more_details_url: https://riscv.atlassian.net/wiki/spaces/HOME/pages/805240860/RVA23+Profile
+    page-group: isa

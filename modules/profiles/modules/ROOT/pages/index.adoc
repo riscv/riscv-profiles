@@ -1,5 +1,9 @@
-image::common::risc-v_logo.svg[]
+[.space-below]
+image::common::risc-v_logo.svg[id="riscvlogo"xs,alt="RISCV"]
 
+
+
+[.space-below]
 == RISC-V Profiles
 
 Version 1.0, April 2, 2023: This document is in Ratified state.

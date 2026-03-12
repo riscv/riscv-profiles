@@ -1,5 +1,7 @@
-image::common::risc-v_logo.svg[]
+[.space-below]
+image::common::risc-v_logo.svg[id="riscvlogo"xs,alt="RISCV"]
 
+[.space-below]
 == RVA23 Profile
 
 

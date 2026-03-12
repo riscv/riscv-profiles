@@ -7,5 +7,6 @@ nav:
 
 asciidoc:
   attributes:
-    page-group: isa
+    page-pdf_url: _attachments/RISC-V_Profiles.pdf
     more_details_url: https://riscv.atlassian.net/wiki/spaces/HOME/pages/806289411/RISC-V+Profiles
+    page-group: isa
