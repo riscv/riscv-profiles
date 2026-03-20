@@ -7,6 +7,8 @@ nav:
 
 asciidoc:
   attributes:
+    page-group: isa
+    page-card-description: 'Application-class profile requirements.'
+    page-release-date: 'October 2024'
     page-pdf_url: _attachments/rva23-profile.pdf
     more_details_url: https://riscv.atlassian.net/wiki/external/MWRiOWY4ZjBhZjkzNDI2MTk4ZGMxZDhjNjZjOTMyNDk
-    page-group: isa

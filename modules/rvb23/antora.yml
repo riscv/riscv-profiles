@@ -7,6 +7,8 @@ nav:
 
 asciidoc:
   attributes:
+    page-group: isa
+    page-card-description: 'Embedded and edge profile requirements.'
+    page-release-date: 'October 2024'
     page-pdf_url: _attachments/rvb23-profile.pdf
     more_details_url: https://riscv.atlassian.net/wiki/external/OTQ3N2Q3MmQwNDFmNDUxMDlkMzY0NTgyMjk5YTI3MzE
-    page-group: isa

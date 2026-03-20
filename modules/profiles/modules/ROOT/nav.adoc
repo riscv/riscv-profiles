@@ -1,5 +1,5 @@
 * RISC-V Profiles
-** xref:index.adoc[Cover]
+** xref:index.adoc[Title Page]
 ** xref:copyright.adoc[Copyright and License Information]
 ** xref:changelog.adoc[Changelog]
 ** xref:intro.adoc[Introduction]
