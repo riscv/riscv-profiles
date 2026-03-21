@@ -294,7 +294,7 @@ in RVB.
 
 ==== RVB23S64 Optional Extensions
 
-RVB23S64 has the same unprivileged options as RVB23U64,
+RVB23S64 has the same unprivileged options as RVB23U64.
 
 The privileged options in RVB23S64 are listed in the following
 sections.

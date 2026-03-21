@@ -333,6 +333,11 @@ NOTE: The augmented hypervisor extension (exactly equivalent to Sha) was optiona
 
 ==== RVA23S64 Optional Extensions
 
+RVA23S64 has the same unprivileged options as RVA23U64.
+
+The privileged options in RVA23S64 are listed in the following
+sections.
+
 ===== Localized Options
 
 There are no privileged localized options in RVA23S64.
