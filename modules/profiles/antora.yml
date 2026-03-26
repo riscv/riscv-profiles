@@ -7,7 +7,7 @@ nav:
 
 asciidoc:
   attributes:
-    page-group: isa
+    page-group: profile
     page-card-description: 'Base profile definitions and guidance.'
     page-release-date: 'March 2023'
     page-pdf_url: _attachments/RISC-V_Profiles.pdf

@@ -7,7 +7,7 @@ nav:
 
 asciidoc:
   attributes:
-    page-group: isa
+    page-group: profile
     page-card-description: 'Application-class profile requirements.'
     page-release-date: 'October 2024'
     page-pdf_url: _attachments/rva23-profile.pdf
