@@ -54,7 +54,7 @@ of the xref:isa:unpriv:unpriv-index.adoc[RISC-V Instruction Set Manual].
 - Zvkt - Vector Data-Independent Execution Latency
 
 The following privileged ISA extensions are defined in Volume II
-of the xref:isa:priv:priv-index.adoc[RISC-V Instruction Set Manual].
+of the xref:isa:priv:priv-index.adoc[RISC-V Instruction Set Manual]
 
 - Sv32 Page-based Virtual Memory Extension, 32-bit
 - Sv39 Page-based Virtual Memory Extension, 39-bit
@@ -80,6 +80,7 @@ Instruction Set Manual; the hyperlinks lead to their separate specifications.
 
 - https://github.com/riscv/riscv-v-spec[Zve32x Extension for Embedded Vector Computation (32-bit integer)]
 - https://github.com/riscv/riscv-v-spec[Zve32f Extension for Embedded Vector Computation (32-bit integer, 32-bit FP)]
+- https://github.com/riscv/riscv-v-spec[Zve32d Extension for Embedded Vector Computation (32-bit integer, 64-bit FP)]
 - https://github.com/riscv/riscv-v-spec[Zve64x Extension for Embedded Vector Computation (64-bit integer)]
 - https://github.com/riscv/riscv-v-spec[Zve64f Extension for Embedded Vector Computation (64-bit integer, 32-bit FP)]
 - https://github.com/riscv/riscv-v-spec[Zve64d Extension for Embedded Vector Computation (64-bit integer, 64-bit FP)]

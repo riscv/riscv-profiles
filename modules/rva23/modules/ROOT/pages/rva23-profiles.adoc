@@ -210,9 +210,8 @@ The following privileged extensions were also mandatory in RVA22S64:
 
 - *Sstvala* `stval` must be written with the faulting virtual address
   for load, store, and instruction page-fault, access-fault, and
-  misaligned exceptions, and for breakpoint exceptions that are defined to write
-  an address to stval, other than those caused by execution of the `EBREAK` or
-  `C.EBREAK` instructions.
+  misaligned exceptions, and for breakpoint exceptions other than
+  those caused by execution of the `EBREAK` or `C.EBREAK` instructions.
   For virtual-instruction and illegal-instruction exceptions, `stval` must be written with the
   faulting instruction.
 
@@ -235,7 +234,7 @@ NOTE: Sstc was optional in RVA22.
 
 - *Sscofpmf* count overflow and mode-based filtering.
 
-- *Ssnpm* Pointer masking, with `senvcfg.PMM` and `henvcfg.PMM` supporting,
+- *Ssnpm* Pointer masking, with `senvcfg.PME` and `henvcfg.PME` supporting,
 at minimum, settings PMLEN=0 and PMLEN=7.
 
 - *Ssu64xl* `sstatus.UXL` must be capable of holding the value 2
@@ -280,7 +279,7 @@ manual.
   `satp`, the corresponding hgatp SvNNx4 mode must be supported.  The
   `hgatp` mode Bare must also be supported.
 
-NOTE: The augmented hypervisor extension (exactly equivalent to Sha) was optional in RVA22.
+NOTE: The augmented hypervisor extension (exactly equivalet to Sha) was optional in RVA22.
 
 ==== RVA23S64 Optional Extensions
 

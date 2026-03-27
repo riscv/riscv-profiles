@@ -201,9 +201,8 @@ in RVB.
 
 - *Sstvala* `stval` must be written with the faulting virtual address
   for load, store, and instruction page-fault, access-fault, and
-  misaligned exceptions, and for breakpoint exceptions that are defined to write
-  an address to stval, other than those caused by execution of the `EBREAK` or
-  `C.EBREAK` instructions.
+  misaligned exceptions, and for breakpoint exceptions other than
+  those caused by execution of the `EBREAK` or `C.EBREAK` instructions.
   For virtual-instruction and illegal-instruction exceptions, `stval` must be written with the
   faulting instruction.
 
@@ -241,7 +240,7 @@ There are no privileged development options in RVB23S64.
 The following are privileged expansion options in RVB23S64, but are
 mandatory in RVA23S64:
 
-- *Ssnpm* Pointer masking, with `senvcfg.PMM` supporting at minimum,
+- *Ssnpm* Pointer masking, with `senvcfg.PME` supporting at minimum,
    settings PMLEN=0 and PMLEN=7.
 
 - *Sha* The augmented hypervisor extension.
@@ -249,7 +248,7 @@ mandatory in RVA23S64:
 When the hypervisor extension is implemented, the following are also mandatory:
 
 - If the hypervisor extension is implemented and pointer masking
-  (Ssnpm) is supported then `henvcfg.PMM` must support at minimum,
+  (Ssnpm) is supported then `henvcfg.PME` must support at minimum,
   settings PMLEN=0 and PMLEN=7.
 
 The following are privileged expansion options in RVB23S64 that are
