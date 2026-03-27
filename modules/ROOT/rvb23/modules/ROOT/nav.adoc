@@ -1,0 +1,7 @@
+* RVB23 Profile
+** xref:index.adoc[Title Page]
+** xref:copyright.adoc[Copyright and License Information]
+** xref:intro.adoc[Introduction]
+** xref:profile-defined.adoc[Profile-Defined Extensions]
+** xref:rvb23.adoc[RVB23 Profile]
+** xref:glossary.adoc[Glossary of ISA Extensions]

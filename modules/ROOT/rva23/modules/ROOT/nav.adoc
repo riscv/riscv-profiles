@@ -1,0 +1,7 @@
+* RVA23 Profile
+** xref:index.adoc[Title Page]
+** xref:copyright.adoc[Copyright and License Information]
+** xref:rva-profile-overview-body.adoc[RVA Profiles Rationale]
+** xref:rv-profile-defined-extensions.adoc[Profile-Defined Extensions]
+** xref:rva23-profiles.adoc[RVA23 Profile]
+** xref:glossary-of-isa-extensions.adoc[Glossary of ISA Extensions]

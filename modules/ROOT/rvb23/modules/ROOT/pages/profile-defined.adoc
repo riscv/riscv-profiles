@@ -1,0 +1,9 @@
+== Profile-Defined Extensions
+
+RVB23 has been ratified alongside RVA23, and the same set of new
+profile-defined extensions defined in RVA23 are present in RVB23.
+These profile-defined extensions will soon move to the combined ISA manual.
+Future releases of RVA and RVB profiles might not
+proceed through ratification at the same time, and future
+profile-defined extensions will be presented as an edit to the
+combined ISA manual.
