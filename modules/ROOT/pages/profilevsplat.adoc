@@ -1,0 +1,35 @@
+== Profiles versus Platforms
+
+Profiles only describe ISA features, not a complete execution
+environment.
+
+A _software_ _platform_ is a specification for an execution
+environment, in which software targeted for that software platform can
+run.
+
+A _hardware_ _platform_ is a specification for a hardware system
+(which can be viewed as a physical realization of an execution
+environment).
+
+Both software and hardware platforms include specifications for many
+features beyond details of the ISA used by RISC-V harts in the
+platform (e.g., boot process, calling convention, behavior of
+environment calls, discovery mechanism, presence of certain
+memory-mapped hardware devices, etc.).  Architecture profiles factor
+out ISA-specific definitions from platform definitions to allow ISA
+profiles to be reused across different platforms, and to be used by
+tools (e.g., compilers) that are common across many different
+platforms.
+
+A platform can add additional constraints on top of those in a
+profile.  For example, mandating an extension that is a standard
+option in the underlying profile, or constraining some
+implementation-specific parameter in the profile to lie within a
+certain range.
+
+A platform cannot remove mandates or reduce other requirements in a
+profile.
+
+NOTE: A new profile should be proposed if existing profiles do not
+match the needs of a new platform.
+

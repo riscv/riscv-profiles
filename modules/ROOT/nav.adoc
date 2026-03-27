@@ -1,0 +1,11 @@
+* RISC-V Profiles
+** xref:index.adoc[Title Page]
+** xref:copyright.adoc[Copyright and License Information]
+** xref:changelog.adoc[Changelog]
+** xref:intro.adoc[Introduction]
+** xref:profilevsplat.adoc[Profiles versus Platforms]
+** xref:components.adoc[Components of a Profile]
+** xref:rva20.adoc[RVA20 Profile]
+** xref:rva22.adoc[RVA22 Profile]
+** xref:extensions.adoc[New ISA Extensions]
+** xref:glossary.adoc[Glossary]
