@@ -1,7 +1,6 @@
 name: rvprofile
 title: RISC-V Profiles
 version: v1.0
-start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc
 
@@ -9,6 +8,7 @@ asciidoc:
   attributes:
     page-group: profile
     page-card-description: 'Base profile definitions and guidance.'
-    page-release-date: 'March 2023'
+    page-release-date: 'April 2023'
     page-pdf_url: _attachments/RISC-V_Profiles.pdf
     more_details_url: https://riscv.atlassian.net/wiki/external/ODAwNTY1YzNmZDQ3NDg5N2FkMGQ5MTRjZWY1ZGY4Yjc
+    source-highlighter: highlight.js
