@@ -1,5 +1,8 @@
 = RISC-V Profiles
 
+NOTE: This repository has been archived, as its contents have been integrated
+into the https://github.com/riscv/riscv-isa-manual[RISC-V ISA Manual].
+
 == License
 
 This work is licensed under a Creative Commons Attribution 4.0 International License (CC-BY-4.0). For details, see the link:LICENSE[LICENSE] file.
