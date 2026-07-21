@@ -1,5 +1,4 @@
-* RVB23 Profile
-** xref:index.adoc[Title Page]
+* xref:index.adoc[RVB23 Profile]
 ** xref:copyright.adoc[Copyright and License Information]
 ** xref:intro.adoc[Introduction]
 ** xref:profile-defined.adoc[Profile-Defined Extensions]
